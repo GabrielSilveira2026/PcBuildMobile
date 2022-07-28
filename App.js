@@ -1,7 +1,7 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { Button, StyleSheet, Text, Image, View, ImageBackground } from 'react-native';
+import { SafeAreaView ,Button, StyleSheet, Text, Image, View, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -65,38 +65,20 @@ function MyStack({navigation}){
   return(
     <Stack.Navigator
       screenOptions={{
-        // cardStyle: {backgroundColor: 'transparent', shadowColor:'transparent'},
-        // transparentCard: true, 
-        // transitionConfig: () => ({
-        //   containerStyle: {
-        //     backgroundColor: 'transparent',
-        //   },
-        // }),
-        headerStyle: {
-          backgroundColor: '#DF3F48',
-        },
-
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-
-        headerTintColor:'black',
-
-        headerTitle:  () => (
-          <Button
-            title = "Menu" 
-            Textcolor = "black"
-            
-          />
-        ),
-
-        headerRight: () => (
-          <Button
-            title = "Pesquisa"
-          />
-        ),
-
-        headerLeft: ()=> null
+        header: (props) => {
+          console.log(props)
+          return <SafeAreaView style={{backgroundColor: '#DF3F48', marginTop:30, height:55,padding: 7,flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 2}}> 
+            <Button 
+              color="black"
+              title='Menu'
+              onPress={() => props.navigation.navigate('Jogos')}
+            />
+            <Button 
+              color="black"
+              title="Pesquisar"
+            />
+          </SafeAreaView >
+        }
       }}
       >
         <Stack.Screen
