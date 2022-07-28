@@ -1,7 +1,7 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { Button, View, Text, Image } from 'react-native';
+import { Button, StyleSheet, Text, Image, View, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -16,6 +16,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //     </View>
 //   );
 // }
+
 
 import HomeScreen from './Telas/HomeScreen';
 import JogosTela from './Telas/JogosTela';
@@ -60,42 +61,44 @@ function LogoTitle() {
 
 const Stack = createNativeStackNavigator();
 
-function MyStack(){
+function MyStack({navigation}){
   return(
     <Stack.Navigator
       screenOptions={{
-        initialRouteName: "Jogos",
+        // cardStyle: {backgroundColor: 'transparent', shadowColor:'transparent'},
+        // transparentCard: true, 
+        // transitionConfig: () => ({
+        //   containerStyle: {
+        //     backgroundColor: 'transparent',
+        //   },
+        // }),
         headerStyle: {
           backgroundColor: '#DF3F48',
         },
+
         headerTitleStyle: {
           fontWeight: 'bold',
         },
+
         headerTintColor:'black',
+
         headerTitle:  () => (
           <Button
             title = "Menu" 
             Textcolor = "black"
-            onPress={() => navigation.navigate('Home')}
+            
           />
         ),
-        // (props) => <LogoTitle {...props} />,
+
         headerRight: () => (
           <Button
             title = "Pesquisa"
           />
         ),
+
         headerLeft: ()=> null
       }}
       >
-        {/* <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-        /> */}
-        {/* <Stack.Screen
-          name="Segunda"
-          component={SegundaTela}
-        /> */}
         <Stack.Screen
           name="Jogos"
           component={JogosTela}
@@ -127,6 +130,7 @@ function MyStack(){
 function App() {
   return (
     <NavigationContainer>
+      {/* <Image source={require("./Imagens/Fundo.png")} style={{width: '100%', height: '100%', position: "absolute"}} /> */}
       <MyStack/>
     </NavigationContainer>
   );

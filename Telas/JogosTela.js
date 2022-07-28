@@ -1,19 +1,35 @@
 import * as React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View, ImageBackground } from 'react-native';
 import Cores from '../Constantes/Cores';
 
 const JogosTela = ({navigation}) => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', backgroundColor: Cores.secondary}}>
-      <Text>Jogos Tela</Text>
-      <Button 
-            title="Programas tela"
-            onPress={() => navigation.navigate('Programas')}
-      />
-    </View>
+    <ImageBackground source={require('../Imagens/Fundo.png')} style={styles.imageBackground}>
+      <View style={styles.corpo}>
+          <Text> Jogos Tela</Text>
+          <Button 
+                title="Programas tela"
+                onPress={() => navigation.navigate('Programas')}
+          />
+      </View>
+    </ImageBackground>
   );
 }
 
 export default JogosTela;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  imageBackground: {
+    width: '100%', 
+    height: '100%',
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  corpo:{
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'center',
+  }
+});
