@@ -9,6 +9,18 @@ const ProgramasTela = ({navigation}) => {
   return (
     <SafeAreaView style={styles.tela}>
       <SafeAreaView style={styles.conteudo}>
+
+        {/* Tab jogos/programas */}
+        <SafeAreaView style={stylesP.tab}>
+          <TouchableOpacity style={stylesP.botaoJogos} onPress={() => navigation.navigate('Jogos')}>
+            <Text style={{ color: 'black', fontSize: 25 }}>Jogos</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={stylesP.botaoProgramas} onPress={() => navigation.navigate('Programas')}>
+            <Text style={{ color: 'white', fontSize: 25 }}>Programas</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+
         <ImageBackground source={image} resizeMode="cover" style={{width: '100%', height: '100%'}}>
         <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Programas</Text>
         </ImageBackground>
@@ -27,3 +39,30 @@ const ProgramasTela = ({navigation}) => {
 }
 
 export default ProgramasTela
+
+
+const stylesP = StyleSheet.create({
+  tab:{
+    flexDirection: "row",
+    marginLeft:'auto', 
+    marginRight: 'auto', 
+    marginTop: 25, 
+    marginBottom: 10
+  },
+
+  botaoJogos: {
+    backgroundColor: 'white',
+    alignItems: "center",
+    width: '45%', 
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10
+  },
+  botaoProgramas: {
+    backgroundColor: 'black',
+    alignItems: "center",
+    width: '45%',
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10
+  }
+
+})

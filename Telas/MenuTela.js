@@ -27,3 +27,5 @@ const MenuTela = ({navigation}) => {
 }
 
 export default MenuTela
+
+const styles = StyleSheet.create({})
