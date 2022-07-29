@@ -3,6 +3,18 @@ import Cores from '../Constantes/Cores';
 const image = require('../Imagens/Fundo.png');
 
 export default StyleSheet.create({
+    cabecalho:{
+        backgroundColor: '#DF3F48', 
+        marginTop:30, 
+        height:55, 
+        paddingTop: 7,  
+        paddingRight: 15, 
+        paddingLeft: 15,
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        borderBottomWidth: 2
+    },
+    
     tela: {
         textAlign: "center",
         justifyContent: "center",

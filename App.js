@@ -4,23 +4,10 @@ import * as React from 'react';
 import { SafeAreaView ,Button, StyleSheet, Text, Image, View, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {FontAwesome5} from 'react-native-vector-icons';
 
+import styles from './Constantes/Styles'
 import Cores from './Constantes/Cores';
-
-
-// function HomeScreen({navigation}) {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <Text style={{fontSize: 25}}>Primeira Tela</Text>
-//       <Button 
-//         title="Segunda tela"
-//         onPress={() => navigation.navigate('Segunda')}
-//       />
-//     </View>
-//   );
-// }
-
-
 import HomeScreen from './Telas/HomeScreen';
 import JogosTela from './Telas/JogosTela';
 import ProgramasTela from './Telas/ProgramasTela';
@@ -28,30 +15,6 @@ import SelecionadosTela from './Telas/SelecionadosTela';
 import FiltrosTela from './Telas/FiltrosTela';
 import RecomendadosTela from './Telas/RecomendadosTela';
 import PecasTela from './Telas/PecasTela';
-
-function SegundaTela({navigation}) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{fontSize: 25}}>Segunda Tela :)</Text>
-      <Button 
-        title="Terceira Tela"
-        onPress={() => navigation.navigate('Terceira')}
-      />
-    </View>
-  );
-}
-
-function TerceiraTela({navigation}) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{fontSize: 50}}>Terceira Tela</Text>
-      <Button 
-        title="Primeira Tela"
-        onPress={() => navigation.navigate('Home')}
-      />
-    </View>
-  );
-}
 
 function LogoTitle() {
   return (
@@ -70,17 +33,12 @@ function MyStack({navigation}){
       screenOptions={{
         header: (props) => {
           console.log(props)
-          return <SafeAreaView style={{backgroundColor: '#DF3F48', marginTop:30, height:55,padding: 7,flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 2}}> 
-            <Button 
-              color="black"
-              title='Menu'
-              onPress={() => props.navigation.navigate('Jogos')}
-            />
-            <Button 
-              color="black"
-              title="Pesquisar"
-            />
-          </SafeAreaView >
+          return (
+            <SafeAreaView style={styles.cabecalho}> 
+              <FontAwesome5 name="bars" size={40} color="black" onPress={() => props.navigation.navigate('Jogos')}/>
+              <FontAwesome5 name="search" size={40} color="black"/>
+            </SafeAreaView >
+          )
         }
       }}
       >
