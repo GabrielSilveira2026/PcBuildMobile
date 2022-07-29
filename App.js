@@ -5,6 +5,9 @@ import { SafeAreaView ,Button, StyleSheet, Text, Image, View, ImageBackground } 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import Cores from './Constantes/Cores';
+
+
 // function HomeScreen({navigation}) {
 //   return (
 //     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
