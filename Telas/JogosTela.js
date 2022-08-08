@@ -15,15 +15,17 @@ const JogosTela = ({navigation}) => {
           {/* Tab jogos/programas */}
           <SafeAreaView style={stylesJ.tab}>
             <TouchableOpacity style={stylesJ.botaoJogos} onPress={() => navigation.navigate('Jogos')}>
-              <Text style={{color: 'black', fontSize: 25}}>Jogos</Text>
+              <Text style={{color: 'white', fontSize: 25}}>Jogos</Text>
             </TouchableOpacity>
             
             <TouchableOpacity style={stylesJ.botaoProgramas} onPress={() => navigation.navigate('Programas')}>
-              <Text style={{color: 'white', fontSize: 25}}>Programas</Text>
+              <Text style={{color: 'black', fontSize: 25}}>Programas</Text>
             </TouchableOpacity>
+
           </SafeAreaView>
 
             <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Jogos</Text>
+
           </ImageBackground>
         </SafeAreaView>
 
@@ -49,18 +51,24 @@ const stylesJ = StyleSheet.create({
     marginLeft:'auto', 
     marginRight: 'auto', 
     marginTop: 25, 
-    marginBottom: 10
+    marginBottom: 10,
+    borderWidth: 1,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10
   },
 
   botaoJogos: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     alignItems: "center",
     width: '45%', 
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10
   },
+  
   botaoProgramas: {
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     alignItems: "center",
     width: '45%',
     borderTopRightRadius: 10,

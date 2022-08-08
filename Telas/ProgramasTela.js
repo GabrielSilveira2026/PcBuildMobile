@@ -47,7 +47,12 @@ const stylesP = StyleSheet.create({
     marginLeft:'auto', 
     marginRight: 'auto', 
     marginTop: 25, 
-    marginBottom: 10
+    marginBottom: 10,
+    borderWidth: 1,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10
   },
 
   botaoJogos: {
