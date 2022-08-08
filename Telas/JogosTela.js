@@ -73,6 +73,10 @@ const stylesJ = StyleSheet.create({
     width: '45%',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10
+  },
+
+  botaoProximo:{
+    width: '100%',
   }
 
 })

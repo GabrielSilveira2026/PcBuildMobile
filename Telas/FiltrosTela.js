@@ -15,6 +15,13 @@ const FiltrosTela = ({navigation}) => {
       </SafeAreaView>
 
       <SafeAreaView style={styles.rodape}>
+      <TouchableOpacity 
+          style={styles.botaoVoltar}
+          onPress={() => navigation.navigate('Selecionados')}
+          >
+          <Text style={{color: 'black'}}>Voltar</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity 
           style={styles.botaoProximo}
           onPress={() => navigation.navigate('Recomendados')}

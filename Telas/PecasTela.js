@@ -16,6 +16,13 @@ const PecasTela = ({navigation}) => {
 
       <SafeAreaView style={styles.rodape}>
         <TouchableOpacity 
+          style={styles.botaoVoltar}
+          onPress={() => navigation.navigate('Recomendados')}
+          >
+          <Text style={{color: 'black'}}>Voltar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
           style={styles.botaoProximo}
           >
           <Text style={{color: 'white'}}>Proxima</Text>
