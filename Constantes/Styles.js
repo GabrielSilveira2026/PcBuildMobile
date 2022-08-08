@@ -17,7 +17,7 @@ export default StyleSheet.create({
     
     backgroundImage: {
         width: '100%', 
-        height: '96%'
+        height: '97%'
     },
 
     tela: {
@@ -32,27 +32,26 @@ export default StyleSheet.create({
     rodape: {
         flexDirection: 'row', 
         justifyContent: 'space-evenly',
-        padding: 8,
+        padding: 12,
         height: 80,
         width: '100%',
         backgroundColor: Cores.primary,
-        borderWidth: 2,
-        borderRadius: 5,
+        borderTopWidth: 2,
     }, 
     botaoVoltar:{
+        flexGrow: 1,
+        marginRight: 5,
+        backgroundColor: 'white',
+        justifyContent: "center",
         alignItems: "center",
         borderRadius: 7,
-        padding: 18,
-        flexGrow: 1,
-        backgroundColor: 'white',
-        marginRight: 5
+        borderWidth: 1,
     },
     botaoProximo:{
-        alignItems: "center",
-        borderRadius: 7,
-        padding: 18,
         flexGrow: 1,
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        justifyContent: "center",
+        alignItems: 'center',
+        borderRadius: 7,
     },
-    
 });
