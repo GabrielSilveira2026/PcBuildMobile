@@ -11,7 +11,7 @@ const JogosTela = ({navigation}) => {
       <SafeAreaView style={styles.tela}>
         {/* Conteudo da Tela */}
         <SafeAreaView style={styles.conteudo}>
-          <ImageBackground source={image} resizeMode="cover" style={{width: '100%', height: '100%'}}>
+          <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
           {/* Tab jogos/programas */}
           <SafeAreaView style={stylesJ.tab}>
             <TouchableOpacity style={stylesJ.botaoJogos} onPress={() => navigation.navigate('Jogos')}>
@@ -24,7 +24,7 @@ const JogosTela = ({navigation}) => {
 
           </SafeAreaView>
 
-            <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Jogos</Text>
+          <Text style={{textAlign: 'center', color: 'black', fontSize: 19, marginLeft:'15%', marginRight: '15%'}}>Escolha os jogos que você deseja jogar!</Text>
 
           </ImageBackground>
         </SafeAreaView>
@@ -34,7 +34,7 @@ const JogosTela = ({navigation}) => {
           <TouchableOpacity 
             style={styles.botaoProximo}
             onPress={() => navigation.navigate('Selecionados')}
-            >
+          >
             <Text style={{color: 'white'}}>Proxima</Text>
           </TouchableOpacity>
         </SafeAreaView>

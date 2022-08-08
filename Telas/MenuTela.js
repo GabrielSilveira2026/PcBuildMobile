@@ -9,7 +9,7 @@ const MenuTela = ({navigation}) => {
   return (
     <SafeAreaView style={styles.tela}>
       <SafeAreaView style={styles.conteudo}>
-        <ImageBackground source={image} resizeMode="cover" style={{width: '100%', height: '100%'}}>
+        <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
           <Text>TELA PROGRAMAS</Text>
         </ImageBackground>
       </SafeAreaView>

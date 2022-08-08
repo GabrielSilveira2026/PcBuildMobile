@@ -10,7 +10,7 @@ const SelecionadosTela = ({navigation}) => {
   return (
     <SafeAreaView style={styles.tela}>
       <SafeAreaView style={styles.conteudo}>
-        <ImageBackground source={image} resizeMode="cover" style={{width: '100%', height: '100%'}}>
+        <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
         <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Selecionados</Text>
         </ImageBackground>
       </SafeAreaView>

@@ -30,7 +30,7 @@ export default StyleSheet.create({
         width: '100%',
         backgroundColor: Cores.primary,
         borderWidth: 2,
-        borderRadius: 7,
+        borderRadius: 5,
         justifyContent: 'flex-end',
     }, 
     botaoProximo:{
@@ -40,5 +40,8 @@ export default StyleSheet.create({
         width: '100%',
         backgroundColor: 'black'
     },
-
+    backgroundImage: {
+        width: '100%', 
+        height: '94%'
+    }
 });

@@ -11,6 +11,7 @@ const ProgramasTela = ({navigation}) => {
       <SafeAreaView style={styles.conteudo}>
 
         {/* Tab jogos/programas */}
+        <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
         <SafeAreaView style={stylesP.tab}>
           <TouchableOpacity style={stylesP.botaoJogos} onPress={() => navigation.navigate('Jogos')}>
             <Text style={{ color: 'black', fontSize: 25 }}>Jogos</Text>
@@ -21,8 +22,7 @@ const ProgramasTela = ({navigation}) => {
           </TouchableOpacity>
         </SafeAreaView>
 
-        <ImageBackground source={image} resizeMode="cover" style={{width: '100%', height: '100%'}}>
-        <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Programas</Text>
+        <Text style={{textAlign: 'center', color: 'black', fontSize: 19, marginLeft:'15%', marginRight: '15%'}}>Escolha os Programas que você deseja utilizar!</Text>
         </ImageBackground>
       </SafeAreaView>
 
