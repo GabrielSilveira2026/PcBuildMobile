@@ -1,6 +1,6 @@
 // import * as React from 'react';
-import React, { useState, useEffect } from 'react';
-import {SafeAreaView , Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
+import React, { useState, useEffect,  } from 'react';
+import {SafeAreaView ,Linking , Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import Cores from '../Constantes/Cores';
 import styles from '../Constantes/Styles';
 import api from '../Services/httpservices';
@@ -18,7 +18,8 @@ const FiltrosTela = ({navigation}) => {
         console.error("ops! ocorreu um erro" + err);
       });
   }, []);
-
+  const imagem = peca?.shopping_results[0].image
+  const link = peca?.shopping_results[0].link
 {
 //   const axios = require('axios');
 
@@ -46,8 +47,18 @@ const FiltrosTela = ({navigation}) => {
     <SafeAreaView style={styles.tela}>
       <SafeAreaView style={styles.conteudo}>
         <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
-        <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Filtros</Text>
-        <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>titulo: {peca?.shopping_results[0].title}</Text>
+          <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Filtros</Text>
+          <Text style={{color: 'white', fontSize: 15, marginLeft:'auto', marginRight: 'auto'}}>titulo: {peca?.shopping_results[0].title}</Text>
+          <Image style={{height: 150, width: 150, marginLeft:'auto', marginRight: 'auto'}}
+          source={{uri: imagem}}
+          />
+          <Text 
+            onPress={() => { 
+              Linking.openURL(link); 
+            }}
+            > 
+            Comprar
+          </Text>
         </ImageBackground>
       </SafeAreaView>
 
