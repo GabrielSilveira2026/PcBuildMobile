@@ -28,9 +28,7 @@ const FiltrosTela = ({navigation}) => {
       return response
     })
     .then(response => {
-      // console.log(JSON.stringify(response, 0, 2));
       setPrecos(response.data.shopping_results)
-      // console.log(precos);
     })
     .catch(error => {
       console.log(error);
@@ -87,12 +85,9 @@ const estilo = StyleSheet.create({
   area: {
     padding: 5
   },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
+  lista: {
+    textAlign: "center"
+  }
 });
 
 export default FiltrosTela
