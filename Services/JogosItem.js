@@ -20,7 +20,7 @@ export default jogosItem
 
 const styles = StyleSheet.create({
     cartao:{
-        marginBottom: 20,
+        marginBottom: 10,
         backgroundColor: "#ff7e75",
         padding: 10,
         width: 250,

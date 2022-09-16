@@ -52,7 +52,7 @@ const JogosTela = ({navigation}) => {
   
   const imprime = () =>{
     console.log("IMPRESSO PELO BOTÃO")
-    console.log(JSON.stringify(listaJogos));
+    console.log(JSON.stringify(listaJogos, 0, 5));
   }
 
   return (
@@ -74,22 +74,38 @@ const JogosTela = ({navigation}) => {
 
           <Text style={{textAlign: 'center', color: 'black', fontSize: 19, marginLeft:'15%', marginRight: '15%'}}>Escolha os jogos que você deseja jogar!</Text>
 
-          <TextInput
-            placeholder="Digite o jogo"
-            value={jogo}
-            onChangeText={capturarJogo}
-          />
+          <SafeAreaView>
 
-          <Button title="teste" onPress={pesquisa}/>
+            <TextInput
+              placeholder="Digite o jogo"
+              value={jogo}
+              onChangeText={capturarJogo}
+              />
 
-          <Button title="imprime" onPress={imprime}/>
+            <TouchableOpacity 
+              style={styles.botaoProximo}
+              onPress={pesquisa}
+              >
+              <Text style={{color: 'white'}}>Pesquisa</Text>
+            </TouchableOpacity>
 
+
+            <TouchableOpacity 
+              style={styles.botaoProximo}
+              onPress={imprime}
+              >
+              <Text style={{color: 'white'}}>Imprimir</Text>
+            </TouchableOpacity>
+          </SafeAreaView>
+
+          <SafeAreaView>
             <FlatList
               data={listaJogos}
               renderItem={j => (
-                <JogosItem jogo={j.item}/>
+              <JogosItem jogo={j.item}/>
               )}
             />
+          </SafeAreaView>
             
           </ImageBackground>
         </SafeAreaView>
