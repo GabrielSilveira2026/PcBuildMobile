@@ -17,38 +17,29 @@ const JogosTela = ({navigation}) => {
   
   const listaProcurados = []
 
-  useEffect(() => {
-    axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
-    .then(response => {
-      setListaJogos(response.data.applist.apps)
-      // console.log(JSON.stringify(response.data.applist.apps, 0, 2));
-    })
-  }, [])
-
   const pesquisa = () => {
     axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
     .then(response => {
-      setListaJogos(response.data.applist.apps)
-    })
-
-    for(var i = 0; i < listaJogos.length; i++){
-      if(listaJogos[i].name.includes(jogo)){
-        // console.log( "Achou na lista " + listaJogos[i].name, listaJogos[i].appid, listaJogos[i].type)
-        pesquisaSteam(listaJogos[i])
+      for(var i = 0; i < response.data.applist.apps.length; i++){
+        if(response.data.applist.apps[i].name.includes(jogo)){
+          // console.log( "Achou na lista " + listaJogos[i].name, listaJogos[i].appid, listaJogos[i].type)
+          pesquisaSteam(response.data.applist.apps[i])
+        }
       }
-    }
+    })
   }
  
   const pesquisaSteam = (jogoPesquisado) => {
     axios.get('https://store.steampowered.com/api/appdetails?appids=' + jogoPesquisado.appid)
       .then(response => {
         const dados = response.data[jogoPesquisado.appid].data
-        if (dados.type === "game") {
-          let x = {
+        if (dados?.type === "game") {
+          const x = {
             name: dados.name, 
             image: dados.header_image
           }
           listaProcurados.push(x)
+          setListaJogos(listaProcurados)
           // console.log("Adicionado no Lista procurado: " + dados.name + " - " + dados.steam_appid + " - " + dados.type)
           console.log("LISTA PROCURADOS:" , JSON.stringify(listaProcurados, 0, 2));
         }
@@ -60,7 +51,8 @@ const JogosTela = ({navigation}) => {
 
   
   const imprime = () =>{
-    console.log(JSON.stringify(listaProcurados, 0, 2));
+    console.log("IMPRESSO PELO BOTÃO")
+    console.log(JSON.stringify(listaJogos));
   }
 
   return (
@@ -93,7 +85,7 @@ const JogosTela = ({navigation}) => {
           <Button title="imprime" onPress={imprime}/>
 
             <FlatList
-              data={listaProcurados}
+              data={listaJogos}
               renderItem={j => (
                 <JogosItem jogo={j.item}/>
               )}
