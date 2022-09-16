@@ -32,7 +32,7 @@ function MyStack({navigation}){
     <Stack.Navigator
       screenOptions={{
         header: (props) => {
-          console.log(props)
+          // console.log(props)
           return (
             <SafeAreaView style={styles.cabecalho}> 
               <FontAwesome5 name="bars" size={40} color="black" onPress={() => props.navigation.navigate('Jogos')}/>

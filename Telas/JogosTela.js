@@ -1,12 +1,68 @@
-import * as React from 'react';
-import {SafeAreaView , Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
-import Cores from '../Constantes/Cores';
+import React, { useState, useEffect,  } from 'react';
+import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import styles from '../Constantes/Styles'
-import {Feather} from 'react-native-vector-icons';
+import axios from "axios";
+import JogosItem from '../Services/JogosItem'
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 const image = require('../Imagens/Fundo.png');
 
 const JogosTela = ({navigation}) => {
+  const [jogo, setJogo] = useState('')
+  const capturarJogo = (jogoDigitada) => {
+    setJogo(jogoDigitada)
+  }
+
+  const [listaJogos, setListaJogos] = useState([])
+  
+  const listaProcurados = []
+
+  useEffect(() => {
+    axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
+    .then(response => {
+      setListaJogos(response.data.applist.apps)
+      // console.log(JSON.stringify(response.data.applist.apps, 0, 2));
+    })
+  }, [])
+
+  const pesquisa = () => {
+    axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
+    .then(response => {
+      setListaJogos(response.data.applist.apps)
+    })
+
+    for(var i = 0; i < listaJogos.length; i++){
+      if(listaJogos[i].name.includes(jogo)){
+        // console.log( "Achou na lista " + listaJogos[i].name, listaJogos[i].appid, listaJogos[i].type)
+        pesquisaSteam(listaJogos[i])
+      }
+    }
+  }
+ 
+  const pesquisaSteam = (jogoPesquisado) => {
+    axios.get('https://store.steampowered.com/api/appdetails?appids=' + jogoPesquisado.appid)
+      .then(response => {
+        const dados = response.data[jogoPesquisado.appid].data
+        if (dados.type === "game") {
+          let x = {
+            name: dados.name, 
+            image: dados.header_image
+          }
+          listaProcurados.push(x)
+          // console.log("Adicionado no Lista procurado: " + dados.name + " - " + dados.steam_appid + " - " + dados.type)
+          console.log("LISTA PROCURADOS:" , JSON.stringify(listaProcurados, 0, 2));
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  
+  const imprime = () =>{
+    console.log(JSON.stringify(listaProcurados, 0, 2));
+  }
+
   return (
       <SafeAreaView style={styles.tela}>
         {/* Conteudo da Tela */}
@@ -26,6 +82,23 @@ const JogosTela = ({navigation}) => {
 
           <Text style={{textAlign: 'center', color: 'black', fontSize: 19, marginLeft:'15%', marginRight: '15%'}}>Escolha os jogos que você deseja jogar!</Text>
 
+          <TextInput
+            placeholder="Digite o jogo"
+            value={jogo}
+            onChangeText={capturarJogo}
+          />
+
+          <Button title="teste" onPress={pesquisa}/>
+
+          <Button title="imprime" onPress={imprime}/>
+
+            <FlatList
+              data={listaProcurados}
+              renderItem={j => (
+                <JogosItem jogo={j.item}/>
+              )}
+            />
+            
           </ImageBackground>
         </SafeAreaView>
 

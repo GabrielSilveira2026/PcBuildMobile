@@ -1,4 +1,4 @@
-import api from '../Services/httpservices';
+import axios from "axios";
 import React, { useState, useEffect,  } from 'react';
 import {SafeAreaView , TextInput, FlatList, Linking , Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import styles from '../Constantes/Styles';
@@ -22,7 +22,7 @@ const FiltrosTela = ({navigation}) => {
   }
 
   const obterPrecos = () =>{
-    api.get('https://api.scaleserp.com/search', {params})
+    axios.get('https://api.scaleserp.com/search', {params})
     .then(response => {
       console.log(response.data.shopping_results)
       return response

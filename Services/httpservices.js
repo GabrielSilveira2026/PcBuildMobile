@@ -3,26 +3,9 @@ import axios from "axios";
 const api = axios.create({
   baseUrl: "https://api.scaleserp.com/search"
 })
-
-
-// const obterPrecos = () => {
-//     const params = {
-//       api_key: "7D464447DADD4803BB5CB37440920B14",
-//       search_type: "shopping",
-//       location: "Brazil",
-//       q: "5600g"
-//     }
-    
-//     axios.get('https://api.scaleserp.com/search', {params})
-//     .then(response => {
-//       setPrecos(response.data.shopping_results)
-//       console.log(JSON.stringify(precos, 0, 2));
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-//   }
-
+// export const apiSteam = axios.create({
+//   baseUrl: "store.steampowered.com/api/appdetails?appids"
+// })
 
 export default api;
 
