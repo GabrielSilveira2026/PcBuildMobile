@@ -7,12 +7,15 @@ import {
 import React from 'react'
 
 const jogosItem = ({jogo}) => {
-    const name = jogo.name
+    const nome = jogo.nome
     const imagem = jogo.image
+    const preco = jogo.preco
+
   return (
     <View style={styles.cartao}>
         <Image style={styles.imagem} source={{uri: imagem}}/>
-        <Text>Nome: {name}</Text>
+        <Text>Nome: {nome}</Text>
+        <Text>preco: {preco}</Text>
     </View>
   )
 }

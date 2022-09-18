@@ -3,7 +3,6 @@ import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableO
 import styles from '../Constantes/Styles'
 import axios from "axios";
 import JogosItem from '../Services/JogosItem'
-import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 const image = require('../Imagens/Fundo.png');
 
@@ -23,32 +22,32 @@ const JogosTela = ({navigation}) => {
       for(var i = 0; i < response.data.applist.apps.length; i++){
         if(response.data.applist.apps[i].name.includes(jogo)){
           // console.log( "Achou na lista " + listaJogos[i].name, listaJogos[i].appid, listaJogos[i].type)
-          pesquisaSteam(response.data.applist.apps[i])
+          // pesquisaSteam(response.data.applist.apps[i].appid)
+          const jogoPesquisado= response.data.applist.apps[i].appid
+          axios.get('https://store.steampowered.com/api/appdetails?appids=' + jogoPesquisado)
+          .then(response => {
+            const dados = response.data[jogoPesquisado].data
+            if (dados?.type === "game") {
+              const x = {
+                nome: dados.name, 
+                image: dados.header_image,
+                // requisitosMinimos: dados.pc_requirements.minimum,
+                // requisitosRecomendados: dados.pc_requirements.recommended,
+                preco: dados?.price_overview?.final_formatted
+              }
+              listaProcurados.push(x)
+              setListaJogos(listaProcurados)
+              // console.log("Adicionado no Lista procurado: " + dados.name + " - " + dados.steam_appid + " - " + dados.type)
+              console.log("LISTA PROCURADOS:" , JSON.stringify(listaProcurados, 0, 2));
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
         }
       }
     })
   }
- 
-  const pesquisaSteam = (jogoPesquisado) => {
-    axios.get('https://store.steampowered.com/api/appdetails?appids=' + jogoPesquisado.appid)
-      .then(response => {
-        const dados = response.data[jogoPesquisado.appid].data
-        if (dados?.type === "game") {
-          const x = {
-            name: dados.name, 
-            image: dados.header_image
-          }
-          listaProcurados.push(x)
-          setListaJogos(listaProcurados)
-          // console.log("Adicionado no Lista procurado: " + dados.name + " - " + dados.steam_appid + " - " + dados.type)
-          console.log("LISTA PROCURADOS:" , JSON.stringify(listaProcurados, 0, 2));
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
   
   const imprime = () =>{
     console.log("IMPRESSO PELO BOTÃO")
@@ -58,7 +57,7 @@ const JogosTela = ({navigation}) => {
   return (
       <SafeAreaView style={styles.tela}>
         {/* Conteudo da Tela */}
-        <SafeAreaView style={styles.conteudo}>
+        <View style={styles.conteudo}>
           <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
           {/* Tab jogos/programas */}
           <SafeAreaView style={stylesJ.tab}>
@@ -69,13 +68,11 @@ const JogosTela = ({navigation}) => {
             <TouchableOpacity style={stylesJ.botaoProgramas} onPress={() => navigation.navigate('Programas')}>
               <Text style={{color: 'black', fontSize: 25}}>Programas</Text>
             </TouchableOpacity>
-
           </SafeAreaView>
 
           <Text style={{textAlign: 'center', color: 'black', fontSize: 19, marginLeft:'15%', marginRight: '15%'}}>Escolha os jogos que você deseja jogar!</Text>
 
-          <SafeAreaView>
-
+          <View>
             <TextInput
               placeholder="Digite o jogo"
               value={jogo}
@@ -96,29 +93,29 @@ const JogosTela = ({navigation}) => {
               >
               <Text style={{color: 'white'}}>Imprimir</Text>
             </TouchableOpacity>
-          </SafeAreaView>
+          </View>
 
-          <SafeAreaView>
+          <View>
             <FlatList
               data={listaJogos}
               renderItem={j => (
               <JogosItem jogo={j.item}/>
               )}
             />
-          </SafeAreaView>
+          </View>
             
           </ImageBackground>
-        </SafeAreaView>
+        </View>
 
         {/* Rodapé com botões */}
-        <SafeAreaView style={styles.rodape}>
+        <View style={styles.rodape}>
           <TouchableOpacity 
             style={styles.botaoProximo}
             onPress={() => navigation.navigate('Selecionados')}
           >
             <Text style={{color: 'white'}}>Proxima</Text>
           </TouchableOpacity>
-        </SafeAreaView>
+        </View>
       </SafeAreaView>
   );
 }
