@@ -31,6 +31,7 @@ const JogosTela = ({navigation}) => {
               const x = {
                 nome: dados.name, 
                 image: dados.header_image,
+                estado: "square",
                 // requisitosMinimos: dados.pc_requirements.minimum,
                 // requisitosRecomendados: dados.pc_requirements.recommended,
                 preco: dados?.price_overview?.final_formatted
@@ -48,6 +49,7 @@ const JogosTela = ({navigation}) => {
       }
     })
   }
+
   
   const imprime = () =>{
     console.log("IMPRESSO PELO BOTÃO")
@@ -111,7 +113,7 @@ const JogosTela = ({navigation}) => {
         <View style={styles.rodape}>
           <TouchableOpacity 
             style={styles.botaoProximo}
-            onPress={() => navigation.navigate('Selecionados')}
+            onPress={() => navigation.navigate('Selecionados', {listaJogos})}
           >
             <Text style={{color: 'white'}}>Proxima</Text>
           </TouchableOpacity>

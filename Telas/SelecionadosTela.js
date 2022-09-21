@@ -1,17 +1,30 @@
 import * as React from 'react';
-import {SafeAreaView , Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
+import {SafeAreaView , Button,FlatList, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import Cores from '../Constantes/Cores';
 import styles from '../Constantes/Styles'
+import JogosItem from '../Services/JogosItem'
 
 const image = require('../Imagens/Fundo.png');
 
 
-const SelecionadosTela = ({navigation}) => {
+const SelecionadosTela = ({route, navigation}) => {
+  const selecionados = route.params.listaJogos
+  console.log("Lista selecionados",selecionados)
   return (
     <SafeAreaView style={styles.tela}>
       <SafeAreaView style={styles.conteudo}>
         <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
         <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Selecionados</Text>
+
+          <View>
+            <FlatList
+              data={selecionados}
+              renderItem={j => (
+              <JogosItem jogo={j.item}/>
+              )}
+            />
+          </View>
+
         </ImageBackground>
       </SafeAreaView>
 

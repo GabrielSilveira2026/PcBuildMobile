@@ -3,19 +3,28 @@ import {
     StyleSheet, 
     Text, 
     View,
+    TouchableOpacity
 } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect,  } from 'react'
+import {FontAwesome5} from 'react-native-vector-icons';
 
 const jogosItem = ({jogo}) => {
     const nome = jogo.nome
     const imagem = jogo.image
     const preco = jogo.preco
+    var estado = jogo.estado
 
+    const seleciona = () => {
+        estado = 'check-square'
+        console.log('')
+    }
+    
   return (
     <View style={styles.cartao}>
         <Image style={styles.imagem} source={{uri: imagem}}/>
         <Text>Nome: {nome}</Text>
         <Text>preco: {preco}</Text>
+        <FontAwesome5 name={estado} size={40} color="black" onPress={seleciona}/>
     </View>
   )
 }
