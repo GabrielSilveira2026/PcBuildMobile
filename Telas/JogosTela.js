@@ -1,9 +1,8 @@
-import {useContext, useState, useEffect} from 'react';
+import {useState} from 'react';
 import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import styles from '../Constantes/Styles'
 import axios from "axios";
 import JogosItem from '../Services/JogosItem'
-import {CartContext} from '../Constantes/CartContext'
 
 const image = require('../Imagens/Fundo.png');
 

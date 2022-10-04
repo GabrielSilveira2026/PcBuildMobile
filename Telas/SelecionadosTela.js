@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React, { useState, useEffect,  useContext} from 'react'
 import {SafeAreaView , Button,FlatList, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import Cores from '../Constantes/Cores';
 import styles from '../Constantes/Styles'
 import JogosItem from '../Services/JogosItem'
+import {useCart} from '../Constantes/CartContext'
 
 const image = require('../Imagens/Fundo.png');
 
 
 const SelecionadosTela = ({navigation}) => {
+  const selecionados = useCart()
   
   return (
     <SafeAreaView style={styles.tela}>
@@ -16,12 +18,13 @@ const SelecionadosTela = ({navigation}) => {
         <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Selecionados</Text>
 
           <View>
-            {/* <FlatList
-              data={selecionados}
+            {/* <Text>{JSON.stringify(selecionados.cart, null, 2)}</Text> */}
+            <FlatList
+              data={selecionados.cart}
               renderItem={j => (
               <JogosItem jogo={j.item}/>
               )}
-            /> */}
+            />
           </View>
 
         </ImageBackground>

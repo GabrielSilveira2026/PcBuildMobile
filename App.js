@@ -13,7 +13,7 @@ import SelecionadosTela from './Telas/SelecionadosTela';
 import FiltrosTela from './Telas/FiltrosTela';
 import RecomendadosTela from './Telas/RecomendadosTela';
 import PecasTela from './Telas/PecasTela';
-import {CartProvider, CartContext} from './Constantes/CartContext';
+import {CartProvider} from './Constantes/CartContext';
 
 const Stack = createNativeStackNavigator();
 

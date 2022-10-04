@@ -5,12 +5,12 @@ import {
     View,
     TouchableOpacity
 } from 'react-native'
-import React, { useState, useEffect,  useContext} from 'react'
+import React, { useState } from 'react'
 import {FontAwesome5} from 'react-native-vector-icons';
-import {CartContext} from '../Constantes/CartContext'
+import {useCart} from '../Constantes/CartContext'
 
 const jogosItem = ({jogo}) => {
-    const cart = useContext(CartContext)
+    const cart = useCart()
     const id = jogo.id
     const nome = jogo.nome
     const imagem = jogo.image
@@ -18,18 +18,21 @@ const jogosItem = ({jogo}) => {
     const [estado, setEstado] = useState("square")
 
     const mudaEstado = () => {
+        console.log(cart.cart)
         if (estado === "square"){
             setEstado('check-square')
             cart.addToCart(jogo)
-            console.log(cart.cart)
         }
         else{
             setEstado('square')
-            // let NListaSelecionados = listaSelecionados.filter(p => p.id !== id)
-            // listaSelecionados.splice(0, listaSelecionados.length)
-            // for (let i = 0; i < NListaSelecionados.length; i++) {
-            //     listaSelecionados[i] = NListaSelecionados[i];
+            // let newCart = cart.filter(p => p.Object.id !== id)
+            // // let NListaSelecionados = listaSelecionados.filter(p => p.id !== id)
+            // cart.cart.splice(0, cart.cart.length)
+            // for (let i = 0; i < newCart.length; i++) {
+            //     cart.cart[i] = newCart[i];
             // }
+            // console.log(cart.cart)
+
             // console.log("nova lista:", NListaSelecionados)
         }
         // console.log("lista antiga", listaSelecionados)
