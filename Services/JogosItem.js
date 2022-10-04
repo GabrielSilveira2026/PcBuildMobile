@@ -18,22 +18,13 @@ const jogosItem = ({jogo}) => {
     const [estado, setEstado] = useState("square")
 
     const mudaEstado = () => {
-        console.log(cart.cart)
         if (estado === "square"){
             setEstado('check-square')
             cart.addToCart(jogo)
         }
         else{
             setEstado('square')
-            // let newCart = cart.filter(p => p.Object.id !== id)
-            // // let NListaSelecionados = listaSelecionados.filter(p => p.id !== id)
-            // cart.cart.splice(0, cart.cart.length)
-            // for (let i = 0; i < newCart.length; i++) {
-            //     cart.cart[i] = newCart[i];
-            // }
-            // console.log(cart.cart)
-
-            // console.log("nova lista:", NListaSelecionados)
+            cart.removeToCart(id)
         }
         // console.log("lista antiga", listaSelecionados)
     }

@@ -17,7 +17,7 @@ const SelecionadosTela = ({navigation}) => {
         <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
         <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Selecionados</Text>
 
-          <View>
+          <SafeAreaView>
             {/* <Text>{JSON.stringify(selecionados.cart, null, 2)}</Text> */}
             <FlatList
               data={selecionados.cart}
@@ -25,7 +25,7 @@ const SelecionadosTela = ({navigation}) => {
               <JogosItem jogo={j.item}/>
               )}
             />
-          </View>
+          </SafeAreaView>
 
         </ImageBackground>
       </SafeAreaView>

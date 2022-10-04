@@ -10,8 +10,16 @@ export const CartProvider = ({children}) => {
             jogo
         ]))
     }
+    const removeToCart = id =>{
+        let newCart = cart.filter(p => p.id !== id)
+        console.log("teste", JSON.stringify(newCart,null,2))
+        cart.splice(0, cart.length)
+        for (let i = 0; i < newCart.length; i++) {
+            cart[i] = newCart[i];
+        }
+    }
     return(
-        <CartContext.Provider value={{cart, addToCart}}>{children}</CartContext.Provider>
+        <CartContext.Provider value={{cart, addToCart, removeToCart}}>{children}</CartContext.Provider>
     )
 }
 
