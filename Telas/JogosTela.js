@@ -1,20 +1,46 @@
-import React, { useState, useEffect,  } from 'react';
+import {useContext, useState, useEffect} from 'react';
 import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import styles from '../Constantes/Styles'
 import axios from "axios";
 import JogosItem from '../Services/JogosItem'
+import {CartContext} from '../Constantes/CartContext'
 
 const image = require('../Imagens/Fundo.png');
 
 const JogosTela = ({navigation}) => {
-  const [jogo, setJogo] = useState('')
-  const capturarJogo = (jogoDigitada) => {
-    setJogo(jogoDigitada)
-  }
-
-  const [listaJogos, setListaJogos] = useState([])
   
+  const lista = [
+    { 
+      imagem: '',
+      id: 1,
+      nome: "teste",
+      preco: "R$150"
+    },
+    { 
+      imagem: '',
+      id: 2,
+      nome: "teste2",
+      preco: "R$250"
+    },
+    { 
+      imagem: '',
+      id: 3,
+      nome: "teste3",
+      preco: "R$350"
+    },
+    { 
+      imagem: '',
+      id: 4,
+      nome: "teste4",
+      preco: "R$450"
+    }
+  ]
+
+  const selecionados = []
+  const [jogo, setJogo] = useState('')
+  const capturarJogo = (jogoDigitada) => {setJogo(jogoDigitada)}
   const listaProcurados = []
+  const [listaJogos, setListaJogos] = useState([])
 
   const pesquisa = () => {
     axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
@@ -29,9 +55,9 @@ const JogosTela = ({navigation}) => {
             const dados = response.data[jogoPesquisado].data
             if (dados?.type === "game") {
               const x = {
+                id: dados.steam_appid,
                 nome: dados.name, 
                 image: dados.header_image,
-                estado: "square",
                 // requisitosMinimos: dados.pc_requirements.minimum,
                 // requisitosRecomendados: dados.pc_requirements.recommended,
                 preco: dados?.price_overview?.final_formatted
@@ -50,10 +76,9 @@ const JogosTela = ({navigation}) => {
     })
   }
 
-  
   const imprime = () =>{
-    console.log("IMPRESSO PELO BOTÃO")
-    console.log(JSON.stringify(listaJogos, 0, 5));
+    console.log("SELECIONADOS PELO BOTÃO")
+    console.log(JSON.stringify(selecionados, 0, 5));
   }
 
   return (
@@ -99,9 +124,9 @@ const JogosTela = ({navigation}) => {
 
           <View>
             <FlatList
-              data={listaJogos}
+              data={lista}
               renderItem={j => (
-              <JogosItem jogo={j.item}/>
+                <JogosItem jogo={j.item} />
               )}
             />
           </View>
@@ -113,7 +138,7 @@ const JogosTela = ({navigation}) => {
         <View style={styles.rodape}>
           <TouchableOpacity 
             style={styles.botaoProximo}
-            onPress={() => navigation.navigate('Selecionados', {listaJogos})}
+            onPress={() => navigation.navigate('Selecionados')}
           >
             <Text style={{color: 'white'}}>Proxima</Text>
           </TouchableOpacity>

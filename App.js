@@ -1,6 +1,4 @@
-// In App.js in a new project
-
-import * as React from 'react';
+import {useContext, useState, useEffect} from 'react';
 import { SafeAreaView ,Button, StyleSheet, Text, Image, View, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -15,20 +13,13 @@ import SelecionadosTela from './Telas/SelecionadosTela';
 import FiltrosTela from './Telas/FiltrosTela';
 import RecomendadosTela from './Telas/RecomendadosTela';
 import PecasTela from './Telas/PecasTela';
-
-function LogoTitle() {
-  return (
-    <Image
-      style={{ width: 40, height: 40 }}
-      source={require('./Imagens/menu.png')}
-    />
-  );
-}
+import {CartProvider, CartContext} from './Constantes/CartContext';
 
 const Stack = createNativeStackNavigator();
 
 function MyStack({navigation}){
   return(
+  <CartProvider>
     <Stack.Navigator
       screenOptions={{
         header: (props) => {
@@ -67,13 +58,14 @@ function MyStack({navigation}){
           component={PecasTela}
         />
     </Stack.Navigator>
+  </CartProvider>
+
   )
 }
 
 function App() {
   return (
     <NavigationContainer>
-      {/* <Image source={require("./Imagens/Fundo.png")} style={{width: '100%', height: '100%', position: "absolute"}} /> */}
       <MyStack/>
     </NavigationContainer>
   );

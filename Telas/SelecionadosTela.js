@@ -7,9 +7,8 @@ import JogosItem from '../Services/JogosItem'
 const image = require('../Imagens/Fundo.png');
 
 
-const SelecionadosTela = ({route, navigation}) => {
-  const selecionados = route.params.listaJogos
-  console.log("Lista selecionados",selecionados)
+const SelecionadosTela = ({navigation}) => {
+  
   return (
     <SafeAreaView style={styles.tela}>
       <SafeAreaView style={styles.conteudo}>
@@ -17,12 +16,12 @@ const SelecionadosTela = ({route, navigation}) => {
         <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Selecionados</Text>
 
           <View>
-            <FlatList
+            {/* <FlatList
               data={selecionados}
               renderItem={j => (
               <JogosItem jogo={j.item}/>
               )}
-            />
+            /> */}
           </View>
 
         </ImageBackground>
