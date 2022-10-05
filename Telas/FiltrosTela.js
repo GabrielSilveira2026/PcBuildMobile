@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect,  } from 'react';
 import {SafeAreaView , TextInput, FlatList, Linking , Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import styles from '../Constantes/Styles';
-import PrecosItem from '../Services/PrecosItem'
+import CartaoProdutos from '../Componentes/CartaoProdutos'
 
 const image = require('../Imagens/Fundo.png');
 
@@ -54,7 +54,7 @@ const FiltrosTela = ({navigation}) => {
             <FlatList style={estilo.lista}
               data={precos}
               renderItem={p => (
-                <PrecosItem precos={p.item}/>
+                <CartaoProdutos precos={p.item}/>
               )}
             />
           </SafeAreaView>

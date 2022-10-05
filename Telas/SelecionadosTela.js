@@ -1,7 +1,7 @@
 import React from 'react'
 import {SafeAreaView , Button,FlatList, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import styles from '../Constantes/Styles'
-import JogosItem from '../Services/CartaoJogos'
+import JogosItem from '../Componentes/CartaoJogos'
 import {useCart} from '../Constantes/CartContext'
 
 const image = require('../Imagens/Fundo.png');

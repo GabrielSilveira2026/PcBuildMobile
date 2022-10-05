@@ -6,9 +6,8 @@ import {
     Linking 
 } from 'react-native'
 import React from 'react'
-import Cartao from './Cartao'
 
-const PrecosItem = ({precos}) => {
+const CartaoProdutos = ({precos}) => {
     const preco = precos.price
     const loja = precos.merchant
     const link = precos.link
@@ -27,7 +26,7 @@ const PrecosItem = ({precos}) => {
   )
 }
 
-export default PrecosItem
+export default CartaoProdutos
 
 const styles = StyleSheet.create({
     cartao:{

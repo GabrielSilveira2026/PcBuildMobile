@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import {FontAwesome5} from 'react-native-vector-icons';
 import {useCart} from '../Constantes/CartContext'
 
-const jogosItem = ({jogo}) => {
+const CartaoJogos = ({jogo}) => {
     const cart = useCart()
     const id = jogo.id
     const nome = jogo.nome
@@ -34,7 +34,7 @@ const jogosItem = ({jogo}) => {
   )
 }
 
-export default jogosItem
+export default CartaoJogos
 
 const styles = StyleSheet.create({
     cartao:{
