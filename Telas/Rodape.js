@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SafeAreaView , Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
+import {SafeAreaView , StyleSheet} from 'react-native';
 import Cores from '../Constantes/Cores';
 
 export default function Rodape(){

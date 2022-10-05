@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import styles from '../Constantes/Styles'
 import axios from "axios";
-import JogosItem from '../Services/JogosItem'
+import JogosItem from '../Services/CartaoJogos'
 
 const image = require('../Imagens/Fundo.png');
 
@@ -10,69 +10,73 @@ const JogosTela = ({navigation}) => {
   
   const lista = [
     { 
-      imagem: '',
+      imagem: "https://cdn.akamai.steamstatic.com/steam/apps/1151640/header.jpg?t=1659711071",
       id: 1,
-      nome: "teste",
+      nome: "Horizon Zero Dawn™ Complete Edition",
+      preco: "R$200"
+    },
+    { 
+      imagem: 'https://cdn.akamai.steamstatic.com/steam/apps/414340/header.jpg?t=1661444431',
+      id: 2,
+      nome: "Hellblade: Senua's Sacrifice",
       preco: "R$150"
     },
     { 
-      imagem: '',
-      id: 2,
-      nome: "teste2",
-      preco: "R$250"
-    },
-    { 
-      imagem: '',
+      imagem: 'https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420',
       id: 3,
-      nome: "teste3",
-      preco: "R$350"
+      nome: "God of War",
+      preco: "R$200"
     },
     { 
-      imagem: '',
+      imagem: 'https://cdn.akamai.steamstatic.com/steam/apps/1172380/header.jpg?t=1650554420',
       id: 4,
-      nome: "teste4",
-      preco: "R$450"
+      nome: "STAR WARS Jedi: Fallen Order",
+      preco: "R$150"
     }
   ]
 
-  const selecionados = []
   const [jogo, setJogo] = useState('')
   const capturarJogo = (jogoDigitada) => {setJogo(jogoDigitada)}
   const listaProcurados = []
   const [listaJogos, setListaJogos] = useState([])
 
   const pesquisa = () => {
-    axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
-    .then(response => {
-      for(var i = 0; i < response.data.applist.apps.length; i++){
-        if(response.data.applist.apps[i].name.includes(jogo)){
-          // console.log( "Achou na lista " + listaJogos[i].name, listaJogos[i].appid, listaJogos[i].type)
-          // pesquisaSteam(response.data.applist.apps[i].appid)
-          const jogoPesquisado= response.data.applist.apps[i].appid
-          axios.get('https://store.steampowered.com/api/appdetails?appids=' + jogoPesquisado)
-          .then(response => {
-            const dados = response.data[jogoPesquisado].data
-            if (dados?.type === "game") {
-              const x = {
-                id: dados.steam_appid,
-                nome: dados.name, 
-                image: dados.header_image,
-                // requisitosMinimos: dados.pc_requirements.minimum,
-                // requisitosRecomendados: dados.pc_requirements.recommended,
-                preco: dados?.price_overview?.final_formatted
+    if (jogo != "") {
+      axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
+      .then(response => {
+        for(var i = 0; i < response.data.applist.apps.length; i++){
+          if(response.data.applist.apps[i].name.includes(jogo)){
+            // console.log( "Achou na lista " + listaJogos[i].name, listaJogos[i].appid, listaJogos[i].type)
+            // pesquisaSteam(response.data.applist.apps[i].appid)
+            const jogoPesquisado= response.data.applist.apps[i].appid
+            axios.get('https://store.steampowered.com/api/appdetails?appids=' + jogoPesquisado)
+            .then(response => {
+              const dados = response.data[jogoPesquisado].data
+              if (dados?.type === "game") {
+                const x = {
+                  id: dados.steam_appid,
+                  nome: dados.name, 
+                  imagem: dados.header_image,
+                  // requisitosMinimos: dados.pc_requirements.minimum,
+                  // requisitosRecomendados: dados.pc_requirements.recommended,
+                  preco: dados?.price_overview?.final_formatted
+                }
+                listaProcurados.push(x)
+                setListaJogos(listaProcurados)
+                // console.log("Adicionado no Lista procurado: " + dados.name + " - " + dados.steam_appid + " - " + dados.type)
+                console.log("LISTA PROCURADOS:" , JSON.stringify(listaProcurados, 0, 2));
               }
-              listaProcurados.push(x)
-              setListaJogos(listaProcurados)
-              // console.log("Adicionado no Lista procurado: " + dados.name + " - " + dados.steam_appid + " - " + dados.type)
-              console.log("LISTA PROCURADOS:" , JSON.stringify(listaProcurados, 0, 2));
-            }
-          })
-          .catch(error => {
-            console.log(error);
-          });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+          }
         }
-      }
-    })
+      })
+    }
+    else {
+      console.log("Não Encontrado")
+    }
   }
 
   const imprime = () =>{
@@ -121,14 +125,12 @@ const JogosTela = ({navigation}) => {
             </TouchableOpacity>
           </View>
 
-          <View>
-            <FlatList
-              data={lista}
-              renderItem={j => (
-                <JogosItem jogo={j.item} />
-              )}
-            />
-          </View>
+          <FlatList
+            data={listaJogos}
+            renderItem={j => (
+              <JogosItem jogo={j.item} />
+            )}
+          />
             
           </ImageBackground>
         </View>

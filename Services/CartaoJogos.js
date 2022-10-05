@@ -1,10 +1,4 @@
-import {
-    Image,
-    StyleSheet, 
-    Text, 
-    View,
-    TouchableOpacity
-} from 'react-native'
+import {Image, StyleSheet, Text, View} from 'react-native'
 import React, { useState } from 'react'
 import {FontAwesome5} from 'react-native-vector-icons';
 import {useCart} from '../Constantes/CartContext'
@@ -13,7 +7,7 @@ const jogosItem = ({jogo}) => {
     const cart = useCart()
     const id = jogo.id
     const nome = jogo.nome
-    const imagem = jogo.image
+    const imagem = jogo.imagem
     const preco = jogo.preco
     const [estado, setEstado] = useState("square")
 
@@ -34,7 +28,7 @@ const jogosItem = ({jogo}) => {
         <Image style={styles.imagem} source={{uri: imagem}}/>
         <Text>id: {id}</Text>
         <Text>Nome: {nome}</Text>
-        <Text>preco: {preco}</Text>
+        <Text>Preco: {preco}</Text>
         <FontAwesome5 name={estado} size={40} color="black" onPress={mudaEstado}/>
     </View>
   )

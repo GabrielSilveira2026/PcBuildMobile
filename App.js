@@ -1,12 +1,10 @@
-import {useContext, useState, useEffect} from 'react';
-import { SafeAreaView ,Button, StyleSheet, Text, Image, View, ImageBackground } from 'react-native';
+
+import { SafeAreaView} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {FontAwesome5} from 'react-native-vector-icons';
 
 import styles from './Constantes/Styles'
-import Cores from './Constantes/Cores';
-import HomeScreen from './Telas/HomeScreen';
 import JogosTela from './Telas/JogosTela';
 import ProgramasTela from './Telas/ProgramasTela';
 import SelecionadosTela from './Telas/SelecionadosTela';
