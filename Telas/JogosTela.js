@@ -1,8 +1,9 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import styles from '../Constantes/Styles'
 import axios from "axios";
 import JogosItem from '../Componentes/CartaoJogos'
+import render from 'react-native-web/dist/cjs/exports/render';
 
 const image = require('../Imagens/Fundo.png');
 
@@ -124,7 +125,7 @@ const JogosTela = ({navigation}) => {
               <Text style={{color: 'white'}}>Imprimir</Text>
             </TouchableOpacity>
           </View>
-
+          
           <FlatList
             data={listaJogos}
             renderItem={j => (

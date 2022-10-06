@@ -1,7 +1,7 @@
 import React from 'react'
 import {SafeAreaView , Button,FlatList, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import styles from '../Constantes/Styles'
-import JogosItem from '../Componentes/CartaoJogos'
+import CartaoSelecionados from '../Componentes/CartaoSelecionados'
 import {useCart} from '../Constantes/CartContext'
 
 const image = require('../Imagens/Fundo.png');
@@ -20,7 +20,7 @@ const SelecionadosTela = ({navigation}) => {
             <FlatList
               data={selecionados.cart}
               renderItem={j => (
-              <JogosItem jogo={j.item}/>
+              <CartaoSelecionados jogo={j.item}/>
               )}
             />
 
