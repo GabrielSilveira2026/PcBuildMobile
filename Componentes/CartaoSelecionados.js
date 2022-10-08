@@ -9,28 +9,28 @@ const CartaoSelecionados = ({jogo}) => {
     const nome = jogo.nome
     const imagem = jogo.imagem
     const preco = jogo.preco
-    const [estado, setEstado] = useState("square")
+    const [estado, setEstado] = useState("toggle-on")
 
     const mudaEstado = () => {
-        if (estado === "square"){
-            setEstado('check-square')
-            cart.addToCart(jogo)
-        }
-        else{
-            setEstado('square')
-            cart.removeToCart(id)
-        }
-        // console.log("lista antiga", listaSelecionados)
+        setEstado('toggle-off')
+        cart.removeToCart(id)
     }
     
+    const ValorPreco = () => {
+        if(preco) return <Text>Preco: {preco}</Text>
+        else return null
+    }
     
   return (
     <View style={styles.cartao}>
+
+        <FontAwesome5 style={{marginLeft: "82%"}} name={estado} size={50} color="black" onPress={mudaEstado}/>
         <Image style={styles.imagem} source={{uri: imagem}}/>
         <Text>id: {id}</Text>
         <Text>Nome: {nome}</Text>
-        <Text>Preco: {preco}</Text>
-        <FontAwesome5 name={estado} size={40} color="black" onPress={mudaEstado}/>
+        <ValorPreco></ValorPreco>
+        {/* <Text>Preco: {preco  ?? "Indisponível" }</Text> */}
+        
     </View>
   )
 }

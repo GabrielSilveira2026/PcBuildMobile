@@ -12,10 +12,8 @@ export const CartProvider = ({children}) => {
     }
     const removeToCart = id =>{
         let newCart = cart.filter(p => p.id !== id)
-        cart.splice(0, cart.length)
-        for (let i = 0; i < newCart.length; i++) {
-            cart[i] = newCart[i];
-        }
+        setCart()
+        setCart(newCart)
     }
     return(
         <CartContext.Provider value={{cart, addToCart, removeToCart}}>{children}</CartContext.Provider>

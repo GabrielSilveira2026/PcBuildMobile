@@ -5,40 +5,38 @@ import {useCart} from '../Constantes/CartContext'
 
 const CartaoJogos = ({jogo}) => {
     const cart = useCart()
-    const id = jogo.id
-    const nome = jogo.nome
-    const imagem = jogo.imagem
-    const preco = jogo.preco
-    const [estado, setEstado] = useState("square")
+    const {id} = jogo
+    const {nome} = jogo
+    const {imagem} = jogo
+    const {preco} = jogo
+    const [estado, setEstado] = useState("toggle-off")
 
     const mudaEstado = () => {
-        if (estado === "square"){
-            setEstado('check-square')
+        if (estado === "toggle-off"){
+            setEstado('toggle-on')
             cart.addToCart(jogo)
         }
         else{
-            setEstado('square')
+            setEstado('toggle-off')
             cart.removeToCart(id)
         }
     }
 
     const ValorPreco = () => {
-        if(preco){
-            return <Text>Preco: {preco}</Text>
-        }
-        else{
-            return null
-        }
+        if(preco) return <Text>Preco: {preco}</Text>
+        else return null
     }
     
   return (
     <View style={styles.cartao}>
+
+        <FontAwesome5 style={{marginLeft: "82%"}} name={estado} size={50} color="black" onPress={mudaEstado}/>
         <Image style={styles.imagem} source={{uri: imagem}}/>
         <Text>id: {id}</Text>
         <Text>Nome: {nome}</Text>
         <ValorPreco></ValorPreco>
-        {/* <Text>Preco: {preco}</Text> */}
-        <FontAwesome5 name={estado} size={40} color="black" onPress={mudaEstado}/>
+        {/* <Text>Preco: {preco  ?? "Indisponível" }</Text> */}
+        
     </View>
   )
 }
@@ -64,5 +62,5 @@ const styles = StyleSheet.create({
         width: "100%",
         marginLeft: 'auto',
         marginRight: 'auto',
-    },
+    }
 })

@@ -3,11 +3,12 @@ import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableO
 import styles from '../Constantes/Styles'
 import axios from "axios";
 import JogosItem from '../Componentes/CartaoJogos'
-import render from 'react-native-web/dist/cjs/exports/render';
+import {useCart} from '../Constantes/CartContext'
 
 const image = require('../Imagens/Fundo.png');
 
 const JogosTela = ({navigation}) => {
+  const selecionados = useCart()
   
   const lista = [
     { 
@@ -20,7 +21,7 @@ const JogosTela = ({navigation}) => {
       imagem: 'https://cdn.akamai.steamstatic.com/steam/apps/414340/header.jpg?t=1661444431',
       id: 2,
       nome: "Hellblade: Senua's Sacrifice",
-      preco: "R$150"
+      // preco: "R$150"
     },
     { 
       imagem: 'https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420',
@@ -60,7 +61,7 @@ const JogosTela = ({navigation}) => {
                   imagem: dados.header_image,
                   // requisitosMinimos: dados.pc_requirements.minimum,
                   // requisitosRecomendados: dados.pc_requirements.recommended,
-                  preco: dados?.price_overview?.final_formatted
+                  preco: dados.price_overview?.final_formatted ?? "Indisponível"
                 }
                 listaProcurados.push(x)
                 setListaJogos(listaProcurados)
@@ -103,7 +104,7 @@ const JogosTela = ({navigation}) => {
 
           <Text style={{textAlign: 'center', color: 'black', fontSize: 19, marginLeft:'15%', marginRight: '15%'}}>Escolha os jogos que você deseja jogar!</Text>
 
-          <View>
+          <View style={{marginBottom: 10}}>
             <TextInput
               placeholder="Digite o jogo"
               value={jogo}
@@ -127,7 +128,7 @@ const JogosTela = ({navigation}) => {
           </View>
           
           <FlatList
-            data={listaJogos}
+            data={lista}
             renderItem={j => (
               <JogosItem jogo={j.item} />
             )}

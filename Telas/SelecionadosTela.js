@@ -19,6 +19,8 @@ const SelecionadosTela = ({navigation}) => {
             {/* <Text>{JSON.stringify(selecionados.cart, null, 2)}</Text> */}
             <FlatList
               data={selecionados.cart}
+              keyExtractor={(item) => item.id}
+              extraData={selecionados.cart}
               renderItem={j => (
               <CartaoSelecionados jogo={j.item}/>
               )}
