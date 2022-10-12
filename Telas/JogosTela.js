@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
+import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert } from 'react-native';
 import styles from '../Constantes/Styles'
 import axios from "axios";
-import JogosItem from '../Componentes/CartaoJogos'
+import Cartao from '../Componentes/Cartao'
 import {useCart} from '../Constantes/CartContext'
 
 const image = require('../Imagens/Fundo.png');
@@ -43,7 +43,7 @@ const JogosTela = ({navigation}) => {
   const [listaJogos, setListaJogos] = useState([])
 
   const pesquisa = () => {
-    if (jogo != "") {
+    if (jogo !== "") {
       axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
       .then(response => {
         for(var i = 0; i < response.data.applist.apps.length; i++){
@@ -61,7 +61,8 @@ const JogosTela = ({navigation}) => {
                   imagem: dados.header_image,
                   // requisitosMinimos: dados.pc_requirements.minimum,
                   // requisitosRecomendados: dados.pc_requirements.recommended,
-                  preco: dados.price_overview?.final_formatted ?? "Indisponível"
+                  preco: dados.price_overview?.final_formatted,
+                  estado: "toggle-off"
                 }
                 listaProcurados.push(x)
                 setListaJogos(listaProcurados)
@@ -77,6 +78,7 @@ const JogosTela = ({navigation}) => {
       })
     }
     else {
+      Alert.alert("Por favor, digite o nome de um jogo")
       console.log("Não Encontrado")
     }
   }
@@ -128,9 +130,9 @@ const JogosTela = ({navigation}) => {
           </View>
           
           <FlatList
-            data={lista}
+            data={listaJogos}
             renderItem={j => (
-              <JogosItem jogo={j.item} />
+              <Cartao jogo={j.item} />
             )}
           />
             

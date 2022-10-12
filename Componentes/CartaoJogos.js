@@ -5,38 +5,35 @@ import {useCart} from '../Constantes/CartContext'
 
 const CartaoJogos = ({jogo}) => {
     const cart = useCart()
-    const {id} = jogo
-    const {nome} = jogo
-    const {imagem} = jogo
-    const {preco} = jogo
-    const [estado, setEstado] = useState("toggle-off")
-
+    const {id, nome, imagem, preco} = jogo
+    // const jogoEditavel = cart.find((j)=>{
+    //     return j.id === id
+    // })
+    // const [estado, setEstado] = useState("toggle-off")
     const mudaEstado = () => {
-        if (estado === "toggle-off"){
-            setEstado('toggle-on')
+        if (jogo.estado === "toggle-off"){
+            jogo.estado = 'toggle-on'
             cart.addToCart(jogo)
         }
         else{
-            setEstado('toggle-off')
+            jogo.estado = 'toggle-off'
             cart.removeToCart(id)
         }
-    }
-
-    const ValorPreco = () => {
-        if(preco) return <Text>Preco: {preco}</Text>
-        else return null
     }
     
   return (
     <View style={styles.cartao}>
 
-        <FontAwesome5 style={{marginLeft: "82%"}} name={estado} size={50} color="black" onPress={mudaEstado}/>
+        <FontAwesome5 style={{marginLeft: "82%"}} name={jogo.estado} size={50} color="black" onPress={mudaEstado}/>
         <Image style={styles.imagem} source={{uri: imagem}}/>
         <Text>id: {id}</Text>
         <Text>Nome: {nome}</Text>
-        <ValorPreco></ValorPreco>
-        {/* <Text>Preco: {preco  ?? "Indisponível" }</Text> */}
-        
+        {
+            preco ?
+            <Text>Preco: {preco}</Text>
+            :
+            null
+        }
     </View>
   )
 }

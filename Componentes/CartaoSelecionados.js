@@ -24,7 +24,7 @@ const CartaoSelecionados = ({jogo}) => {
   return (
     <View style={styles.cartao}>
 
-        <FontAwesome5 style={{marginLeft: "82%"}} name={estado} size={50} color="black" onPress={mudaEstado}/>
+        <FontAwesome5 style={{marginLeft: "82%"}} name={jogo.estado} size={50} color="black" onPress={mudaEstado}/>
         <Image style={styles.imagem} source={{uri: imagem}}/>
         <Text>id: {id}</Text>
         <Text>Nome: {nome}</Text>
