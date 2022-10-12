@@ -4,12 +4,12 @@ import styles from '../Constantes/Styles'
 import axios from "axios";
 import Cartao from '../Componentes/Cartao'
 import {useCart} from '../Constantes/CartContext'
-
+import Rodape from '../Componentes/Rodape'
 const image = require('../Imagens/Fundo.png');
 
 const JogosTela = ({navigation}) => {
   const selecionados = useCart()
-  
+
   const lista = [
     { 
       imagem: "https://cdn.akamai.steamstatic.com/steam/apps/1151640/header.jpg?t=1659711071",
@@ -47,13 +47,13 @@ const JogosTela = ({navigation}) => {
       axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
       .then(response => {
         for(var i = 0; i < response.data.applist.apps.length; i++){
-          if(response.data.applist.apps[i].name.includes(jogo)){
+          if(response.data.applist.apps[i].name.toLowerCase().includes(jogo.toLowerCase())){
             // console.log( "Achou na lista " + listaJogos[i].name, listaJogos[i].appid, listaJogos[i].type)
             // pesquisaSteam(response.data.applist.apps[i].appid)
             const jogoPesquisado= response.data.applist.apps[i].appid
             axios.get('https://store.steampowered.com/api/appdetails?appids=' + jogoPesquisado)
             .then(response => {
-              const dados = response.data[jogoPesquisado].data
+              const dados = response.data[jogoPesquisado]?.data
               if (dados?.type === "game") {
                 const x = {
                   id: dados.steam_appid,
@@ -61,7 +61,7 @@ const JogosTela = ({navigation}) => {
                   imagem: dados.header_image,
                   // requisitosMinimos: dados.pc_requirements.minimum,
                   // requisitosRecomendados: dados.pc_requirements.recommended,
-                  preco: dados.price_overview?.final_formatted,
+                  preco: dados?.price_overview?.final_formatted,
                   estado: "toggle-off"
                 }
                 listaProcurados.push(x)
@@ -79,14 +79,15 @@ const JogosTela = ({navigation}) => {
     }
     else {
       Alert.alert("Por favor, digite o nome de um jogo")
-      console.log("Não Encontrado")
     }
   }
 
-  const imprime = () =>{
-    console.log("SELECIONADOS PELO BOTÃO")
-    console.log(JSON.stringify(selecionados, 0, 5));
-  }
+  // const imprime = () =>{
+  //   axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
+  //     .then(response => {
+  //       const tes= response.data.applist.apps[name:jogo]
+  //     })}
+  // }
 
   return (
       <SafeAreaView style={styles.tela}>
@@ -108,27 +109,28 @@ const JogosTela = ({navigation}) => {
 
           <View style={{marginBottom: 10}}>
             <TextInput
+              style={{fontSize: 25, margin:10, marginBottom: 0}}
               placeholder="Digite o jogo"
               value={jogo}
               onChangeText={capturarJogo}
               />
 
             <TouchableOpacity 
-              style={styles.botaoProximo}
+              style={[styles.botaoProximo, {margin: 7, padding: 7, marginTop:0}]}
               onPress={pesquisa}
               >
-              <Text style={{color: 'white'}}>Pesquisa</Text>
+              <Text style={{color: 'white', fontSize: 18}}>Pesquisa</Text>
             </TouchableOpacity>
 
 
-            <TouchableOpacity 
-              style={styles.botaoProximo}
+            {/* <TouchableOpacity 
+              style={[styles.botaoProximo, {margin: 7, padding: 7}]}
               onPress={imprime}
               >
-              <Text style={{color: 'white'}}>Imprimir</Text>
-            </TouchableOpacity>
+              <Text style={{color: 'white', fontSize: 18}}>Imprimir</Text>
+            </TouchableOpacity> */}
           </View>
-          
+
           <FlatList
             data={listaJogos}
             renderItem={j => (
@@ -138,14 +140,13 @@ const JogosTela = ({navigation}) => {
             
           </ImageBackground>
         </View>
-
         {/* Rodapé com botões */}
         <View style={styles.rodape}>
           <TouchableOpacity 
             style={styles.botaoProximo}
             onPress={() => navigation.navigate('Selecionados')}
           >
-            <Text style={{color: 'white'}}>Proxima</Text>
+            <Text style={{color: 'white', fontSize: 20}}>Proxima</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

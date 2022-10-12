@@ -3,24 +3,28 @@ import {
     StyleSheet, 
     Text, 
     View, 
-    Linking 
+    Linking,
+    TouchableOpacity 
 } from 'react-native'
+import styles from '../Constantes/Styles';
 import React from 'react'
 
 const CartaoProdutos = ({precos}) => {
-    const preco = precos.price
+    const preco = precos.price_raw
     const loja = precos.merchant
     const link = precos.link
     const imagem = precos.image
 
   return (
     // <Cartao>
-        <View style={styles.cartao}>
-            <Image style={styles.imagem} source={{uri: imagem}}/>
+        <View style={stylesC.cartao}>
+            <Image style={stylesC.imagem} source={{uri: imagem}}/>
 
-            <Text style={styles.loja}>Loja: {loja}</Text>
+            <Text style={stylesC.loja}>Loja: {loja}</Text>
 
-            <Text style={styles.link} onPress={() => {Linking.openURL(link);}}> Comprar {preco}</Text>
+            <TouchableOpacity style={[styles.botaoProximo, {padding:4}]} >
+                <Text style={{color: 'white', fontSize: 20, textAlign: 'center'}} onPress={() => {Linking.openURL(link);}}> Comprar {'\n'} {preco}</Text>
+            </TouchableOpacity>
         </View>
     // </Cartao>
   )
@@ -28,12 +32,12 @@ const CartaoProdutos = ({precos}) => {
 
 export default CartaoProdutos
 
-const styles = StyleSheet.create({
+const stylesC = StyleSheet.create({
     cartao:{
         marginBottom: 20,
         backgroundColor: "#ff7e75",
         padding: 10,
-        width: 250,
+        width: "80%",
         marginLeft:'auto',
         marginRight:'auto',
         borderRadius: 8,
@@ -50,14 +54,15 @@ const styles = StyleSheet.create({
     },
     link: {
         padding: 5,
-        backgroundColor: 'green',
+        backgroundColor: '#ff6404',
         color: 'black',
         fontSize: 20,
         marginLeft: 'auto',
-        marginRight: 'auto'
+        marginRight: 'auto',
+        borderWidth: 1,
     }, 
     loja: {
-        fontSize: 15,
+        fontSize: 20,
         marginLeft: 'auto',
         marginRight: 'auto', 
     },

@@ -36,7 +36,7 @@ export default StyleSheet.create({
         height: 80,
         width: '100%',
         backgroundColor: Cores.primary,
-        borderTopWidth: 2,
+        borderTopWidth: 2
     }, 
     botaoVoltar:{
         flexGrow: 1,

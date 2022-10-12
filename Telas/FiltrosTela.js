@@ -15,7 +15,7 @@ const FiltrosTela = ({navigation}) => {
   const [precos, setPrecos] = useState([])
 
   const params = {
-    api_key: "7D464447DADD4803BB5CB37440920B14",
+    api_key: "B9E7BDF7D3024533B62B918CED851541",
     search_type: "shopping",
     location: "Brazil",
     q: produto
@@ -40,24 +40,28 @@ const FiltrosTela = ({navigation}) => {
       <SafeAreaView style={styles.conteudo}>
         <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
           <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Filtros</Text>
-          <TextInput
-            style={styles.produtoTextInput}
-            placeholder="Digite o produto"
-            value={produto}
-            onChangeText={capturarProduto}
-            />
-          <Button
-            title="Pesquisar"
-            onPress={obterPrecos}
-          />
-          <SafeAreaView style={estilo.area}>
+            <View style={{marginBottom: 10}}>
+              <TextInput
+                style={{ fontSize: 25, margin: 10, marginBottom: 0 }}
+                placeholder="Digite o produto"
+                value={produto}
+                onChangeText={capturarProduto}
+              />
+
+              <TouchableOpacity
+                style={[styles.botaoProximo, { margin: 7, padding: 7, marginTop: 0 }]}
+                onPress={obterPrecos}
+              >
+                <Text style={{ color: 'white', fontSize: 18 }}>Pesquisar</Text>
+              </TouchableOpacity>
+            </View>
+
             <FlatList style={estilo.lista}
               data={precos}
               renderItem={p => (
                 <CartaoProdutos precos={p.item}/>
               )}
             />
-          </SafeAreaView>
 
         </ImageBackground>
       </SafeAreaView>

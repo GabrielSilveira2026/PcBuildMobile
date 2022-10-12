@@ -22,15 +22,15 @@ const Cartao = ({jogo}) => {
     <View style={styles.cartao}>
 
         <FontAwesome5 style={{marginLeft: "82%"}} name={jogo.estado} size={50} color="black" onPress={mudaEstado}/>
-        <Image style={styles.imagem} source={{uri: imagem}}/>
-        <Text>Id: {id}</Text>
-        <Text>Nome: {nome}</Text>
-        {
-            preco ?
-            <Text>Preco: {preco}</Text>
-            :
-            null
+        { 
+        imagem ? 
+          <Image style={styles.imagem} source={{uri: imagem}}/> 
+          : 
+          <Image style={styles.imagem} source={{uri: "https://cdn-icons-png.flaticon.com/512/2140/2140618.png"}}/>
         }
+        { id ? <Text>ID: {id}</Text> : null }
+        { nome ?<Text>Nome: {nome}</Text> : null }
+        { preco ?<Text>Preco: {preco}</Text> : null }
     </View>
   )
 }
