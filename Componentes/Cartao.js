@@ -28,9 +28,9 @@ const Cartao = ({jogo}) => {
           : 
           <Image style={styles.imagem} source={{uri: "https://cdn-icons-png.flaticon.com/512/2140/2140618.png"}}/>
         }
-        { id ? <Text>ID: {id}</Text> : null }
-        { nome ?<Text>Nome: {nome}</Text> : null }
-        { preco ?<Text>Preco: {preco}</Text> : null }
+        { id ? <Text style={{fontSize: 25}}>ID: {id}</Text> : null }
+        { nome ?<Text style={{fontSize: 25}}>Nome: {nome}</Text> : null }
+        { preco ?<Text style={{fontSize: 25}}>Preco: {preco}</Text> : null }
     </View>
   )
 }

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert } from 'react-native';
 import styles from '../Constantes/Styles'
-import axios from "axios";
 import Cartao from '../Componentes/Cartao'
 import {useCart} from '../Constantes/CartContext'
-import Rodape from '../Componentes/Rodape'
+import {pesquisa} from '../Services/httpservices'
+
 const image = require('../Imagens/Fundo.png');
 
 const JogosTela = ({navigation}) => {
@@ -42,45 +42,45 @@ const JogosTela = ({navigation}) => {
   const listaProcurados = []
   const [listaJogos, setListaJogos] = useState([])
 
-  const pesquisa = () => {
-    if (jogo !== "") {
-      axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
-      .then(response => {
-        for(var i = 0; i < response.data.applist.apps.length; i++){
-          if(response.data.applist.apps[i].name.toLowerCase().includes(jogo.toLowerCase())){
-            // console.log( "Achou na lista " + listaJogos[i].name, listaJogos[i].appid, listaJogos[i].type)
-            // pesquisaSteam(response.data.applist.apps[i].appid)
-            const jogoPesquisado= response.data.applist.apps[i].appid
-            axios.get('https://store.steampowered.com/api/appdetails?appids=' + jogoPesquisado)
-            .then(response => {
-              const dados = response.data[jogoPesquisado]?.data
-              if (dados?.type === "game") {
-                const x = {
-                  id: dados.steam_appid,
-                  nome: dados.name, 
-                  imagem: dados.header_image,
-                  // requisitosMinimos: dados.pc_requirements.minimum,
-                  // requisitosRecomendados: dados.pc_requirements.recommended,
-                  preco: dados?.price_overview?.final_formatted,
-                  estado: "toggle-off"
-                }
-                listaProcurados.push(x)
-                setListaJogos(listaProcurados)
-                // console.log("Adicionado no Lista procurado: " + dados.name + " - " + dados.steam_appid + " - " + dados.type)
-                console.log("LISTA PROCURADOS:" , JSON.stringify(listaProcurados, 0, 2));
-              }
-            })
-            .catch(error => {
-              console.log(error);
-            });
-          }
-        }
-      })
-    }
-    else {
-      Alert.alert("Por favor, digite o nome de um jogo")
-    }
-  }
+  // const pesquisa = () => {
+  //   if (jogo !== "") {
+  //     axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
+  //     .then(response => {
+  //       for(var i = 0; i < response.data.applist.apps.length; i++){
+  //         if(response.data.applist.apps[i].name.toLowerCase().includes(jogo.toLowerCase())){
+  //           // console.log( "Achou na lista " + listaJogos[i].name, listaJogos[i].appid, listaJogos[i].type)
+  //           // pesquisaSteam(response.data.applist.apps[i].appid)
+  //           const jogoPesquisado= response.data.applist.apps[i].appid
+  //           axios.get('https://store.steampowered.com/api/appdetails?appids=' + jogoPesquisado)
+  //           .then(response => {
+  //             const dados = response.data[jogoPesquisado]?.data
+  //             if (dados?.type === "game") {
+  //               const x = {
+  //                 id: dados.steam_appid,
+  //                 nome: dados.name, 
+  //                 imagem: dados.header_image,
+  //                 // requisitosMinimos: dados.pc_requirements.minimum,
+  //                 // requisitosRecomendados: dados.pc_requirements.recommended,
+  //                 preco: dados?.price_overview?.final_formatted,
+  //                 estado: "toggle-off"
+  //               }
+  //               listaProcurados.push(x)
+  //               setListaJogos(listaProcurados)
+  //               // console.log("Adicionado no Lista procurado: " + dados.name + " - " + dados.steam_appid + " - " + dados.type)
+  //               console.log("LISTA PROCURADOS:" , JSON.stringify(listaProcurados, 0, 2));
+  //             }
+  //           })
+  //           .catch(error => {
+  //             console.log(error);
+  //           });
+  //         }
+  //       }
+  //     })
+  //   }
+  //   else {
+  //     Alert.alert("Por favor, digite o nome de um jogo")
+  //   }
+  // }
 
   // const imprime = () =>{
   //   axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
@@ -89,6 +89,7 @@ const JogosTela = ({navigation}) => {
   //     })}
   // }
 
+  const imprime =()=>{console.log(listaJogos)}
   return (
       <SafeAreaView style={styles.tela}>
         {/* Conteudo da Tela */}
@@ -117,18 +118,16 @@ const JogosTela = ({navigation}) => {
 
             <TouchableOpacity 
               style={[styles.botaoProximo, {margin: 7, padding: 7, marginTop:0}]}
-              onPress={pesquisa}
+              onPress={pesquisa("dark Souls", listaJogos)}
               >
               <Text style={{color: 'white', fontSize: 18}}>Pesquisa</Text>
             </TouchableOpacity>
-
-
-            {/* <TouchableOpacity 
-              style={[styles.botaoProximo, {margin: 7, padding: 7}]}
-              onPress={imprime}
+            <TouchableOpacity 
+              style={[styles.botaoProximo, {margin: 7, padding: 7, marginTop:0}]}
+              onPress={imprime()}
               >
-              <Text style={{color: 'white', fontSize: 18}}>Imprimir</Text>
-            </TouchableOpacity> */}
+              <Text style={{color: 'white', fontSize: 18}}>Imprime</Text>
+            </TouchableOpacity>
           </View>
 
           <FlatList
