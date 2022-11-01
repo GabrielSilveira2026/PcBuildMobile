@@ -1,37 +1,65 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {TouchableOpacity, Text, View} from 'react-native';
-import styles from '../Constantes/Styles'
+import Cores from '../Constantes/Cores';
+import { useNavigation } from '@react-navigation/native';
+import {TouchableOpacity, Text, View, StyleSheet} from 'react-native';
 
-const Rodape = ({navigation}) => {
-
+const Rodape = ({telas}) => {
+    const navigation = useNavigation()
+    const {proxima, anterior} = telas
     return (
-        <View style={styles.rodape}>
-            {/* {
-                anterior? */}
+        <View style={style.rodape}>
+            {
+                anterior?
                     <TouchableOpacity
-                        style={styles.botaoProximo}
-                        onPress={() => navigation.navigate("Filtros")}
+                        style={style.botaoVoltar}
+                        onPress={() => navigation.navigate(anterior)}
                     >    
-                        <Text style={{ color: 'white' }}>Voltar</Text>
+                        <Text style={{ color: 'black' }}>Voltar</Text>
                     </TouchableOpacity>
-                {/* :
+                :
                     null
             }
             {
-                proximo? */}
+                proxima?
                     <TouchableOpacity
-                        style={styles.botaoProximo}
-                        onPress={() => navigation.navigate("Selecionados")}
+                        style={style.botaoProximo}
+                        onPress={() => navigation.navigate(proxima)}
                     >    
-                        <Text style={{ color: 'white' }}>Proxima</Text>
+                        <Text style={{ color: 'white' }}>Proximo</Text>
                     </TouchableOpacity>
-                {/* :
+                :
                     null
-            } */}
+            }
         </View>
     )
 }
 
 export default Rodape
+
+const style = StyleSheet.create({
+    rodape: {
+        flexDirection: 'row', 
+        justifyContent: 'space-evenly',
+        padding: 12,
+        height: '10%',
+        width: '100%',
+        backgroundColor: Cores.primary,
+        borderTopWidth: 2,
+    }, 
+    botaoVoltar:{
+        flexGrow: 1,
+        marginRight: 5,
+        backgroundColor: 'white',
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 7,
+        borderWidth: 1,
+    },
+    botaoProximo:{
+        flexGrow: 1,
+        backgroundColor: 'black',
+        justifyContent: "center",
+        alignItems: 'center',
+        borderRadius: 7,
+    },
+})

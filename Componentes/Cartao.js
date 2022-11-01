@@ -6,31 +6,30 @@ import {useCart} from '../Constantes/CartContext'
 const Cartao = ({jogo}) => {
     const cart = useCart()
     const {id, nome, imagem, preco} = jogo
+    const [estado, setEstado] = useState("toggle-off")
 
     const mudaEstado = () => {
-        if (jogo.estado === "toggle-off"){
-            jogo.estado = 'toggle-on'
+        if (estado === "toggle-off"){
+            setEstado('toggle-on')
             cart.addToCart(jogo)
         }
         else{
-            jogo.estado = 'toggle-off'
+            setEstado('toggle-off')
             cart.removeToCart(id)
         }
     }
     
   return (
     <View style={styles.cartao}>
-
-        <FontAwesome5 style={{marginLeft: "82%"}} name={jogo.estado} size={50} color="black" onPress={mudaEstado}/>
+        <FontAwesome5 style={{marginLeft: "82%"}} name={estado} size={50} color="black" onPress={mudaEstado}/>
         { 
-        imagem ? 
-          <Image style={styles.imagem} source={{uri: imagem}}/> 
-          : 
-          <Image style={styles.imagem} source={{uri: "https://cdn-icons-png.flaticon.com/512/2140/2140618.png"}}/>
+            imagem ? 
+            <Image style={styles.imagem} source={{uri: imagem}}/> 
+            : 
+            <Image style={styles.imagem} source={{uri: "https://cdn-icons-png.flaticon.com/512/2140/2140618.png"}}/>
         }
-        { id ? <Text style={{fontSize: 25}}>ID: {id}</Text> : null }
-        { nome ?<Text style={{fontSize: 25}}>Nome: {nome}</Text> : null }
-        { preco ?<Text style={{fontSize: 25}}>Preco: {preco}</Text> : null }
+        { nome ?<Text style={{fontSize: 20, textAlign: "center"}}>{nome}</Text> : null }
+        {/* { preco ?<Text style={{fontSize: 20}}>Preco: {preco}</Text> : null } */}
     </View>
   )
 }
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
     cartao:{
         marginBottom: 10,
         backgroundColor: "#ff7e75",
-        padding: 10,
+        padding: 7,
         width: "85%",
         marginLeft:'auto',
         marginRight:'auto',

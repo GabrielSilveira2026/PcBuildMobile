@@ -1,6 +1,10 @@
-import {SafeAreaView , Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
-import Cores from '../Constantes/Cores';
+import {StyleSheet} from 'react-native';
 const image = require('../Imagens/Fundo.png');
+
+export const Cores = {
+    primary: '#DF3F48',
+    secondary: '#DF676B'
+}
 
 export default StyleSheet.create({
     cabecalho:{
@@ -14,29 +18,16 @@ export default StyleSheet.create({
         justifyContent: 'space-between', 
         borderBottomWidth: 2
     },
-    
-    backgroundImage: {
-        width: '100%', 
-        height: '97%'
-    },
-
-    tela: {
-        textAlign: "center",
-        justifyContent: "center",
-    },
-    conteudo: {
-        textAlign: "center",
-        height: '89.9%',
-        backgroundColor: Cores.secondary,
-    },
     rodape: {
         flexDirection: 'row', 
         justifyContent: 'space-evenly',
         padding: 12,
-        height: 80,
+        height: '10%',
         width: '100%',
         backgroundColor: Cores.primary,
-        borderTopWidth: 2
+        borderTopWidth: 2,
+        position: 'absolute', 
+        bottom: 0
     }, 
     botaoVoltar:{
         flexGrow: 1,

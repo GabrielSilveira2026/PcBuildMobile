@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect,  } from 'react';
 import {SafeAreaView , TextInput, FlatList, Linking , Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
-import styles from '../Constantes/Styles';
+import Rodape from '../Componentes/Rodape'
+import styles, {Cores} from '../Constantes/Styles'
+
 import CartaoProdutos from '../Componentes/CartaoProdutos'
 
 const image = require('../Imagens/Fundo.png');
@@ -36,52 +38,34 @@ const FiltrosTela = ({navigation}) => {
   }
 
   return (
-    <SafeAreaView style={styles.tela}>
-      <SafeAreaView style={styles.conteudo}>
-        <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
-          <Text style={{color: 'white', fontSize: 50, marginLeft:'auto', marginRight: 'auto'}}>Filtros</Text>
-            <View style={{marginBottom: 10}}>
-              <TextInput
-                style={{ fontSize: 25, margin: 10, marginBottom: 0 }}
-                placeholder="Digite o produto"
-                value={produto}
-                onChangeText={capturarProduto}
-              />
+    <ImageBackground source={image} resizeMode="stretch" style={styles.backgroundImage}>
+      <View style={{ height: "90%" }}>
+        <Text style={{ color: 'white', fontSize: 50, marginLeft: 'auto', marginRight: 'auto' }}>Filtros</Text>
+        <View style={{ marginBottom: 10 }}>
+          <TextInput
+            style={{ fontSize: 25, margin: 10, marginBottom: 0 }}
+            placeholder="Digite o produto"
+            value={produto}
+            onChangeText={capturarProduto}
+          />
 
-              <TouchableOpacity
-                style={[styles.botaoProximo, { margin: 7, padding: 7, marginTop: 0 }]}
-                onPress={obterPrecos}
-              >
-                <Text style={{ color: 'white', fontSize: 18 }}>Pesquisar</Text>
-              </TouchableOpacity>
-            </View>
+          <TouchableOpacity
+            style={[styles.botaoProximo, { margin: 7, padding: 7, marginTop: 0 }]}
+            onPress={obterPrecos}
+          >
+            <Text style={{ color: 'white', fontSize: 18 }}>Pesquisar</Text>
+          </TouchableOpacity>
+        </View>
 
-            <FlatList style={estilo.lista}
-              data={precos}
-              renderItem={p => (
-                <CartaoProdutos precos={p.item}/>
-              )}
-            />
-
-        </ImageBackground>
-      </SafeAreaView>
-
-      <SafeAreaView style={styles.rodape}>
-        <TouchableOpacity 
-          style={styles.botaoVoltar}
-          onPress={() => navigation.navigate('Selecionados')}
-        >
-          <Text style={{color: 'black'}}>Voltar</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity 
-          style={styles.botaoProximo}
-          onPress={() => navigation.navigate('Recomendados')}
-        >
-          <Text style={{color: 'white'}}>Proxima</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
-    </SafeAreaView>
+        <FlatList style={estilo.lista}
+          data={precos}
+          renderItem={p => (
+            <CartaoProdutos precos={p.item} />
+          )}
+        />
+      </View>
+      <Rodape telas={{ anterior: 'Selecionados', proxima: 'Recomendados' }} />
+    </ImageBackground>
 );
 }
 

@@ -1,13 +1,18 @@
 import React, {useState} from 'react';
-import {SafeAreaView, TextInput, FlatList, Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert } from 'react-native';
-import styles from '../Constantes/Styles'
+import styles, {Cores} from '../Constantes/Styles'
+import {TextInput, FlatList, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert } from 'react-native';
 import Cartao from '../Componentes/Cartao'
+import Rodape from '../Componentes/Rodape'
 import {useCart} from '../Constantes/CartContext'
-import {pesquisa} from '../Services/httpservices'
+import axios from 'axios';
 
 const image = require('../Imagens/Fundo.png');
 
 const JogosTela = ({navigation}) => {
+  // const html = '<strong>Mínimos:</strong><br><ul class=\"bb_ul\"><li>Requer um processador e sistema operacional de 64 bits<br></li><li><strong>SO:</strong> Windows 10 64-bits<br></li><li><strong>Processador:</strong> Intel Core i5-2500K@3.3GHz or AMD FX 6300@3.5GHz<br></li><li><strong>Memória:</strong> 8 GB de RAM<br></li><li><strong>Placa de vídeo:</strong> Nvidia GeForce GTX 780 (3 GB) or AMD Radeon R9 290 (4GB)<br></li><li><strong>DirectX:</strong> Versão 12<br></li><li><strong>Armazenamento:</strong> 100 GB de espaço disponível</li></ul>'
+  // const json = parse(html)
+  // console.log('JSON EM KRL', json)
+
   const selecionados = useCart()
 
   const lista = [
@@ -82,75 +87,53 @@ const JogosTela = ({navigation}) => {
   //   }
   // }
 
-  // const imprime = () =>{
-  //   axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
-  //     .then(response => {
-  //       const tes= response.data.applist.apps[name:jogo]
-  //     })}
-  // }
+  const fazConsulta = async() => {
+    const resposta = await axios.get("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/tb_jogo/")
+    console.log(resposta?.data?.items[0])
+    listaProcurados.push(resposta?.data?.items[0])
+    console.log(listaProcurados)
+    setListaJogos(listaProcurados)
+  }
 
-  const imprime =()=>{console.log(listaJogos)}
+  const imprime =()=>{console.log("teste", listaJogos)}
   return (
-      <SafeAreaView style={styles.tela}>
-        {/* Conteudo da Tela */}
-        <View style={styles.conteudo}>
-          <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage}>
-          {/* Tab jogos/programas */}
-          <SafeAreaView style={stylesJ.tab}>
-            <TouchableOpacity style={stylesJ.botaoJogos} onPress={() => navigation.navigate('Jogos')}>
-              <Text style={{color: 'white', fontSize: 25}}>Jogos</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity style={stylesJ.botaoProgramas} onPress={() => navigation.navigate('Programas')}>
-              <Text style={{color: 'black', fontSize: 25}}>Programas</Text>
-            </TouchableOpacity>
-          </SafeAreaView>
-
-          <Text style={{textAlign: 'center', color: 'black', fontSize: 19, marginLeft:'15%', marginRight: '15%'}}>Escolha os jogos que você deseja jogar!</Text>
-
-          <View style={{marginBottom: 10}}>
-            <TextInput
-              style={{fontSize: 25, margin:10, marginBottom: 0}}
-              placeholder="Digite o jogo"
-              value={jogo}
-              onChangeText={capturarJogo}
-              />
-
-            <TouchableOpacity 
-              style={[styles.botaoProximo, {margin: 7, padding: 7, marginTop:0}]}
-              onPress={pesquisa("dark Souls", listaJogos)}
-              >
-              <Text style={{color: 'white', fontSize: 18}}>Pesquisa</Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={[styles.botaoProximo, {margin: 7, padding: 7, marginTop:0}]}
-              onPress={imprime()}
-              >
-              <Text style={{color: 'white', fontSize: 18}}>Imprime</Text>
-            </TouchableOpacity>
-          </View>
-
-          <FlatList
-            data={listaJogos}
-            renderItem={j => (
-              <Cartao jogo={j.item} />
-            )}
+    <ImageBackground source={image} resizeMode="stretch" style={styles.backgroundImage}>
+      <View style={{ height: "90%" }}>
+        <View>
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: 19, marginLeft: '15%', marginRight: '15%' }}>Escolha os jogos que você deseja jogar!</Text>
+          <TextInput
+            style={{ fontSize: 25, margin: 10, marginBottom: 0, borderBottomWidth: 1, marginBottom: 10 }}
+            placeholder="Digite o jogo"
+            value={jogo}
+            onChangeText={capturarJogo}
           />
-            
-          </ImageBackground>
-        </View>
-        {/* Rodapé com botões */}
-        <View style={styles.rodape}>
-          <TouchableOpacity 
-            style={styles.botaoProximo}
-            onPress={() => navigation.navigate('Selecionados')}
+
+          <TouchableOpacity
+            style={[styles.botaoProximo, { margin: 7, padding: 7, marginTop: 0 }]}
+            onPress={fazConsulta}
           >
-            <Text style={{color: 'white', fontSize: 20}}>Proxima</Text>
+            <Text style={{ color: 'white', fontSize: 18 }}>Pesquisa</Text>
           </TouchableOpacity>
+          {/* <TouchableOpacity
+            style={[styles.botaoProximo, { margin: 7, padding: 7, marginTop: 0 }]}
+            onPress={imprime}
+          >
+            <Text style={{ color: 'white', fontSize: 18 }}>Imprime</Text>
+          </TouchableOpacity> */}
         </View>
-      </SafeAreaView>
+
+        <FlatList
+          data={lista}
+          renderItem={j => (
+            <Cartao jogo={j.item} />
+          )}
+        />
+      </View>
+      <Rodape telas={{ proxima: 'Selecionados' }} />
+    </ImageBackground>
   );
 }
+
 
 export default JogosTela;
 
