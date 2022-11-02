@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect,  } from 'react';
 import {SafeAreaView , TextInput, FlatList, Linking , Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import Rodape from '../Componentes/Rodape'
-import styles, {Cores} from '../Constantes/Styles'
+import styles, {Cores, imagemFundo} from '../Constantes/Styles'
 
 import CartaoProdutos from '../Componentes/CartaoProdutos'
 
@@ -38,8 +38,8 @@ const FiltrosTela = ({navigation}) => {
   }
 
   return (
-    <ImageBackground source={image} resizeMode="stretch" style={styles.backgroundImage}>
-      <View style={{ height: "90%" }}>
+    <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={styles.backgroundImage}>
+    <View style={{ height: "90%" }}>
         <Text style={{ color: 'white', fontSize: 50, marginLeft: 'auto', marginRight: 'auto' }}>Filtros</Text>
         <View style={{ marginBottom: 10 }}>
           <TextInput

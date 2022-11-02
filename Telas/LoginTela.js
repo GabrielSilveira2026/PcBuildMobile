@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { SafeAreaView, TextInput, Button, Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
-import styles from '../Constantes/Styles'
+import {TextInput, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
+import styles, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
 import { Feather } from 'react-native-vector-icons';
 
@@ -8,8 +8,8 @@ const image = require('../Imagens/Fundo.png');
 
 const LoginTela = ({ navigation }) => {
     return (
-        <ImageBackground source={image} resizeMode="stretch" style={styles.backgroundImage}>
-            <View style={{ height: "90%", padding: 15, flexDirection: 'column', justifyContent:'space-between'}}>
+    <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={styles.backgroundImage}>
+    <View style={{ height: "90%", padding: 15, flexDirection: 'column', justifyContent:'space-between'}}>
                 <View>
                     <Text style={{ fontWeight: 'bold', color: 'black', fontSize: 30, marginTop: '10%' }}>Entrar</Text>
 

@@ -1,14 +1,12 @@
 import * as React from 'react';
 import {Image, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
-import styles, {Cores} from '../Constantes/Styles'
+import styles, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
-
-const image = require('../Imagens/Fundo.png');
 
 const RecomendadosTela = ({navigation}) => {
   return (
-    <ImageBackground source={image} resizeMode="stretch" style={styles.backgroundImage}>
-      <View style={{ height: "90%" }}>
+    <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={styles.backgroundImage}>
+    <View style={{ height: "90%" }}>
         <Text style={{ textAlign: 'center', color: 'black', fontSize: 22, marginLeft: '5%', marginRight: '5%', marginTop: 25, marginBottom: 10 }}>Recomendamos esses Pcs, agora basta escolher!</Text>
 
         <View style={{ borderWidth: 5, margin: 5, backgroundColor: 'white', padding: 8 }}>

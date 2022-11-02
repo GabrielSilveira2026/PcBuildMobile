@@ -1,14 +1,12 @@
 import * as React from 'react';
 import {View , TouchableOpacity, Text, ImageBackground } from 'react-native';
-import styles, {Cores} from '../Constantes/Styles'
+import styles, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
-
-const image = require('../Imagens/Fundo.png');
 
 const PecasTela = ({navigation}) => {
   return (
-    <ImageBackground source={image} resizeMode="stretch" style={styles.backgroundImage}>
-      <View style={{ height: "90%" }}>
+    <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={styles.backgroundImage}>
+    <View style={{ height: "90%" }}>
         <Text style={{ color: 'white', fontSize: 50, marginLeft: 'auto', marginRight: 'auto' }}>Peças</Text>
       </View>
 

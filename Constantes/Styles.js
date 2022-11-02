@@ -1,14 +1,16 @@
 import {StyleSheet} from 'react-native';
-const image = require('../Imagens/Fundo.png');
+
+export const imagemFundo = require('../Imagens/Fundo.png') ;
 
 export const Cores = {
-    primary: '#DF3F48',
-    secondary: '#DF676B'
+    primary: '#e7583f', //cabeçalho e rodapé
+    secondary: '#2f3135', //fundo
+    tertiary: '#ea6a54' //cartoes
 }
 
 export default StyleSheet.create({
     cabecalho:{
-        backgroundColor: '#DF3F48', 
+        backgroundColor: Cores.primary, 
         marginTop:30, 
         height:55, 
         paddingTop: 7,  
