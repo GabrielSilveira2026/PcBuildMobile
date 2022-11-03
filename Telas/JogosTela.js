@@ -5,6 +5,7 @@ import Cartao from '../Componentes/Cartao'
 import Rodape from '../Componentes/Rodape'
 import {useCart} from '../Constantes/CartContext'
 import axios from 'axios';
+import { render } from 'react-dom';
 
 // const image = require('../Imagens/Fundo2.png');
 
@@ -42,13 +43,6 @@ const JogosTela = ({navigation}) => {
     { 
       imagem: 'https://cdn.akamai.steamstatic.com/steam/apps/1172380/header.jpg?t=1650554420',
       id: 4,
-      nome: "STAR WARS Jedi: Fallen Order",
-      preco: "R$150",
-      estado: "circle"
-    },
-    { 
-      imagem: 'https://cdn.akamai.steamstatic.com/steam/apps/1172380/header.jpg?t=1650554420',
-      id: 5,
       nome: "STAR WARS Jedi: Fallen Order",
       preco: "R$150",
       estado: "circle"
@@ -105,6 +99,7 @@ const JogosTela = ({navigation}) => {
                 }
                 listaProcurados.push(x)
                 setListaJogos(listaProcurados)
+                // render(listaJogos)
                 // console.log("Adicionado no Lista procurado: " + dados.name + " - " + dados.steam_appid + " - " + dados.type)
                 console.log("LISTA PROCURADOS:" , JSON.stringify(listaProcurados, 0, 2));
               }
@@ -144,7 +139,7 @@ const JogosTela = ({navigation}) => {
             />
 
             <TouchableOpacity
-              style={[styles.botaoProximo, { margin: 7, padding: 7, marginTop: 0 }]}
+              style={[styles.botaoPadrao, { margin: 7, padding: 7, marginTop: 0 }]}
               onPress={pesquisa}
             >
               <Text style={{ color: 'white', fontSize: 18 }}>Pesquisa</Text>

@@ -13,7 +13,8 @@ import FiltrosTela from './Telas/FiltrosTela';
 import RecomendadosTela from './Telas/RecomendadosTela';
 import PecasTela from './Telas/PecasTela';
 import {CartProvider} from './Constantes/CartContext';
-import Rodape from './Componentes/Rodape'
+import Rodape from './Componentes/Rodape';
+import Cabecalho from './Componentes/Cabecalho'
 const image = require('./Imagens/Fundo.png');
 
 const Stack = createNativeStackNavigator();
@@ -26,10 +27,7 @@ function MyStack({navigation}){
         header: (props) => {
           // console.log(props)
           return (
-            <View style={styles.cabecalho}> 
-              <FontAwesome5 name="bars" size={40} color="black" onPress={() => props.navigation.navigate('Jogos')}/>
-              <FontAwesome5 name="search" size={40} color="black"/>
-            </View >
+            <Cabecalho props={props}/>
           )
         }
       }}

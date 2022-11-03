@@ -11,7 +11,7 @@ const LoginTela = ({ navigation }) => {
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={styles.backgroundImage}>
     <View style={{ height: "90%", padding: 15, flexDirection: 'column', justifyContent:'space-between'}}>
                 <View>
-                    <Text style={{ fontWeight: 'bold', color: 'black', fontSize: 30, marginTop: '10%' }}>Entrar</Text>
+                    <Text style={{ fontWeight: 'bold', color: stylesL.titulo.color, fontSize: 30, marginTop: '10%' }}>Entrar</Text>
 
                     <Text style={stylesL.titulo}>Email</Text>
                     <TextInput
@@ -29,16 +29,16 @@ const LoginTela = ({ navigation }) => {
                         >
                         <Text style={{ color: 'white', fontSize: 18 }}>Entrar</Text>
                     </TouchableOpacity>
-                    <Text style={{fontWeight: 'bold', textDecorationLine: 'underline', fontWeight: 'bold', color: 'black', fontSize: 15}} onPress={() => navigation.navigate('Jogos')}>
+                    <Text style={{fontWeight: 'bold', color: stylesL.titulo.color,textDecorationLine: 'underline', fontWeight: 'bold', fontSize: 15}} onPress={() => navigation.navigate('Jogos')}>
                         Esqueci a senha!
                     </Text>
                 </View>
-                <Text style={{textAlign: 'center',textDecorationLine: 'underline', fontWeight: 'bold', fontSize: 15}} onPress={() => navigation.navigate('Jogos')}>
+                <Text style={{color: stylesL.titulo.color, textAlign: 'center',textDecorationLine: 'underline', fontWeight: 'bold', fontSize: 15}} onPress={() => navigation.navigate('Jogos')}>
                     Não tenho cadastro ainda.
                 </Text>
             </View>
 
-            <Rodape telas={{anterior: 'Recomendados',proxima:'Login'}} />
+            <Rodape telas={{anterior: 'Pecas',proxima:'Login'}} />
             
         </ImageBackground>
     );
@@ -49,7 +49,7 @@ export default LoginTela;
 const stylesL = StyleSheet.create({
     titulo: {
         fontWeight: 'bold', 
-        color: 'black', 
+        color: 'white', 
         fontSize: 25, 
         marginTop: '5%'
     },

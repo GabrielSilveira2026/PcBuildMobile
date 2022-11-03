@@ -43,8 +43,9 @@ const FiltrosTela = ({navigation}) => {
         <Text style={{ color: 'white', fontSize: 50, marginLeft: 'auto', marginRight: 'auto' }}>Filtros</Text>
         <View style={{ marginBottom: 10 }}>
           <TextInput
-            style={{ fontSize: 25, margin: 10, marginBottom: 0 }}
+            style={{color: 'white', fontSize: 25, margin: 10, marginBottom: 0, borderBottomWidth: 1, marginBottom: 10, borderColor: 'white'}}
             placeholder="Digite o produto"
+            placeholderTextColor="#cccccc"
             value={produto}
             onChangeText={capturarProduto}
           />
