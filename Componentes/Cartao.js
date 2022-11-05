@@ -21,20 +21,35 @@ const Cartao = ({jogo}) => {
     }
     
   return (
+    // <TouchableOpacity style={styles.cartao} onPress={mudaEstado}>
+    //     { 
+    //         imagem ? 
+    //             <ImageBackground source={{ uri: imagem }} style={styles.imagem} imageStyle={styles.imageBackground}>
+    //                 <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc"/>
+    //             </ImageBackground>
+    //         : 
+    //         <ImageBackground source={{ uri: "https://cdn-icons-png.flaticon.com/512/2140/2140618.png" }} style={styles.imagem}>
+    //             <FontAwesome5 style={styles.selecao} name={jogo.estado} size={20} color="#cccccc"/>
+    //         </ImageBackground>
+    //     }
+    //     { nome ?<Text style={styles.titulo}>{nome}</Text > : <Text style={styles.titulo}>não identificado</Text>}
+    //     {/* { preco ?<Text style={{fontSize: 20}}>Preco: {preco}</Text> : null } */}
+    // </TouchableOpacity>
+
     <TouchableOpacity style={styles.cartao} onPress={mudaEstado}>
-        { 
-            imagem ? 
+        {
+            imagem?
                 <ImageBackground source={{ uri: imagem }} style={styles.imagem} imageStyle={styles.imageBackground}>
-                    <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc"/>
+                    <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc" />
                 </ImageBackground>
-            : 
-            <ImageBackground source={{ uri: "https://cdn-icons-png.flaticon.com/512/2140/2140618.png" }} style={styles.imagem}>
-                <FontAwesome5 style={styles.selecao} name={jogo.estado} size={20} color="#cccccc"/>
-            </ImageBackground>
+            :
+                <ImageBackground source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2140/2140618.png' }} backgroundColor={Cores.tertiary}style={styles.imagem} imageStyle={styles.imageBackground}>
+                    <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc" />
+                </ImageBackground>
         }
         { nome ?<Text style={styles.titulo}>{nome}</Text > : <Text style={styles.titulo}>não identificado</Text>}
-        {/* { preco ?<Text style={{fontSize: 20}}>Preco: {preco}</Text> : null } */}
     </TouchableOpacity>
+
   )
 }
 
@@ -42,34 +57,36 @@ export default Cartao
 
 const styles = StyleSheet.create({
     cartao:{
-        alignItems: 'center',
-        marginBottom: 4,
+        marginBottom: 5,
         backgroundColor: Cores.tertiary,
-        width: "48%",
-        marginLeft:'auto',
-        marginRight:'auto',
-        borderRadius: 8,
+        flexGrow: 1,
+        width:'49%',
+        marginLeft:2,
+        marginRight:2,
+        borderRadius: 11,
         borderWidth:2,
+        height: 170,
     },
     imagem:{
         height: 110,
         width: "100%",
     },
     imageBackground:{
-        borderRadius:7, 
-        resizeMode:'cover'
+        borderRadius: 10,
+        resizeMode:'cover',
+        height: '100%',
     },
     selecao:{
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
-        borderTopRightRadius: 6,
+        borderTopRightRadius: 7,
         backgroundColor: Cores.secondary,
         width: 'auto',
         marginLeft: 'auto',
         padding: 4
     },
     titulo:{
-        flex:1, 
+        flex:1,
         fontSize: 15, 
         textAlign: "center", 
         textAlignVertical: "center"
