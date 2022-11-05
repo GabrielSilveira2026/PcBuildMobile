@@ -1,40 +1,115 @@
 import axios from "axios";
+import {parse} from 'himalaya'
 
 export const apiSteam = axios.create({
   baseUrl: "https://api.scaleserp.com/search"
 })
 
-export async function pesquisa(j){
+export async function pesquisa2(j) {
+  console.log("chamou")
+  const recomendado = {}
+  let cpuMin
+  let ramMin
+  let gpuMin
+  let armazenamentoMin
+  let cpuRec
+  let ramRec
+  let gpuRec
+  let armazenamentoRec
   const listaProcurados = []
-  const resposta = await axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
-    .then(response => {
-      return response.data.applist.apps
-    })
-    .then(listaApps => {
-      listaApps.forEach(e => {
-        if (e.name.toLowerCase().includes(j.toLowerCase())){
-          axios.get('https://store.steampowered.com/api/appdetails?appids=' + e.appid)
-          .then(response => {
-            return response?.data[e.appid]?.data?.type === "game" ? response.data[e.appid].data : false
-          })
-          .then(dados=>{
-            listaProcurados.push({
-              id: dados?.steam_appid,
-              nome: dados?.name,
-              imagem: dados?.header_image,
-              requisitosMinimos: dados?.pc_requirements?.minimum,
-              requisitosRecomendados: dados?.pc_requirements?.recommended,
-              preco: dados?.price_overview?.final_formatted,
-              estado: "toggle-off"
-            })
-          })
+  const listaNomeID = await axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
+  // console.log('achei 1: ', listaNomeID.data.applist.apps[0])
+  for await (const item of listaNomeID.data.applist.apps) {
+    if (item.name.toLowerCase().includes(j.toLowerCase())) {
+      const idJogo = item.appid
+      const objetoJogo = await axios.get('https://store.steampowered.com/api/appdetails?appids=' + idJogo)
+      
+      const detalheJogo = objetoJogo?.data[idJogo]?.data
+      if (detalheJogo?.type === "game") {
+        //pega requisitos Minimos
+        if (detalheJogo?.pc_requirements?.minimum) {
+          const reqMinHtml = detalheJogo?.pc_requirements?.minimum
+          const reqMinJson = parse(reqMinHtml)
+          const dadosReqMin = reqMinJson[2]?.children
+          // console.log(reqMinJson);
+          for (const obj of dadosReqMin) {
+            let categoria
+            let peca
+            // categoria = obj?.children?.[0]?.children?.[0] ? obj.children[0].children[0].content ? :
+
+            if(obj?.children?.[0]?.children?.[0]){
+              categoria = obj.children[0].children[0].content
+            }
+            else if(obj?.children?.[0])
+            {
+              categoria = obj.children[0].content
+            }
+            else{
+              categoria = ''
+            }
+            if (obj?.children?.[1]?.content) {
+              peca = obj?.children[1]?.content
+              console.log(peca);
+              switch (categoria) {
+                case 'Processor:' || 'Processador':
+                  cpuMin = peca;
+                case 'Memory:' || 'Memória':
+                  ramMin = peca;
+                case 'Graphics:' || 'Placa de vídeo':
+                  gpuMin = peca;
+                case 'Storage:' || 'Armazenamento':
+                  armazenamentoMin = peca;
+              }
+            }
+          }
         }
-      })
-      return listaProcurados
-    })
-  await Promise.all(resposta)
-  console.log("https:", resposta)
-  return resposta
+
+        // pega requisitos Recomendados
+        if (detalheJogo?.pc_requirements?.recommended) {
+          const reqRecHtml = detalheJogo?.pc_requirements?.recommended
+          const reqRecJson = parse(reqRecHtml)
+          const dadosReqRec = reqRecJson[2]?.children
+          for (const obj of dadosReqRec) {
+            let categoria
+            let peca
+            if(obj?.children?.[0].children?.[0]){
+              categoria = obj.children[0].children[0].content
+            }
+            else{
+              categoria = obj.children[0].content
+            }
+            if (obj?.children[1]?.content) {
+              peca = obj?.children[1]?.content
+              switch (categoria) {
+                case 'Processor:' || 'Processador':
+                  cpuRec = peca;
+                case 'Memory:' || 'Memória':
+                  ramRec = peca;
+                case 'Graphics:' || 'Placa de vídeo':
+                  gpuRec = peca;
+                default:
+                  '';
+              }
+            }
+        }
+        }
+        
+        const minimo = {'Cpu':cpuMin, 'Ram':ramMin, 'Gpu':gpuMin, 'Armazenamento': armazenamentoMin};
+        const jogo = {
+          id: detalheJogo?.steam_appid,
+          nome: detalheJogo?.name,
+          imagem: detalheJogo?.header_image,
+          requisitosMinimos: minimo,
+          armazenamentoMin: armazenamentoMin,
+          preco: detalheJogo?.price_overview?.final_formatted,
+          estado: 'circle'
+        }
+        console.log(jogo);
+        listaProcurados.push(jogo)
+      }
+    }
+  }
+  return listaProcurados
 }
 
 // export const pesquisa = (j) => {

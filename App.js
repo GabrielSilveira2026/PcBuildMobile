@@ -1,8 +1,9 @@
 
-import {View,ImageBackground} from 'react-native';
+import {View,ImageBackground, StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {FontAwesome5} from 'react-native-vector-icons';
+import 'react-native-gesture-handler';
 
 import styles from './Constantes/Styles'
 import LoginTela from './Telas/LoginTela';
@@ -19,9 +20,22 @@ const image = require('./Imagens/Fundo.png');
 
 const Stack = createNativeStackNavigator();
 
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Feed" component={JogosTela} />
+      <Drawer.Screen name="Article" component={SelecionadosTela} />
+    </Drawer.Navigator>
+  );
+}
 function MyStack({navigation}){
   return(
-  <CartProvider>
+    <CartProvider>
+      <StatusBar></StatusBar>
     <Stack.Navigator
       screenOptions={{
         header: (props) => {
@@ -62,14 +76,15 @@ function MyStack({navigation}){
         />
     </Stack.Navigator>
   </CartProvider>
-
   )
 }
 
 function App() {
   return (
     <NavigationContainer>
-      <MyStack/>
+      {/* <MyDrawer> */}
+        <MyStack/>
+      {/* </MyDrawer> */}
     </NavigationContainer>
   );
 }

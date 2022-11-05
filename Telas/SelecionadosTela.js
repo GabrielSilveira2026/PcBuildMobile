@@ -13,16 +13,18 @@ const SelecionadosTela = ({navigation}) => {
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={styles.backgroundImage}>
     <View style={{ height: "90%" }}>
         <Text style={{ color: 'white', fontSize: 50, marginLeft: 'auto', marginRight: 'auto' }}>Selecionados</Text>
-
-        <FlatList
-          data={selecionados.cart}
+        
+          
+          <FlatList
+          data={selecionados?.cart}
           numColumns={2}
           keyExtractor={(item) => item.id}
           extraData={selecionados.cart}
           renderItem={j => (
             <Cartao jogo={j.item} />
-          )}
-        />
+            )}
+            />
+        
 
       </View>
       <Rodape telas={{ anterior: 'Jogos', proxima: 'Filtros' }}></Rodape>
