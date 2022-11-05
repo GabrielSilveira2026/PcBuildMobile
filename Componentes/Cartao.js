@@ -24,7 +24,7 @@ const Cartao = ({jogo}) => {
     <TouchableOpacity style={styles.cartao} onPress={mudaEstado}>
         { 
             imagem ? 
-                <ImageBackground source={{ uri: imagem }} style={styles.imagem} imageStyle={{borderRadius:7}}>
+                <ImageBackground source={{ uri: imagem }} style={styles.imagem} imageStyle={styles.imageBackground}>
                     <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc"/>
                 </ImageBackground>
             : 
@@ -52,9 +52,12 @@ const styles = StyleSheet.create({
         borderWidth:2,
     },
     imagem:{
-        height: 100,
+        height: 110,
         width: "100%",
-        resizeMode:"contain",
+    },
+    imageBackground:{
+        borderRadius:7, 
+        resizeMode:'cover'
     },
     selecao:{
         borderBottomLeftRadius: 10,
