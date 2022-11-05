@@ -24,8 +24,8 @@ const Cartao = ({jogo}) => {
     <TouchableOpacity style={styles.cartao} onPress={mudaEstado}>
         { 
             imagem ? 
-                <ImageBackground source={{ uri: imagem }} style={styles.imagem}>
-                    <FontAwesome5 style={styles.selecao} name={jogo.estado} size={20} color="#cccccc"/>
+                <ImageBackground source={{ uri: imagem }} style={styles.imagem} imageStyle={{borderRadius:7}}>
+                    <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc"/>
                 </ImageBackground>
             : 
             <ImageBackground source={{ uri: "https://cdn-icons-png.flaticon.com/512/2140/2140618.png" }} style={styles.imagem}>
@@ -45,22 +45,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 4,
         backgroundColor: Cores.tertiary,
-        // // paddingBottom: 5,
         width: "48%",
         marginLeft:'auto',
         marginRight:'auto',
-        // borderRadius: 8,
+        borderRadius: 8,
         borderWidth:2,
     },
     imagem:{
         height: 100,
         width: "100%",
-        borderRadius:15,
-        resizeMode:"contain"
+        resizeMode:"contain",
     },
     selecao:{
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
+        borderTopRightRadius: 6,
         backgroundColor: Cores.secondary,
         width: 'auto',
         marginLeft: 'auto',

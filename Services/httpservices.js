@@ -7,7 +7,6 @@ export const apiSteam = axios.create({
 
 export async function pesquisa2(j) {
   console.log("chamou")
-  const recomendado = {}
   let cpuMin
   let ramMin
   let gpuMin
@@ -28,10 +27,15 @@ export async function pesquisa2(j) {
       if (detalheJogo?.type === "game") {
         //pega requisitos Minimos
         if (detalheJogo?.pc_requirements?.minimum) {
+          let dadosReqMin 
           const reqMinHtml = detalheJogo?.pc_requirements?.minimum
           const reqMinJson = parse(reqMinHtml)
-          const dadosReqMin = reqMinJson[2]?.children
-          // console.log(reqMinJson);
+          if (reqMinJson?.[2]?.children) {
+            dadosReqMin = reqMinJson?.[2]?.children
+          }
+          else{
+            dadosReqMin = reqMinJson?.[0]?.children
+          }
           for (const obj of dadosReqMin) {
             let categoria
             let peca
@@ -49,16 +53,17 @@ export async function pesquisa2(j) {
             }
             if (obj?.children?.[1]?.content) {
               peca = obj?.children[1]?.content
-              console.log(peca);
               switch (categoria) {
                 case 'Processor:' || 'Processador':
                   cpuMin = peca;
                 case 'Memory:' || 'Memória':
                   ramMin = peca;
-                case 'Graphics:' || 'Placa de vídeo':
+                case 'Graphics:' || 'Placa de vídeo' || 'Video Card:':
                   gpuMin = peca;
-                case 'Storage:' || 'Armazenamento':
+                case 'Storage:' || 'Armazenamento' || "Hard Disk Space: :":
                   armazenamentoMin = peca;
+                default:
+                  ''
               }
             }
           }
@@ -85,8 +90,10 @@ export async function pesquisa2(j) {
                   cpuRec = peca;
                 case 'Memory:' || 'Memória':
                   ramRec = peca;
-                case 'Graphics:' || 'Placa de vídeo':
+                case 'Graphics:' || 'Placa de vídeo' || 'Video Card:':
                   gpuRec = peca;
+                case 'Storage:' || 'Armazenamento' || "Hard Disk Space: :":
+                  armazenamentoRec = peca;
                 default:
                   '';
               }
@@ -95,16 +102,16 @@ export async function pesquisa2(j) {
         }
         
         const minimo = {'Cpu':cpuMin, 'Ram':ramMin, 'Gpu':gpuMin, 'Armazenamento': armazenamentoMin};
+        const recomendado = {'Cpu':cpuRec, 'Ram':ramRec, 'Gpu':gpuRec, 'Armazenamento': armazenamentoMin}
         const jogo = {
           id: detalheJogo?.steam_appid,
           nome: detalheJogo?.name,
           imagem: detalheJogo?.header_image,
           requisitosMinimos: minimo,
-          armazenamentoMin: armazenamentoMin,
+          RequisitosRecomendados: recomendado,
           preco: detalheJogo?.price_overview?.final_formatted,
           estado: 'circle'
         }
-        console.log(jogo);
         listaProcurados.push(jogo)
       }
     }
