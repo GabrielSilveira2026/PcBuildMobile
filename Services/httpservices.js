@@ -6,7 +6,7 @@ export const apiSteam = axios.create({
 })
 
 const extraiRequisitos = (requisito)=>{
-  const resultado = {}
+  const regex = /[^0-9a-zA-Z() " : , { } @ . -]/gi
   const reqHtml = requisito
   const reqJson = parse(reqHtml)
   let dadosReq, cpu, ram, armazenamento, gpu
@@ -52,13 +52,17 @@ const extraiRequisitos = (requisito)=>{
       peca = obj?.children[1]?.content
       switch (categoria) {
         case 'Processor:' || 'Processador':
-          cpu = peca;
+          cpu = peca.replace(regex, '');
+          break;
         case 'Memory:' || 'Memória':
-          ram = peca;
+          ram = peca.replace(regex, '');
+          break;
         case 'Graphics:' || 'Placa de vídeo:'||  'Video Card:':
-          gpu = peca;
+          gpu = peca.replace(regex, '');
+          break;
         case 'Storage:' || 'Armazenamento' || 'Hard Disk Space':
-         armazenamento = peca;
+          armazenamento = peca.replace(regex, '');
+          break;
       }
     }
   }
