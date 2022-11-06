@@ -35,6 +35,12 @@ const JogosTela = ({navigation}) => {
   const listaPecas = []
   const [listaJogos, setListaJogos] = useState([])
 
+  const imprimeJson = async() =>{
+    const html= "<strong>Mínimos:</strong><br><ul class=\"bb_ul\"><li>Requer um processador e sistema operacional de 64 bits<br></li><li><strong>SO:</strong> Windows 10<br></li><li><strong>Processador:</strong> Intel Core i5-4430 / AMD FX-6300<br></li><li><strong>Memória:</strong> 4 GB de RAM<br></li><li><strong>Placa de vídeo:</strong> NVIDIA GeForce GTX 960 2GB / AMD Radeon R7 370 2GB<br></li><li><strong>DirectX:</strong> Versão 11<br></li><li><strong>Rede:</strong> Conexão de internet banda larga<br></li><li><strong>Armazenamento:</strong> 5 GB de espaço disponível</li></ul>"
+    const json = parse(html)
+    console.log(json)
+  }
+
   const pesquisa = () => {
     if (jogo !== "") {
       axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
@@ -87,12 +93,20 @@ const JogosTela = ({navigation}) => {
     }
   }
 
+  //via steam
   const fazConsulta = async() => {
     if (jogo !== "") {
       const resposta = await pesquisa2(jogo)
-      console.log(resposta)
+      // console.log(resposta)
       if (resposta.length > 0) {
         setListaJogos(resposta)
+        try {
+          await axios.post("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/", resposta[0]);
+          console.log("inseriu")
+        }
+        catch (e) {
+          console.log(e.response.data);
+        }
       }
       else {
         Alert.alert("Nenhum jogo encontrado, por favor tente novamente")
@@ -101,32 +115,6 @@ const JogosTela = ({navigation}) => {
     else{
       Alert.alert("Por favor, digite o nome de um jogo")
     }
-  
-    // const response = await axios.get("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/tb_jogo/")
-    
-    // const jogos = response.data.items
-
-    // for(var i = 0; i < response.data.items.length; i++){
-    //   if(response.data.items[i].nome.toLowerCase().includes(jogo.toLowerCase())){
-    //     let dadosJogo = response.data.items[i]
-    //     const x = {
-    //       id: dadosJogo.id_jogo_steam,
-    //       nome: dadosJogo.nome, 
-    //       imagem: dadosJogo.imagem,
-    //       estado: 'circle'
-    //       // requisitosMinimos: dados.pc_requirements.minimum,
-    //       // requisitosRecomendados: dados.pc_requirements.recommended,
-    //     }
-    //     console.log(x.imagem)
-    //     listaProcurados.push(x)
-    //     setListaJogos(listaProcurados)
-    //   }
-    // }
-    
-    // console.log(resposta?.data?.items[0])
-    // listaProcurados.push(resposta?.data?.items[0])
-    // console.log(listaProcurados)
-    // setListaJogos(listaProcurados)
   }
 
   const imprime =async()=>{
@@ -187,13 +175,57 @@ const JogosTela = ({navigation}) => {
   
   }
 
+  const consultaBanco = async() => {
+    const response = await axios.get("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/")
+    console.log(JSON.parse(response.data.items[0].requisitosminimos))
+    // for (const jogo of response.data.items) {
+    //   console.log(jogo.nome, '\n', JSON.parse(jogo.requisitosminimos.toString()), '\n')
+    // }
+    // for(var i = 0; i < response.data.items.length; i++){
+    //   if(response.data.items[i].nome.toLowerCase().includes(jogo.toLowerCase())){
+    //     let dadosJogo = response.data.items[i]
+    //     const x = {
+    //       id: dadosJogo.id_jogo_steam,
+    //       nome: dadosJogo.nome, 
+    //       imagem: dadosJogo.imagem,
+    //       estado: 'circle'
+    //       // requisitosMinimos: dados.pc_requirements.minimum,
+    //       // requisitosRecomendados: dados.pc_requirements.recommended,
+    //     }
+    //     console.log(x.imagem)
+    //     listaProcurados.push(x)
+    //     setListaJogos(listaProcurados)
+    //   }
+    // }
+    
+    // listaProcurados.push(resposta?.data?.items[0])
+    // console.log(listaProcurados)
+    // setListaJogos(listaProcurados)
+  }
+  const insereBanco = async () => {
+    const krl = `{"Armazenamento": "30 GB available space","Cpu": "Intel i5 3570K / AMD FX-8350","Gpu": "GTX 770 with 2GB VRAM / Radeon R9 280X 3GB","Ram": "8 GB RAM"}`
+    try {
+      const joguinho = {
+        id_jogo_steam: 414340,
+        nome: "Hellbla's Sacrifice",
+        imagem: "https://cdn.akamai.steamstatic.com/steam/apps/414340/header.jpg?t=1661444431",
+        requisitosminimos: krl,
+          preco: "R$ 55,99",
+      }
+      await axios.post("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/", joguinho);
+      console.log("inseriu")
+    } catch (error) {
+      console.log("erro:", error.response.data);
+    }
+    
+  }
   return (
       <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={styles.backgroundImage}>
-        <View style={{ height: "90%", paddingLeft: 10, paddingRight: 10}}>
+        <View style={{ height: "90%", paddingLeft: 15, paddingRight: 15}}>
           <View>
             <Text style={{ textAlign: 'center', color: 'white', fontSize: 19, marginLeft: '15%', marginRight: '15%' }}>Selecione os jogos que você deseja jogar!</Text>
             <TextInput
-              style={{color: 'white', fontSize: 25, margin: 10, marginBottom: 0, borderBottomWidth: 1, marginBottom: 10, borderColor: 'white'}}
+              style={{color: 'white', fontSize: 25, borderBottomWidth: 1, marginBottom: 10, borderColor: 'white'}}
               placeholder="Digite o jogo"
               placeholderTextColor="#cccccc"
               value={jogo}
@@ -201,21 +233,22 @@ const JogosTela = ({navigation}) => {
             />
 
             <TouchableOpacity
-              style={[styles.botaoPadrao, { margin: 7, padding: 7, marginTop: 0 }]}
+              style={[styles.botaoPadrao, {padding: 7, marginBottom: 10 }]}
               onPress={fazConsulta}
             >
               <Text style={{ color: 'white', fontSize: 18 }}>Pesquisa</Text>
             </TouchableOpacity>
-            {/* <TouchableOpacity
+            <TouchableOpacity
               style={[styles.botaoPadrao, { margin: 7, padding: 7, marginTop: 0 }]}
-              onPress={imprime}
+              onPress={consultaBanco}
             >
-              <Text style={{ color: 'white', fontSize: 18 }}>Tenta popular</Text>
-            </TouchableOpacity> */}
+              <Text style={{ color: 'white', fontSize: 18 }}>Consulta</Text>
+            </TouchableOpacity>
           </View>
           {
             listaJogos.length === 0?
             <FlatList
+            // horizontal={true}
             data={lista}
             numColumns={2}
             keyExtractor={item => item.id}
@@ -225,6 +258,7 @@ const JogosTela = ({navigation}) => {
               />
             :
             <FlatList
+            // horizontal={true}
             data={listaJogos}
             numColumns={2}
             keyExtractor={item => item.id}
