@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { Dimensions } from 'react-native'
 
 export const imagemFundo = require('../Imagens/FundoMontado.png') ;
 
@@ -25,11 +26,20 @@ export default StyleSheet.create({
     //     justifyContent: 'space-between', 
     //     borderBottomWidth: 2
     // }
+    conteudoTela:{
+        height: "90%", 
+        paddingLeft: 10, 
+        paddingRight: 10, 
+        paddingTop:5,
+        alignItems: 'center'
+    },
+    
     botaoPadrao:{
-        flexGrow: 1,
         backgroundColor: 'black',
+        color: 'white',
         justifyContent: "center",
         alignItems: 'center',
+        textAlign: 'center',
         borderRadius: 7,
     },
 });

@@ -10,8 +10,8 @@ export const CartProvider = ({children}) => {
             jogo
         ]))
     }
-    const removeToCart = id =>{
-        let newCart = cart.filter(p => p.id !== id)
+    const removeToCart = id_jogo_steam =>{
+        let newCart = cart.filter(p => p.id_jogo_steam !== id_jogo_steam)
         setCart()
         setCart(newCart)
     }

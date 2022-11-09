@@ -6,18 +6,10 @@ export const apiSteam = axios.create({
 })
 
 const extraiRequisitos = (requisito)=>{
-  const regex = /[^0-9a-zA-Z() " : , { } @ . -]/gi
+  const regex = /[^0-9a-zA-Z() " : , { } @ . / -]/gi
   const reqHtml = requisito
   const reqJson = parse(reqHtml)
   let dadosReq, cpu, ram, armazenamento, gpu
-
-  // for (let i = 0; i < 10; i++) {
-  //   console.log('teste');
-  //   if (reqJson?.[i]?.children && reqJson?.[i]?.children?.[i+2]) {
-  //     console.log('teste')
-  //     dadosReq = reqJson?.[i]?.children
-  //   }
-  // }
 
   if (reqJson?.[0]?.children && reqJson?.[0]?.children?.[1]) {
     dadosReq = reqJson?.[0]?.children 
@@ -68,24 +60,23 @@ const extraiRequisitos = (requisito)=>{
   }
   // console.log(resultado);
   const requisitos = `{"Armazenamento": "${armazenamento}","Cpu": "${cpu}","Gpu": "${gpu}","Ram": "${ram}"}`
-  console.log(requisitos)
+  // console.log(requisitos)
   return requisitos;
 
 }
 
-export async function pesquisa2(j) {
+export async function pesquisa(j) {
   console.log("chamou")
-  let cpuMin, ramMin, gpuMin, armazenamentoMin,cpuRec, ramRec, gpuRec, armazenamentoRec
   const listaProcurados = []
   const listaNomeID = await axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
   for await (const item of listaNomeID.data.applist.apps) {
     if (item.name.toLowerCase().includes(j.toLowerCase())) {
       const idJogo = item.appid
       const objetoJogo = await axios.get('https://store.steampowered.com/api/appdetails?appids=' + idJogo)
-      if (objetoJogo){
+      if (objetoJogo?.data[idJogo]?.success === true){
         const detalheJogo = objetoJogo?.data[idJogo]?.data
         if (detalheJogo?.type === "game") {
-
+          console.log(detalheJogo?.steam_appid);
           //pega requisitos Minimos
           // if (detalheJogo?.pc_requirements?.minimum) {
           //   let dadosReqMin 

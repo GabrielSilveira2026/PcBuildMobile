@@ -5,7 +5,7 @@ import {useCart} from '../Constantes/CartContext'
 import {Cores} from '../Constantes/Styles'
 
 
-const Cartao = ({jogo}) => {
+const CartaoJogo = ({jogo}) => {
     const cart = useCart()
     const {id_jogo_steam, nome, imagem, preco} = jogo
 

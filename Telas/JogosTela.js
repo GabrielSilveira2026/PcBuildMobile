@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import styles, {Cores, imagemFundo} from '../Constantes/Styles'
+import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import {TextInput, FlatList, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert } from 'react-native';
-import Cartao from '../Componentes/Cartao'
+import {FontAwesome5} from 'react-native-vector-icons';
+import CartaoJogo from '../Componentes/CartaoJogo'
 import Rodape from '../Componentes/Rodape'
 import axios from 'axios';
 import lista from '../Dados/jogos.json'
@@ -34,101 +35,100 @@ const JogosTela = ({navigation}) => {
         }
       }
       setListaJogos(listaProcurados)
+      if (listaProcurados.length === 0) {
+        Alert.alert("Nenhum jogo encontrado", "Por favor, tente pesquisar de outra maneira")
+        setListaJogos('')
+      }
     }
-    else{
-      Alert.alert("Por favor, digite o nome de um jogo")
-    }
-
-
-    if (listaProcurados.length === 0) {
-      Alert.alert("Nenhum jogo encontrado", "Por favor tente pesquisa de outra maneira")
-    }
+    // else{
+    //   Alert.alert("Nenhum jogo Digitado","Por favor, digite o nome de um jogo")
+    //   setListaJogos('')
+    // }
   }
 
   return (
-      <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={styles.backgroundImage}>
-        <View style={styles.conteudoTela}>
-          <View>
-            <Text style={{ textAlign: 'center', color: 'white', fontSize: 19, marginLeft: '15%', marginRight: '15%' }}>Selecione os jogos que você deseja jogar!</Text>
-            <TextInput
-              style={{color: 'white', fontSize: 25, borderBottomWidth: 1, marginBottom: 10, borderColor: 'white'}}
-              placeholder="Digite o jogo"
-              placeholderTextColor="#cccccc"
-              value={jogo}
-              onChangeText={capturarJogo}
-            />
+    <ImageBackground source={imagemFundo} resizeMode="stretch"  backgroundColor={Cores.secondary} style={stylesGlobal.backgroundImage}>
+      <View style={stylesGlobal.conteudoTela}>
 
-            <TouchableOpacity
-              style={[styles.botaoPadrao, {padding: 7, marginBottom: 10 }]}
-              onPress={pesquisa}
-            >
-              <Text style={{ color: 'white', fontSize: 18 }}>Pesquisa</Text>
-            </TouchableOpacity>
-          </View>
-          {
-            listaJogos.length === 0?
+        <Text style={styles.titulo}>Selecione até 3 jogos que você deseja jogar!</Text>
+
+        <View style={styles.pesquisa}>
+          <TextInput
+            style={styles.input}
+            placeholder="Digite o jogo"
+            placeholderTextColor="#cccccc"
+            value={jogo}
+            onChangeText={capturarJogo}
+          />
+          <TouchableOpacity
+            onPress={pesquisa}
+          >
+            <FontAwesome5 style={styles.botaoPesquisa} name="search" size={30} color="white"/>
+          </TouchableOpacity>
+
+        </View>
+
+        {
+          listaJogos.length === 0 ?
             <FlatList
-            // horizontal={true}
-            data={lista}
-            numColumns={2}
-            keyExtractor={item => item.id}
-            renderItem={j => (
-              <Cartao jogo={j.item} />
-            )}
+              // horizontal={true}
+              data={lista}
+              numColumns={2}
+              keyExtractor={item => item.id_jogo_steam}
+              renderItem={j => (
+                <CartaoJogo jogo={j.item} />
+              )}
             />
             :
             <FlatList
-            // horizontal={true}
-            data={listaJogos}
-            numColumns={2}
-            keyExtractor={item => item.id_jogo_steam}
-            renderItem={j => (
-              <Cartao jogo={j.item} />
-            )}
+              // horizontal={true}
+              data={listaJogos}
+              numColumns={2}
+              keyExtractor={item => item.id_jogo_steam}
+              renderItem={j => (
+                <CartaoJogo jogo={j.item} />
+              )}
             />
-          }
-        </View>
-        <Rodape telas={{ proxima: 'Selecionados' }} />
-      </ImageBackground>
+        }
+
+      </View>
+      <Rodape telas={{proxima: 'Selecionados' }} />
+    </ImageBackground>
   );
 }
 
 
 export default JogosTela;
 
-
-const stylesJ = StyleSheet.create({
-  tab:{
-    flexDirection: "row",
-    marginLeft:'auto', 
-    marginRight: 'auto', 
-    marginTop: 25, 
+const styles = StyleSheet.create({
+  titulo: {
+    textAlign: 'center', 
+    fontSize: 20,
+    color: 'white', 
+    marginBottom: 15
+  },
+  pesquisa:{
+    flexDirection: 'row',
+    marginLeft: 2,
+    marginRight: 2,
+    marginBottom: 5,
+  },
+  input: {
+    flexGrow:1,
+    color: 'white',
+    fontSize: 25,
+    borderBottomWidth: 1,
     marginBottom: 10,
-    borderWidth: 1,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10
+    borderColor: 'white'
   },
-
-  botaoJogos: {
+  botaoPesquisa:{
+    width: 'auto', 
     backgroundColor: 'black',
-    alignItems: "center",
-    width: '45%', 
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10
-  },
-  
-  botaoProgramas: {
-    backgroundColor: 'white',
-    alignItems: "center",
-    width: '45%',
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10
-  },
-
-  botaoProximo:{
-    width: '100%',
+    alignItems: 'center',
+    borderRadius: 7,
+    padding: 7, 
+    marginLeft: 8,
+    marginBottom: 10
   }
 
 })

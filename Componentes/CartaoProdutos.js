@@ -1,69 +1,89 @@
-import { 
-    Image,
-    StyleSheet, 
-    Text, 
-    View, 
-    Linking,
-    TouchableOpacity 
-} from 'react-native'
-import styles from '../Constantes/Styles';
+import {StyleSheet,TouchableOpacity, Text, ImageBackground, Alert, View, Image,Linking} from 'react-native'
+import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import React from 'react'
+import {FontAwesome5} from 'react-native-vector-icons';
+import {useCart} from '../Constantes/CartContext'
 
 const CartaoProdutos = ({precos}) => {
     const preco = precos.price_raw
     const loja = precos.merchant
     const link = precos.link
     const imagem = precos.image
+    const titulo = precos.title
 
-  return (
-    // <Cartao>
-        <View style={stylesC.cartao}>
-            <Image style={stylesC.imagem} source={{uri: imagem}}/>
-
-            <Text style={stylesC.loja}>Loja: {loja}</Text>
-
-            <TouchableOpacity style={[styles.botaoProximo, {padding:4}]} >
-                <Text style={{color: 'white', fontSize: 20, textAlign: 'center'}} onPress={() => {Linking.openURL(link);}}> Comprar {'\n'} {preco}</Text>
-            </TouchableOpacity>
+    return (
+        <View style={styles.cartao}>
+            <Image style={styles.imagem} source={{uri: imagem}}/>
+            <Text style={styles.titulo}>{titulo.substr(0,50)}...</Text>
+            <View style={styles.items}>
+                <Text style={styles.loja}>{loja ? loja : ""}</Text>
+                <Text style={styles.preco}>{preco ? preco : "Indiponível"}</Text>
+                <TouchableOpacity style={styles.botaoComprar} onPress={() => {Linking.openURL(link);}}>
+                    <Text style={styles.textoComprar}>Comprar</Text>
+                </TouchableOpacity>
+            </View>
         </View>
-    // </Cartao>
-  )
+     )
 }
 
 export default CartaoProdutos
 
-const stylesC = StyleSheet.create({
+const styles = StyleSheet.create({
     cartao:{
-        marginBottom: 20,
-        backgroundColor: "#ff7e75",
-        padding: 10,
-        width: "49%",
-        marginLeft:'auto',
-        marginRight:'auto',
+        backgroundColor: Cores.tertiary,
+        flexDirection: 'row',
         borderRadius: 8,
-        borderWidth:3
+        borderWidth:2,
+        marginBottom: 5,
+        height:170,
+        padding: 7
     },
     imagem:{
-        borderRadius:8,
-        borderWidth: 1,
-        borderColor:'black',
-        height: 150,
-        width: 150,
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        marginTop: 'auto',
+        marginBottom: 'auto',
+        height: '95%', 
+        width: 130, 
+        marginRight:10,
+        borderRadius: 8,
+        borderWidth:2,
+        resizeMode: 'contain',
     },
-    link: {
-        padding: 5,
-        backgroundColor: '#ff6404',
-        color: 'black',
-        fontSize: 20,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        borderWidth: 1,
-    }, 
+    titulo:{
+        marginRight:5,
+        fontSize:15,
+        width:115,
+        fontWeight: 'bold',
+    },
+    items:{
+        justifyContent: 'space-between',
+        width: 110,
+    },
     loja: {
-        fontSize: 20,
-        marginLeft: 'auto',
-        marginRight: 'auto', 
+        justifyContent: 'center',
+        textAlign:'center',        
+        fontSize: 15, 
+        borderRadius: 5,
+        backgroundColor: Cores.primary,
+        fontWeight: 'bold',
     },
+    preco: {
+        height: 'auto', 
+        fontSize: 15,
+        borderRadius: 5,
+        backgroundColor: 'white',
+        fontWeight: 'bold',
+        color: 'green',
+        // width: 100
+    }, 
+    botaoComprar:{
+        justifyContent: 'center',
+        textAlign:'center',
+        height:40,
+        backgroundColor: 'black',
+        borderRadius: 7,
+    },
+    textoComprar:{
+        color: 'white',
+        textAlign:'center',
+    }
 })

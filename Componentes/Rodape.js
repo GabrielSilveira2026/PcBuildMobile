@@ -5,7 +5,7 @@ import {TouchableOpacity, Text, View, StyleSheet} from 'react-native';
 
 const Rodape = ({telas}) => {
     const navigation = useNavigation()
-    const {proxima, anterior} = telas
+    const {txtProxima, proxima, txtAnterior, anterior} = telas
     return (
         <View style={style.rodape}>
             {
@@ -25,7 +25,7 @@ const Rodape = ({telas}) => {
                         style={style.botaoProximo}
                         onPress={() => navigation.navigate(proxima)}
                     >    
-                        <Text style={{ color: 'white' }}>Proximo</Text>
+                        <Text style={{ color: 'white' }}>Próximo</Text>
                     </TouchableOpacity>
                 :
                     null
@@ -44,7 +44,7 @@ const style = StyleSheet.create({
         height: '10%',
         width: '100%',
         backgroundColor: Cores.primary,
-        borderTopWidth: 2,
+        borderTopWidth: 2
     }, 
     botaoVoltar:{
         flexGrow: 1,

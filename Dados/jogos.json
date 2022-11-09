@@ -1,48 +1,48 @@
 [
     { 
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1151640/header.jpg?t=1659711071",
-      "id": 1,
+      "id_jogo_steam": 12,
       "nome": "Horizon Zero Dawn™ Complete Edition",
       "preco": "R$200",
       "estado": "circle"
     },
     { 
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/414340/header.jpg?t=1661444431",
-      "id": 2,
+      "id_jogo_steam": 23,
       "nome": "Hellblade: Senua's Sacrifice",
       "estado": "circle"
     },
     { 
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420",
-      "id": 3,
+      "id_jogo_steam": 34,
       "nome": "God of War",
       "preco": "R$200",
       "estado": "circle"
     },
     { 
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1172380/header.jpg?t=1650554420",
-      "id": 4,
+      "id_jogo_steam": 45,
       "nome": "STAR WARS Jedi: Fallen Order",
       "preco": "R$150",
       "estado": "circle"
     },
     { 
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/812140/header.jpg?t=1666971267",
-      "id": 6,
+      "id_jogo_steam": 67,
       "nome": "Assassin's Creed® Odyssey",
       "preco": "R$150",
       "estado": "circle"
     },
     { 
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1913730/header.jpg?t=1662538829",
-      "id": 7,
+      "id_jogo_steam": 78,
       "nome": "Chimeraland",
       "preco": "R$150",
       "estado": "circle"
     },
     { 
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/506970/header.jpg?t=1580310767",
-      "id": 8,
+      "id_jogo_steam": 89,
       "nome": "DARK SOULS™ III - Ashes of Ariandel™",
       "preco": "R$150",
       "estado": "circle"

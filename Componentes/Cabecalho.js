@@ -13,7 +13,6 @@ const Cabecalho = () => {
                 <FontAwesome5 name="bars" size={30} color="white" onPress={() => navigation.navigate('Jogos')}/>
             </TouchableOpacity>
             <Text style={style.logo}>Pc Build Up</Text>
-            <FontAwesome5 name="search" size={30} color="white"/>
         </SafeAreaView >
     )
 }
@@ -24,16 +23,15 @@ export default Cabecalho
 const style = StyleSheet.create({
     cabecalho:{
         backgroundColor: Cores.primary, 
-        // marginTop:30, 
         height:50, 
         paddingTop: 7,  
         paddingRight: 15, 
         paddingLeft: 15,
-        flexDirection: 'row', 
-        justifyContent: 'space-between', 
+        flexDirection: 'row',
         borderBottomWidth: 2
     },
     logo:{
+        marginLeft: 100,
         fontSize: 20,
         color: 'white',
     }
