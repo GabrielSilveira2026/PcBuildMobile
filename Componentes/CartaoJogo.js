@@ -37,7 +37,7 @@ const CartaoJogo = ({jogo}) => {
   )
 }
 
-export default Cartao
+export default CartaoJogo
 
 const styles = StyleSheet.create({
     cartao:{
