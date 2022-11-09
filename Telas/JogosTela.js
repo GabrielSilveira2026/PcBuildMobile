@@ -47,7 +47,7 @@ const JogosTela = ({navigation}) => {
 
   return (
       <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={styles.backgroundImage}>
-        <View style={{ height: "90%", paddingLeft: 15, paddingRight: 15, paddingTop:15}}>
+        <View style={styles.conteudoTela}>
           <View>
             <Text style={{ textAlign: 'center', color: 'white', fontSize: 19, marginLeft: '15%', marginRight: '15%' }}>Selecione os jogos que você deseja jogar!</Text>
             <TextInput

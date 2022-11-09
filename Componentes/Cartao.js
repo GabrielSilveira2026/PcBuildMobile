@@ -1,5 +1,5 @@
-import {Image, StyleSheet,TouchableOpacity, Text, View, ImageBackground} from 'react-native'
-import React, { useState } from 'react'
+import {StyleSheet,TouchableOpacity, Text, ImageBackground, Alert} from 'react-native'
+import React from 'react'
 import {FontAwesome5} from 'react-native-vector-icons';
 import {useCart} from '../Constantes/CartContext'
 import {Cores} from '../Constantes/Styles'
@@ -7,49 +7,33 @@ import {Cores} from '../Constantes/Styles'
 
 const Cartao = ({jogo}) => {
     const cart = useCart()
-    const {id, nome, imagem, preco} = jogo
+    const {id_jogo_steam, nome, imagem, preco} = jogo
 
     const mudaEstado = () => {
         if (jogo.estado === "circle"){
-            jogo.estado = "check-circle"
-            cart.addToCart(jogo)
+            if (cart.cart.length < 3) {
+                jogo.estado = "check-circle"
+                cart.addToCart(jogo)
+            }
+            else{
+                Alert.alert("Você já selecionou 3 jogos","Por favor, remova algum deles para adicionar um outro")
+            }
         }
         else{
             jogo.estado = "circle"
-            cart.removeToCart(id)
+            cart.removeToCart(id_jogo_steam)
         }
     }
     
   return (
-    // <TouchableOpacity style={styles.cartao} onPress={mudaEstado}>
-    //     { 
-    //         imagem ? 
-    //             <ImageBackground source={{ uri: imagem }} style={styles.imagem} imageStyle={styles.imageBackground}>
-    //                 <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc"/>
-    //             </ImageBackground>
-    //         : 
-    //         <ImageBackground source={{ uri: "https://cdn-icons-png.flaticon.com/512/2140/2140618.png" }} style={styles.imagem}>
-    //             <FontAwesome5 style={styles.selecao} name={jogo.estado} size={20} color="#cccccc"/>
-    //         </ImageBackground>
-    //     }
-    //     { nome ?<Text style={styles.titulo}>{nome}</Text > : <Text style={styles.titulo}>não identificado</Text>}
-    //     {/* { preco ?<Text style={{fontSize: 20}}>Preco: {preco}</Text> : null } */}
-    // </TouchableOpacity>
-
     <TouchableOpacity style={styles.cartao} onPress={mudaEstado}>
-        {
-            imagem?
-                <ImageBackground source={{ uri: imagem }} style={styles.imagem} imageStyle={styles.imageBackground}>
-                    <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc" />
-                </ImageBackground>
-            :
-                <ImageBackground source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2140/2140618.png' }} backgroundColor={Cores.tertiary}style={styles.imagem} imageStyle={styles.imageBackground}>
-                    <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc" />
-                </ImageBackground>
-        }
-        { nome ?<Text style={styles.titulo}>{nome}</Text > : <Text style={styles.titulo}>não identificado</Text>}
-    </TouchableOpacity>
 
+        <ImageBackground source={{ uri: imagem?imagem: 'https://cdn-icons-png.flaticon.com/512/2140/2140618.png'}} style={styles.imagem} imageStyle={styles.imageBackground}>
+            <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc" />
+        </ImageBackground>
+        
+        <Text style={styles.titulo}>{nome ? nome :  "não identificado"}</Text >
+    </TouchableOpacity>
   )
 }
 
@@ -57,29 +41,30 @@ export default Cartao
 
 const styles = StyleSheet.create({
     cartao:{
-        marginBottom: 5,
+        alignItems: 'center',
+        marginBottom: 4,
         backgroundColor: Cores.tertiary,
         flexGrow: 1,
         width:'49%',
         marginLeft:2,
         marginRight:2,
-        borderRadius: 11,
+        borderRadius: 8,
         borderWidth:2,
-        height: 170,
     },
     imagem:{
-        height: 110,
+        height: 120,
         width: "100%",
+        marginLeft : 'auto',
+        marginRight : 'auto',
     },
     imageBackground:{
-        borderRadius: 10,
-        resizeMode:'cover',
-        height: '100%',
+        borderRadius:7, 
+        resizeMode:'cover'
     },
     selecao:{
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
-        borderTopRightRadius: 7,
+        borderTopRightRadius: 6,
         backgroundColor: Cores.secondary,
         width: 'auto',
         marginLeft: 'auto',
