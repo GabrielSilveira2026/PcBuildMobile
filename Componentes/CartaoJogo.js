@@ -27,7 +27,6 @@ const CartaoJogo = ({jogo}) => {
     
   return (
     <TouchableOpacity style={styles.cartao} onPress={mudaEstado}>
-
         <ImageBackground source={{ uri: imagem?imagem: 'https://cdn-icons-png.flaticon.com/512/2140/2140618.png'}} style={styles.imagem} imageStyle={styles.imageBackground}>
             <FontAwesome5 style={styles.selecao} name={jogo.estado} size={25} color="#cccccc" />
         </ImageBackground>
@@ -74,6 +73,7 @@ const styles = StyleSheet.create({
         flex:1,
         fontSize: 15, 
         textAlign: "center", 
-        textAlignVertical: "center"
+        textAlignVertical: "center",
+        fontWeight: 'bold',
     }
 })

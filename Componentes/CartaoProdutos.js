@@ -24,7 +24,10 @@ const CartaoProdutos = ({precos}) => {
         case 'Pichau':
             logo = 'https://www.pichau.com.br/logo-pichau.png'
             break;
-        default: ''
+        case 'Patoloco.com.br':
+            logo = 'https://patoloco.com.br/arquivos/marcas/aeced34a9858f67e86b3a49c433477f9287b3e87.jpeg'
+            break;
+        default: 
     }
     return (
         <View style={styles.cartao}>
@@ -37,7 +40,7 @@ const CartaoProdutos = ({precos}) => {
                     :
                     <Text style={styles.loja}>{loja ? loja : ""}</Text>
                 }
-                <Text style={styles.preco}>{preco ? preco : "Indiponível"}</Text>
+                <Text style={styles.preco}>{preco ? preco.substr(0,12) : "Indiponível"}</Text>
                 <TouchableOpacity style={styles.botaoComprar} onPress={() => {Linking.openURL(link);}}>
                     <Text style={styles.textoComprar}>Comprar</Text>
                 </TouchableOpacity>
@@ -96,7 +99,8 @@ const styles = StyleSheet.create({
         marginTop:'auto',
         textAlign:'center',
         fontSize: 15,
-        borderRadius: 5,
+        borderTopRightRadius: 5,
+        borderTopLeftRadius: 5,
         backgroundColor: 'white',
         fontWeight: 'bold',
         color: 'green',
@@ -108,7 +112,8 @@ const styles = StyleSheet.create({
         textAlign:'center',
         height:40,
         backgroundColor: 'black',
-        borderRadius: 7,
+        borderBottomLeftRadius: 7,
+        borderBottomRightRadius: 7,
     },
     textoComprar:{
         color: 'white',
