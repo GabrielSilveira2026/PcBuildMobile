@@ -14,7 +14,6 @@ import FiltrosTela from './Telas/FiltrosTela';
 import RecomendadosTela from './Telas/RecomendadosTela';
 import PecasTela from './Telas/PecasTela';
 import {CartProvider} from './Constantes/CartContext';
-import Rodape from './Componentes/Rodape';
 import Cabecalho from './Componentes/Cabecalho'
 const image = require('./Imagens/Fundo.png');
 
@@ -36,46 +35,46 @@ function MyStack({navigation}){
   return(
     <CartProvider>
       <StatusBar></StatusBar>
-    <Stack.Navigator
-      screenOptions={{
-        header: (props) => {
-          // console.log(props)
-          return (
-            <Cabecalho props={props}/>
-          )
-        }
-      }}
-      > 
-        <Stack.Screen
-          name="Jogos"
-          component={JogosTela}
-        />
-        <Stack.Screen
-          name="Programas"
-          component={ProgramasTela}
-        />
-        <Stack.Screen
-          name="Selecionados"
-          component={SelecionadosTela}
-        />
-        <Stack.Screen
-          name="Filtros"
-          component={FiltrosTela}
-        />
-        <Stack.Screen
-          name="Recomendados"
-          component={RecomendadosTela}
-        />
-        <Stack.Screen
-          name="Pecas"
-          component={PecasTela}
-        />
-        <Stack.Screen
-          name="Login"
-          component={LoginTela}
-        />
-    </Stack.Navigator>
-  </CartProvider>
+      <Stack.Navigator
+        screenOptions={{
+          header: (props) => {
+            // console.log(props)
+            return (
+              <Cabecalho props={props}/>
+            )
+          }
+        }}
+        > 
+          <Stack.Screen
+            name="Jogos"
+            component={JogosTela}
+          />
+          <Stack.Screen
+            name="Programas"
+            component={ProgramasTela}
+          />
+          <Stack.Screen
+            name="Selecionados"
+            component={SelecionadosTela}
+          />
+          <Stack.Screen
+            name="Filtros"
+            component={FiltrosTela}
+          />
+          <Stack.Screen
+            name="Recomendados"
+            component={RecomendadosTela}
+          />
+          <Stack.Screen
+            name="Pecas"
+            component={PecasTela}
+          />
+          <Stack.Screen
+            name="Login"
+            component={LoginTela}
+          />
+      </Stack.Navigator>
+    </CartProvider>
   )
 }
 

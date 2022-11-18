@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
 import { Dimensions } from 'react-native'
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+
 export const imagemFundo = require('../Imagens/FundoMontado.png') ;
 
 export const Cores = {
@@ -15,19 +19,8 @@ export const Cores = {
 }
 
 export default StyleSheet.create({
-    // cabecalho:{
-    //     backgroundColor: Cores.primary,
-    //     marginTop:30, 
-    //     height:55, 
-    //     paddingTop: 7,  
-    //     paddingRight: 15, 
-    //     paddingLeft: 15,
-    //     flexDirection: 'row', 
-    //     justifyContent: 'space-between', 
-    //     borderBottomWidth: 2
-    // }
     conteudoTela:{
-        height: "90%", 
+        flex: 1,
         paddingLeft: 10, 
         paddingRight: 10, 
         paddingTop:5,
@@ -42,4 +35,8 @@ export default StyleSheet.create({
         textAlign: 'center',
         borderRadius: 7,
     },
+    backgroundImage:{
+        flex:1,
+        height:windowHeight
+    }
 });

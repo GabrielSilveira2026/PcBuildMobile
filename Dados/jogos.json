@@ -1,10 +1,12 @@
 [
     { 
-      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1151640/header.jpg?t=1659711071",
-      "id_jogo_steam": 12,
+      "estado": "circle",
+      "id_jogo_steam": 1151640,
+      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1151640/header.jpg?t=1667297464",
       "nome": "Horizon Zero Dawn™ Complete Edition",
-      "preco": "R$200",
-      "estado": "circle"
+      "preco": "R$ 199,90",
+      "requisitosminimos": "{\"Armazenamento\": \" 100 GB available space\",\"Cpu\": \" Intel Core i5-2500K@3.3GHz or AMD FX 6300@3.5GHz\",\"Gpu\": \" Nvidia GeForce GTX 780 (3 GB) or AMD Radeon R9 290 (4GB)\",\"Ram\": \" 8 GB RAM\"}",
+      "requisitosrecomendados": "{\"Armazenamento\": \" 100 GB available space\",\"Cpu\": \" Intel Core i7-4770K@3.5GHz or Ryzen 5 1500X@3.5GHz\",\"Gpu\": \" Nvidia GeForce GTX 1060 (6 GB) or AMD Radeon RX 580 (8GB)\",\"Ram\": \" 16 GB RAM\"}"
     },
     { 
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/414340/header.jpg?t=1661444431",
@@ -13,11 +15,13 @@
       "estado": "circle"
     },
     { 
+      "estado": "circle",
+      "id_jogo_steam": 1593500,
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420",
-      "id_jogo_steam": 34,
       "nome": "God of War",
-      "preco": "R$200",
-      "estado": "circle"
+      "preco": "R$ 199,90",
+      "requisitosminimos": "{\"Armazenamento\": \" 70 GB available space\",\"Cpu\": \" Intel i5-2500k (4 core 3.3 GHz) or AMD Ryzen 3 1200 (4 core 3.1 GHz)\",\"Gpu\": \" NVIDIA GTX 960 (4 GB) or AMD R9 290X (4 GB)\",\"Ram\": \" 8 GB RAM\"}",
+      "requisitosrecomendados": "{\"Armazenamento\": \" 70 GB available space\",\"Cpu\": \" Intel i5-6600k (4 core 3.5 GHz) or AMD Ryzen 5 2400 G (4 core 3.6 GHz)\",\"Gpu\": \" NVIDIA GTX 1060 (6 GB) or AMD RX 570 (4 GB)\",\"Ram\": \" 8 GB RAM\"}"
     },
     { 
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1172380/header.jpg?t=1650554420",

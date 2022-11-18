@@ -5,8 +5,7 @@ import {FontAwesome5} from 'react-native-vector-icons';
 import CartaoJogo from '../Componentes/CartaoJogo'
 import Rodape from '../Componentes/Rodape'
 import axios from 'axios';
-import lista from '../Dados/jogos.json'
-
+import lista from '../Dados/jogos.json';
 
 const JogosTela = ({navigation}) => {
 
@@ -40,10 +39,6 @@ const JogosTela = ({navigation}) => {
         setListaJogos('')
       }
     }
-    // else{
-    //   Alert.alert("Nenhum jogo Digitado","Por favor, digite o nome de um jogo")
-    //   setListaJogos('')
-    // }
   }
 
   return (
@@ -71,7 +66,6 @@ const JogosTela = ({navigation}) => {
         {
           listaJogos.length === 0 ?
             <FlatList
-              // horizontal={true}
               data={lista}
               numColumns={2}
               keyExtractor={item => item.id_jogo_steam}
@@ -81,7 +75,6 @@ const JogosTela = ({navigation}) => {
             />
             :
             <FlatList
-              // horizontal={true}
               data={listaJogos}
               numColumns={2}
               keyExtractor={item => item.id_jogo_steam}

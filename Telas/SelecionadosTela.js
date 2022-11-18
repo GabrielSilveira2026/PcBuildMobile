@@ -1,30 +1,28 @@
-import React from 'react'
-import {FlatList, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
+import React,{useState} from 'react'
+import {FlatList,StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import Rodape from '../Componentes/Rodape'
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
-import Cartao from '../Componentes/Cartao'
+import CartaoJogo from '../Componentes/CartaoJogo'
 import {useCart} from '../Constantes/CartContext'
 
 
 const SelecionadosTela = ({navigation}) => {
   const selecionados = useCart()
-  
+
   return (
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
-    <View style={stylesGlobal.conteudoTela}>
-        <Text style={{ color: 'white', fontSize: 50, marginLeft: 'auto', marginRight: 'auto' }}>Selecionados</Text>
+      <View style={stylesGlobal.conteudoTela}>
+        <Text style={styles.titulo}>Deseja trocar algum jogo?</Text>
         
-          
-          <FlatList
-          data={selecionados?.cart}
-          numColumns={2}
-          keyExtractor={(item) => item.id_jogo_steam}
-          extraData={selecionados.cart}
-          renderItem={j => (
-            <Cartao jogo={j.item} />
-            )}
-          />
-        
+        <FlatList
+        data={selecionados.cart}
+        numColumns={2}
+        keyExtractor={(item) => item.id_jogo_steam}
+        extraData={selecionados.cart}
+        renderItem={j => (
+          <CartaoJogo jogo={j.item} />
+          )}
+        />
 
       </View>
       <Rodape telas={{ anterior: 'Jogos', proxima: 'Filtros' }}></Rodape>
@@ -33,3 +31,12 @@ const SelecionadosTela = ({navigation}) => {
 }
 
 export default SelecionadosTela
+
+const styles = StyleSheet.create({
+  titulo: {
+    textAlign: 'center', 
+    fontSize: 20,
+    color: 'white', 
+    marginBottom: 15
+  },
+})

@@ -4,12 +4,13 @@ import React from 'react'
 import {FontAwesome5} from 'react-native-vector-icons';
 import {useCart} from '../Constantes/CartContext'
 
-const CartaoProdutos = ({precos}) => {
-    const preco = precos.price_raw
-    const loja = precos.merchant
-    const link = precos.link
-    const imagem = precos.image
-    const titulo = precos.title
+const CartaoProduto = ({produto}) => {
+    const regex = /[.][c][o][m]|[.][b][r]/gm
+    const preco = produto?.price_raw
+    const loja = produto?.merchant
+    const link = produto?.link
+    const imagem = produto?.image
+    const titulo = produto?.title
     let logo
     switch (loja) {
         case 'KaBuM!':
@@ -30,26 +31,26 @@ const CartaoProdutos = ({precos}) => {
         default: 
     }
     return (
-        <View style={styles.cartao}>
+        <TouchableOpacity style={styles.cartao} onPress={() => {Linking.openURL(link);}}>
             <Image style={styles.imagem} source={{uri: imagem}}/>
-            <Text style={styles.titulo}>{titulo.substr(0,60)}...</Text>
+            <Text style={styles.titulo}>{titulo?.substr(0,60)}...</Text>
             <View style={styles.items}>
                 {
                     logo ?
                     <Image source={{uri: logo}} style={styles.logo}></Image>
                     :
-                    <Text style={styles.loja}>{loja ? loja : ""}</Text>
+                    <Text style={styles.loja}>{loja ? loja.replace(regex, "") : ""}</Text>
                 }
                 <Text style={styles.preco}>{preco ? preco.substr(0,12) : "Indiponível"}</Text>
                 <TouchableOpacity style={styles.botaoComprar} onPress={() => {Linking.openURL(link);}}>
                     <Text style={styles.textoComprar}>Comprar</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </TouchableOpacity>
      )
 }
 
-export default CartaoProdutos
+export default CartaoProduto
 
 const styles = StyleSheet.create({
     cartao:{
@@ -85,7 +86,8 @@ const styles = StyleSheet.create({
     logo:{
         height: '25%', 
         marginTop:10, 
-        resizeMode: 'contain'},
+        resizeMode: 'contain'
+    },
     loja: {
         justifyContent: 'center',
         textAlign:'center',        

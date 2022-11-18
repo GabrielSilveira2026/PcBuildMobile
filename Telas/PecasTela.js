@@ -1,34 +1,37 @@
 import * as React from 'react';
-import {View , TouchableOpacity, Text, ImageBackground } from 'react-native';
-import styles, {Cores, imagemFundo} from '../Constantes/Styles'
+import {View , Text, StyleSheet, ImageBackground, FlatList } from 'react-native';
+import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
+import CartaoProduto from '../Componentes/CartaoProduto'
 
-const PecasTela = ({navigation}) => {
+const PecasTela = ({route, navigation}) => {
+  const parametro = route?.params
   return (
-    <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={styles.backgroundImage}>
-    <View style={{ height: "90%" }}>
-        <Text style={{ color: 'white', fontSize: 50, marginLeft: 'auto', marginRight: 'auto' }}>Peças</Text>
+    <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
+    <View style={stylesGlobal.conteudoTela}>
+      <Text style={styles.titulo}>Essas são as peças para uma configuração {parametro?.tipo}</Text>
+      <FlatList
+        data={parametro?.pecas}
+        keyExtractor={item => item?.title}
+        renderItem={p => (
+          <CartaoProduto produto={p.item}/>
+          )}
+        />
       </View>
-
-      {/* <View style={styles.rodape}>
-        <TouchableOpacity 
-          style={styles.botaoVoltar}
-          onPress={() => navigation.navigate('Recomendados')}
-          >
-          <Text style={{color: 'black'}}>Voltar</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity 
-          style={styles.botaoProximo}
-          >
-          <Text style={{color: 'white'}}>Proxima</Text>
-        </TouchableOpacity>
-      </View> */}
-
-      <Rodape telas={{anterior: 'Recomendados',proxima:'Login'}} />
+      <Rodape telas={{txtProxima: 'Adicionar',anterior: 'Recomendados', proxima:'Login', parametroProxima: parametro}} />
 
     </ImageBackground>
   );
 }
 
 export default PecasTela
+
+const styles = StyleSheet.create({
+  titulo: {
+    textAlign: 'center', 
+    fontSize: 20,
+    color: 'white', 
+    marginBottom: 15
+  },
+})
+

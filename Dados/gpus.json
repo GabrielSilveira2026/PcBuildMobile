@@ -1,0 +1,1982 @@
+[
+    {
+        "GPU": "GeForce RTX 4090",
+        "Data_lancamento": "October 2022",
+        "GFLOPS": "82,575"
+    },
+    {
+        "GPU": "GeForce RTX 3090 Ti",
+        "Data_lancamento": "March 2022",
+        "GFLOPS": "39,997"
+    },
+    {
+        "GPU": "GeForce RTX 3090",
+        "Data_lancamento": "September 2020",
+        "GFLOPS": "35,581"
+    },
+    {
+        "GPU": "GeForce RTX 3080 Ti",
+        "Data_lancamento": "June 2021",
+        "GFLOPS": "34,099"
+    },
+    {
+        "GPU": "GeForce RTX 3080 12GB",
+        "Data_lancamento": "January 2022",
+        "GFLOPS": "30,643"
+    },
+    {
+        "GPU": "GeForce RTX 3080",
+        "Data_lancamento": "September 2020",
+        "GFLOPS": "29,768"
+    },
+    {
+        "GPU": "Radeon RX 6950 XT",
+        "Data_lancamento": "May 2022",
+        "GFLOPS": "23,654"
+    },
+    {
+        "GPU": "Radeon RX 6900 XT",
+        "Data_lancamento": "December 2020",
+        "GFLOPS": "23,040"
+    },
+    {
+        "GPU": "GeForce RTX 3070 Ti",
+        "Data_lancamento": "June 2021",
+        "GFLOPS": "21,750"
+    },
+    {
+        "GPU": "Radeon RX 6800 XT",
+        "Data_lancamento": "November 2020",
+        "GFLOPS": "20,736"
+    },
+    {
+        "GPU": "GeForce RTX 3070",
+        "Data_lancamento": "October 2020",
+        "GFLOPS": "20,314"
+    },
+    {
+        "GPU": "Intel Arc A770 16GB",
+        "Data_lancamento": "October 2022",
+        "GFLOPS": "17,203"
+    },
+    {
+        "GPU": "Intel Arc A770 8GB",
+        "Data_lancamento": "October 2022",
+        "GFLOPS": "17,203"
+    },
+    {
+        "GPU": "Nvidia Titan RTX",
+        "Data_lancamento": "December 2018",
+        "GFLOPS": "16,312"
+    },
+    {
+        "GPU": "GeForce RTX 3060 Ti",
+        "Data_lancamento": "December 2020",
+        "GFLOPS": "16,197"
+    },
+    {
+        "GPU": "Radeon RX 6800",
+        "Data_lancamento": "November 2020",
+        "GFLOPS": "16,166"
+    },
+    {
+        "GPU": "Nvidia Titan V",
+        "Data_lancamento": "December 2017",
+        "GFLOPS": "14,899"
+    },
+    {
+        "GPU": "Intel Arc A750",
+        "Data_lancamento": "October 2022",
+        "GFLOPS": "14,694"
+    },
+    {
+        "GPU": "GeForce RTX 2080 Ti",
+        "Data_lancamento": "September 2018",
+        "GFLOPS": "13,448"
+    },
+    {
+        "GPU": "Radeon VII",
+        "Data_lancamento": "February 2019",
+        "GFLOPS": "13,440"
+    },
+    {
+        "GPU": "Radeon RX 6750 XT",
+        "Data_lancamento": "May 2022",
+        "GFLOPS": "13,312"
+    },
+    {
+        "GPU": "Radeon RX 6700 XT",
+        "Data_lancamento": "March 2021",
+        "GFLOPS": "13,215"
+    },
+    {
+        "GPU": "GeForce RTX 3060",
+        "Data_lancamento": "February 2021",
+        "GFLOPS": "12,738"
+    },
+    {
+        "GPU": "Radeon RX Vega 64",
+        "Data_lancamento": "August 2017",
+        "GFLOPS": "12,665"
+    },
+    {
+        "GPU": "Radeon R9 295X2",
+        "Data_lancamento": "April 2014",
+        "GFLOPS": "11,467"
+    },
+    {
+        "GPU": "Nvidia Titan Xp",
+        "Data_lancamento": "April 2017",
+        "GFLOPS": "11,366"
+    },
+    {
+        "GPU": "GeForce GTX 1080 Ti",
+        "Data_lancamento": "March 2017",
+        "GFLOPS": "11,340"
+    },
+    {
+        "GPU": "GeForce RTX 2080 Super",
+        "Data_lancamento": "July 2019",
+        "GFLOPS": "11,151"
+    },
+    {
+        "GPU": "Nvidia Titan X (Pascal)",
+        "Data_lancamento": "August 2016",
+        "GFLOPS": "10,974"
+    },
+    {
+        "GPU": "Radeon RX 6650 XT",
+        "Data_lancamento": "May 2022",
+        "GFLOPS": "10,793"
+    },
+    {
+        "GPU": "Radeon RX 6600 XT",
+        "Data_lancamento": "August 2021",
+        "GFLOPS": "10,605"
+    },
+    {
+        "GPU": "Radeon RX Vega 56",
+        "Data_lancamento": "August 2017",
+        "GFLOPS": "10,544"
+    },
+    {
+        "GPU": "GeForce GTX Titan Z",
+        "Data_lancamento": "May 2014",
+        "GFLOPS": "10,092"
+    },
+    {
+        "GPU": "GeForce RTX 2080",
+        "Data_lancamento": "September 2018",
+        "GFLOPS": "10,068"
+    },
+    {
+        "GPU": "Radeon RX 5700 XT",
+        "Data_lancamento": "July 2019",
+        "GFLOPS": "9,754"
+    },
+    {
+        "GPU": "GeForce RTX 3050",
+        "Data_lancamento": "January 2022",
+        "GFLOPS": "9,098"
+    },
+    {
+        "GPU": "GeForce RTX 2070 Super",
+        "Data_lancamento": "July 2019",
+        "GFLOPS": "9,062"
+    },
+    {
+        "GPU": "Radeon RX 6600",
+        "Data_lancamento": "October 2021",
+        "GFLOPS": "8,928"
+    },
+    {
+        "GPU": "GeForce GTX 1080",
+        "Data_lancamento": "May 2016",
+        "GFLOPS": "8,873"
+    },
+    {
+        "GPU": "Radeon R9 Fury X",
+        "Data_lancamento": "June 2015",
+        "GFLOPS": "8,602"
+    },
+    {
+        "GPU": "Radeon R9 Nano",
+        "Data_lancamento": "August 2015",
+        "GFLOPS": "8,192"
+    },
+    {
+        "GPU": "Radeon HD 7990",
+        "Data_lancamento": "April 2013",
+        "GFLOPS": "8,192"
+    },
+    {
+        "GPU": "GeForce GTX 1070 Ti",
+        "Data_lancamento": "November 2017",
+        "GFLOPS": "8,186"
+    },
+    {
+        "GPU": "Radeon RX 5600 XT",
+        "Data_lancamento": "January 2020",
+        "GFLOPS": "8,064"
+    },
+    {
+        "GPU": "Radeon RX 5700",
+        "Data_lancamento": "July 2019",
+        "GFLOPS": "7,949"
+    },
+    {
+        "GPU": "GeForce RTX 2070",
+        "Data_lancamento": "October 2018",
+        "GFLOPS": "7,465"
+    },
+    {
+        "GPU": "GeForce RTX 2060 Super",
+        "Data_lancamento": "July 2019",
+        "GFLOPS": "7,181"
+    },
+    {
+        "GPU": "Radeon R9 Fury",
+        "Data_lancamento": "July 2015",
+        "GFLOPS": "7,168"
+    },
+    {
+        "GPU": "Radeon RX 590",
+        "Data_lancamento": "November 2018",
+        "GFLOPS": "7,119"
+    },
+    {
+        "GPU": "GeForce GTX Titan X (Maxwell)",
+        "Data_lancamento": "March 2015",
+        "GFLOPS": "6,605"
+    },
+    {
+        "GPU": "GeForce GTX 1070",
+        "Data_lancamento": "June 2016",
+        "GFLOPS": "6,463"
+    },
+    {
+        "GPU": "GeForce RTX 2060",
+        "Data_lancamento": "January 2019",
+        "GFLOPS": "6,451"
+    },
+    {
+        "GPU": "GeForce GTX 690",
+        "Data_lancamento": "April 2012",
+        "GFLOPS": "6,261"
+    },
+    {
+        "GPU": "Radeon RX 580 8GB",
+        "Data_lancamento": "April 2017",
+        "GFLOPS": "6,175"
+    },
+    {
+        "GPU": "Radeon RX 580 4GB",
+        "Data_lancamento": "April 2017",
+        "GFLOPS": "6,175"
+    },
+    {
+        "GPU": "GeForce GTX 980 Ti",
+        "Data_lancamento": "June 2015",
+        "GFLOPS": "6,054"
+    },
+    {
+        "GPU": "Radeon R9 390X",
+        "Data_lancamento": "June 2015",
+        "GFLOPS": "5,914"
+    },
+    {
+        "GPU": "Radeon RX 480 8GB",
+        "Data_lancamento": "June 2016",
+        "GFLOPS": "5,834"
+    },
+    {
+        "GPU": "Radeon RX 480 4GB",
+        "Data_lancamento": "June 2016",
+        "GFLOPS": "5,834"
+    },
+    {
+        "GPU": "Radeon RX 6500 XT",
+        "Data_lancamento": "January 2022",
+        "GFLOPS": "5,765"
+    },
+    {
+        "GPU": "GeForce GTX Titan Black",
+        "Data_lancamento": "February 2014",
+        "GFLOPS": "5,645"
+    },
+    {
+        "GPU": "Radeon R9 290X",
+        "Data_lancamento": "October 2013",
+        "GFLOPS": "5,632"
+    },
+    {
+        "GPU": "GeForce GTX 1660 Ti",
+        "Data_lancamento": "February 2019",
+        "GFLOPS": "5,437"
+    },
+    {
+        "GPU": "GeForce GTX 780 Ti",
+        "Data_lancamento": "November 2013",
+        "GFLOPS": "5,345"
+    },
+    {
+        "GPU": "Radeon RX 5500 XT 8GB",
+        "Data_lancamento": "December 2019",
+        "GFLOPS": "5,196"
+    },
+    {
+        "GPU": "Radeon RX 5500 XT 4GB",
+        "Data_lancamento": "December 2019",
+        "GFLOPS": "5,196"
+    },
+    {
+        "GPU": "Radeon R9 390",
+        "Data_lancamento": "June 2015",
+        "GFLOPS": "5,120"
+    },
+    {
+        "GPU": "Radeon HD 6990",
+        "Data_lancamento": "March 2011",
+        "GFLOPS": "5,100"
+    },
+    {
+        "GPU": "Radeon RX 570 8GB",
+        "Data_lancamento": "April 2017",
+        "GFLOPS": "5,095"
+    },
+    {
+        "GPU": "Radeon RX 570 4GB",
+        "Data_lancamento": "April 2017",
+        "GFLOPS": "5,095"
+    },
+    {
+        "GPU": "GeForce GTX 1660 Super",
+        "Data_lancamento": "October 2019",
+        "GFLOPS": "5,027"
+    },
+    {
+        "GPU": "GeForce GTX 980",
+        "Data_lancamento": "September 2014",
+        "GFLOPS": "4,981"
+    },
+    {
+        "GPU": "Radeon RX 470 4GB",
+        "Data_lancamento": "August 2016",
+        "GFLOPS": "4,940"
+    },
+    {
+        "GPU": "GeForce GTX 1660",
+        "Data_lancamento": "March 2019",
+        "GFLOPS": "4,858"
+    },
+    {
+        "GPU": "Radeon R9 290",
+        "Data_lancamento": "November 2013",
+        "GFLOPS": "4,849"
+    },
+    {
+        "GPU": "GeForce GTX Titan",
+        "Data_lancamento": "February 2013",
+        "GFLOPS": "4,709"
+    },
+    {
+        "GPU": "Radeon HD 5970",
+        "Data_lancamento": "November 2009",
+        "GFLOPS": "4,640"
+    },
+    {
+        "GPU": "GeForce GTX 1060 6GB",
+        "Data_lancamento": "July 2016",
+        "GFLOPS": "4,372"
+    },
+    {
+        "GPU": "Radeon HD 7970 GHz Edition",
+        "Data_lancamento": "June 2012",
+        "GFLOPS": "4,301"
+    },
+    {
+        "GPU": "GeForce GTX 780",
+        "Data_lancamento": "May 2013",
+        "GFLOPS": "4,147"
+    },
+    {
+        "GPU": "Radeon R9 280X",
+        "Data_lancamento": "August 2013",
+        "GFLOPS": "4,096"
+    },
+    {
+        "GPU": "Intel Arc A380",
+        "Data_lancamento": "June 2022",
+        "GFLOPS": "4,096"
+    },
+    {
+        "GPU": "GeForce GTX 1650 Super",
+        "Data_lancamento": "November 2019",
+        "GFLOPS": "4,070"
+    },
+    {
+        "GPU": "Radeon R9 380X",
+        "Data_lancamento": "November 2015",
+        "GFLOPS": "3,973"
+    },
+    {
+        "GPU": "GeForce GTX 1060 3GB",
+        "Data_lancamento": "August 2016",
+        "GFLOPS": "3,935"
+    },
+    {
+        "GPU": "GeForce GTX 970",
+        "Data_lancamento": "September 2014",
+        "GFLOPS": "3,920"
+    },
+    {
+        "GPU": "Radeon R9 380",
+        "Data_lancamento": "June 2015",
+        "GFLOPS": "3,476"
+    },
+    {
+        "GPU": "Radeon R9 280",
+        "Data_lancamento": "March 2014",
+        "GFLOPS": "3,344"
+    },
+    {
+        "GPU": "GeForce GTX 770",
+        "Data_lancamento": "May 2013",
+        "GFLOPS": "3,333"
+    },
+    {
+        "GPU": "Radeon R9 285",
+        "Data_lancamento": "September 2014",
+        "GFLOPS": "3,290"
+    },
+    {
+        "GPU": "GeForce GTX 680",
+        "Data_lancamento": "March 2012",
+        "GFLOPS": "3,250"
+    },
+    {
+        "GPU": "Radeon HD 7870 XT",
+        "Data_lancamento": "November 2012",
+        "GFLOPS": "2,995"
+    },
+    {
+        "GPU": "GeForce GTX 1650",
+        "Data_lancamento": "April 2019",
+        "GFLOPS": "2,984"
+    },
+    {
+        "GPU": "Radeon HD 7950",
+        "Data_lancamento": "January 2012",
+        "GFLOPS": "2,867"
+    },
+    {
+        "GPU": "GeForce GTX 1650 GDDR6",
+        "Data_lancamento": "April 2020",
+        "GFLOPS": "2,849"
+    },
+    {
+        "GPU": "Radeon HD 5870",
+        "Data_lancamento": "September 2009",
+        "GFLOPS": "2,720"
+    },
+    {
+        "GPU": "Radeon HD 6970",
+        "Data_lancamento": "December 2010",
+        "GFLOPS": "2,703"
+    },
+    {
+        "GPU": "Radeon R9 270X",
+        "Data_lancamento": "August 2013",
+        "GFLOPS": "2,688"
+    },
+    {
+        "GPU": "GeForce GTX 760 Ti",
+        "Data_lancamento": "September 2013",
+        "GFLOPS": "2,634"
+    },
+    {
+        "GPU": "GeForce GTX 670",
+        "Data_lancamento": "May 2012",
+        "GFLOPS": "2,634"
+    },
+    {
+        "GPU": "GeForce GTX 660 Ti",
+        "Data_lancamento": "August 2012",
+        "GFLOPS": "2,634"
+    },
+    {
+        "GPU": "Radeon RX 560 4GB",
+        "Data_lancamento": "May 2017",
+        "GFLOPS": "2,611"
+    },
+    {
+        "GPU": "Radeon R9 370X",
+        "Data_lancamento": "August 2015",
+        "GFLOPS": "2,560"
+    },
+    {
+        "GPU": "Radeon HD 7870",
+        "Data_lancamento": "March 2012",
+        "GFLOPS": "2,560"
+    },
+    {
+        "GPU": "GeForce GTX 590",
+        "Data_lancamento": "March 2011",
+        "GFLOPS": "2,486"
+    },
+    {
+        "GPU": "GeForce GTX 960",
+        "Data_lancamento": "January 2015",
+        "GFLOPS": "2,413"
+    },
+    {
+        "GPU": "Radeon HD 4870 X2",
+        "Data_lancamento": "August 2008",
+        "GFLOPS": "2,400"
+    },
+    {
+        "GPU": "GeForce GTX 760",
+        "Data_lancamento": "June 2013",
+        "GFLOPS": "2,380"
+    },
+    {
+        "GPU": "Radeon R9 270",
+        "Data_lancamento": "November 2013",
+        "GFLOPS": "2,368"
+    },
+    {
+        "GPU": "Radeon HD 6950 2GB",
+        "Data_lancamento": "December 2010",
+        "GFLOPS": "2,253"
+    },
+    {
+        "GPU": "Radeon HD 6950 1GB",
+        "Data_lancamento": "December 2010",
+        "GFLOPS": "2,253"
+    },
+    {
+        "GPU": "Radeon RX 460 4GB",
+        "Data_lancamento": "August 2016",
+        "GFLOPS": "2,150"
+    },
+    {
+        "GPU": "Radeon RX 460 2GB",
+        "Data_lancamento": "August 2016",
+        "GFLOPS": "2,150"
+    },
+    {
+        "GPU": "GeForce GTX 1050 Ti",
+        "Data_lancamento": "October 2016",
+        "GFLOPS": "2,138"
+    },
+    {
+        "GPU": "Radeon RX 560 4GB",
+        "Data_lancamento": "October 2017",
+        "GFLOPS": "2,106"
+    },
+    {
+        "GPU": "Radeon HD 5850",
+        "Data_lancamento": "September 2009",
+        "GFLOPS": "2,088"
+    },
+    {
+        "GPU": "Radeon HD 6870",
+        "Data_lancamento": "October 2010",
+        "GFLOPS": "2,016"
+    },
+    {
+        "GPU": "Radeon HD 4850 X2",
+        "Data_lancamento": "November 2008",
+        "GFLOPS": "2,000"
+    },
+    {
+        "GPU": "Radeon R9 370",
+        "Data_lancamento": "June 2015",
+        "GFLOPS": "1,997"
+    },
+    {
+        "GPU": "GeForce GTX 660",
+        "Data_lancamento": "September 2012",
+        "GFLOPS": "1,981"
+    },
+    {
+        "GPU": "Radeon R7 260X",
+        "Data_lancamento": "August 2013",
+        "GFLOPS": "1,971"
+    },
+    {
+        "GPU": "GeForce GTX 1050",
+        "Data_lancamento": "October 2016",
+        "GFLOPS": "1,943"
+    },
+    {
+        "GPU": "Radeon R7 265",
+        "Data_lancamento": "February 2014",
+        "GFLOPS": "1,894"
+    },
+    {
+        "GPU": "GeForce GTX 950",
+        "Data_lancamento": "August 2015",
+        "GFLOPS": "1,825"
+    },
+    {
+        "GPU": "Radeon HD 7790",
+        "Data_lancamento": "March 2013",
+        "GFLOPS": "1,792"
+    },
+    {
+        "GPU": "Radeon HD 5830",
+        "Data_lancamento": "February 2010",
+        "GFLOPS": "1,792"
+    },
+    {
+        "GPU": "Radeon HD 7850",
+        "Data_lancamento": "March 2012",
+        "GFLOPS": "1,761"
+    },
+    {
+        "GPU": "Radeon R7 360",
+        "Data_lancamento": "June 2015",
+        "GFLOPS": "1,613"
+    },
+    {
+        "GPU": "GeForce GTX 650 Ti Boost",
+        "Data_lancamento": "March 2013",
+        "GFLOPS": "1,585"
+    },
+    {
+        "GPU": "GeForce GTX 580",
+        "Data_lancamento": "November 2010",
+        "GFLOPS": "1,581"
+    },
+    {
+        "GPU": "Radeon R7 260",
+        "Data_lancamento": "December 2013",
+        "GFLOPS": "1,536"
+    },
+    {
+        "GPU": "Radeon RX 550",
+        "Data_lancamento": "April 2017",
+        "GFLOPS": "1,514"
+    },
+    {
+        "GPU": "Radeon HD 6850",
+        "Data_lancamento": "October 2010",
+        "GFLOPS": "1,488"
+    },
+    {
+        "GPU": "GeForce GTX 650 Ti",
+        "Data_lancamento": "October 2012",
+        "GFLOPS": "1,425"
+    },
+    {
+        "GPU": "GeForce GTX 570",
+        "Data_lancamento": "December 2010",
+        "GFLOPS": "1,405"
+    },
+    {
+        "GPU": "GeForce GTX 750 Ti",
+        "Data_lancamento": "February 2014",
+        "GFLOPS": "1,389"
+    },
+    {
+        "GPU": "Radeon HD 6770",
+        "Data_lancamento": "April 2011",
+        "GFLOPS": "1,360"
+    },
+    {
+        "GPU": "Radeon HD 5770",
+        "Data_lancamento": "October 2009",
+        "GFLOPS": "1,360"
+    },
+    {
+        "GPU": "Radeon HD 4890",
+        "Data_lancamento": "April 2009",
+        "GFLOPS": "1,360"
+    },
+    {
+        "GPU": "GeForce GTX 480",
+        "Data_lancamento": "March 2010",
+        "GFLOPS": "1,346"
+    },
+    {
+        "GPU": "Radeon HD 6790",
+        "Data_lancamento": "April 2011",
+        "GFLOPS": "1,344"
+    },
+    {
+        "GPU": "GeForce GTX 560 Ti (448 Core)",
+        "Data_lancamento": "November 2011",
+        "GFLOPS": "1,312"
+    },
+    {
+        "GPU": "Radeon HD 7770",
+        "Data_lancamento": "February 2012",
+        "GFLOPS": "1,280"
+    },
+    {
+        "GPU": "GeForce GTX 560 Ti",
+        "Data_lancamento": "January 2011",
+        "GFLOPS": "1,263"
+    },
+    {
+        "GPU": "Radeon HD 4870",
+        "Data_lancamento": "June 2008",
+        "GFLOPS": "1,200"
+    },
+    {
+        "GPU": "GeForce GT 1030 (GDDR5)",
+        "Data_lancamento": "May 2017",
+        "GFLOPS": "1,127"
+    },
+    {
+        "GPU": "GeForce GTX 750",
+        "Data_lancamento": "February 2014",
+        "GFLOPS": "1,111"
+    },
+    {
+        "GPU": "GeForce GTX 470",
+        "Data_lancamento": "March 2010",
+        "GFLOPS": "1,090"
+    },
+    {
+        "GPU": "GeForce GTX 560",
+        "Data_lancamento": "May 2011",
+        "GFLOPS": "1,089"
+    },
+    {
+        "GPU": "GeForce GT 1030 (DDR4)",
+        "Data_lancamento": "March 2018",
+        "GFLOPS": "1,059"
+    },
+    {
+        "GPU": "Radeon HD 3870 X2",
+        "Data_lancamento": "January 2008",
+        "GFLOPS": "1,056"
+    },
+    {
+        "GPU": "Radeon HD 6750",
+        "Data_lancamento": "January 2011",
+        "GFLOPS": "1,008"
+    },
+    {
+        "GPU": "Radeon HD 5750",
+        "Data_lancamento": "October 2009",
+        "GFLOPS": "1,008"
+    },
+    {
+        "GPU": "Radeon HD 4850",
+        "Data_lancamento": "June 2008",
+        "GFLOPS": "1,000"
+    },
+    {
+        "GPU": "Radeon HD 4770",
+        "Data_lancamento": "April 2009",
+        "GFLOPS": "960"
+    },
+    {
+        "GPU": "Radeon R7 350",
+        "Data_lancamento": "February 2016",
+        "GFLOPS": "947"
+    },
+    {
+        "GPU": "Radeon HD 7750 (GDDR5)",
+        "Data_lancamento": "February 2012",
+        "GFLOPS": "922"
+    },
+    {
+        "GPU": "Radeon HD 7750 (DDR3)",
+        "Data_lancamento": "February 2012",
+        "GFLOPS": "922"
+    },
+    {
+        "GPU": "GeForce GTX 460 (256-bit)",
+        "Data_lancamento": "July 2010",
+        "GFLOPS": "907"
+    },
+    {
+        "GPU": "GeForce GTX 460 (192-bit)",
+        "Data_lancamento": "July 2010",
+        "GFLOPS": "907"
+    },
+    {
+        "GPU": "GeForce GTX 465",
+        "Data_lancamento": "May 2010",
+        "GFLOPS": "856"
+    },
+    {
+        "GPU": "GeForce GTX 560 SE",
+        "Data_lancamento": "February 2012",
+        "GFLOPS": "848"
+    },
+    {
+        "GPU": "Radeon R7 250E",
+        "Data_lancamento": "December 2013",
+        "GFLOPS": "819"
+    },
+    {
+        "GPU": "GeForce GTX 650",
+        "Data_lancamento": "September 2012",
+        "GFLOPS": "813"
+    },
+    {
+        "GPU": "Radeon R7 250 (GDDR5)",
+        "Data_lancamento": "August 2013",
+        "GFLOPS": "806"
+    },
+    {
+        "GPU": "Radeon R7 250 (DDR3)",
+        "Data_lancamento": "August 2013",
+        "GFLOPS": "806"
+    },
+    {
+        "GPU": "Radeon HD 6670 (GDDR5)",
+        "Data_lancamento": "April 2011",
+        "GFLOPS": "768"
+    },
+    {
+        "GPU": "Radeon HD 6670 (DDR3)",
+        "Data_lancamento": "April 2011",
+        "GFLOPS": "768"
+    },
+    {
+        "GPU": "GeForce 9800 GX2",
+        "Data_lancamento": "March 2008",
+        "GFLOPS": "768"
+    },
+    {
+        "GPU": "GeForce GT 740 (GDDR5)",
+        "Data_lancamento": "May 2014",
+        "GFLOPS": "763"
+    },
+    {
+        "GPU": "GeForce GT 740 (DDR3)",
+        "Data_lancamento": "May 2014",
+        "GFLOPS": "763"
+    },
+    {
+        "GPU": "GeForce GTX 460 SE",
+        "Data_lancamento": "November 2010",
+        "GFLOPS": "749"
+    },
+    {
+        "GPU": "Radeon HD 4830",
+        "Data_lancamento": "October 2008",
+        "GFLOPS": "736"
+    },
+    {
+        "GPU": "GeForce GT 640 (GDDR5)",
+        "Data_lancamento": "April 2012",
+        "GFLOPS": "730"
+    },
+    {
+        "GPU": "GeForce GT 730 (64-bit, GDDR5)",
+        "Data_lancamento": "June 2014",
+        "GFLOPS": "693"
+    },
+    {
+        "GPU": "GeForce GT 730 (64-bit, DDR3)",
+        "Data_lancamento": "June 2014",
+        "GFLOPS": "693"
+    },
+    {
+        "GPU": "GeForce GTX 550 Ti",
+        "Data_lancamento": "March 2011",
+        "GFLOPS": "691"
+    },
+    {
+        "GPU": "Radeon HD 6570 (GDDR5)",
+        "Data_lancamento": "April 2011",
+        "GFLOPS": "624"
+    },
+    {
+        "GPU": "Radeon HD 6570 (DDR3)",
+        "Data_lancamento": "April 2011",
+        "GFLOPS": "624"
+    },
+    {
+        "GPU": "Radeon HD 5670",
+        "Data_lancamento": "January 2010",
+        "GFLOPS": "620"
+    },
+    {
+        "GPU": "Radeon HD 7730 (GDDR5)",
+        "Data_lancamento": "April 2013",
+        "GFLOPS": "614"
+    },
+    {
+        "GPU": "Radeon HD 7730 (DDR3)",
+        "Data_lancamento": "April 2013",
+        "GFLOPS": "614"
+    },
+    {
+        "GPU": "GeForce GT 640 (DDR3)",
+        "Data_lancamento": "April 2012",
+        "GFLOPS": "612"
+    },
+    {
+        "GPU": "GeForce GTS 450",
+        "Data_lancamento": "September 2010",
+        "GFLOPS": "601"
+    },
+    {
+        "GPU": "GeForce GTX 295",
+        "Data_lancamento": "January 2009",
+        "GFLOPS": "553"
+    },
+    {
+        "GPU": "Radeon HD 5570 (GDDR5)",
+        "Data_lancamento": "February 2010",
+        "GFLOPS": "520"
+    },
+    {
+        "GPU": "Radeon HD 5570 (DDR3)",
+        "Data_lancamento": "February 2010",
+        "GFLOPS": "520"
+    },
+    {
+        "GPU": "GeForce GT 545 (GDDR5)",
+        "Data_lancamento": "May 2011",
+        "GFLOPS": "501"
+    },
+    {
+        "GPU": "Radeon R7 240",
+        "Data_lancamento": "August 2013",
+        "GFLOPS": "499"
+    },
+    {
+        "GPU": "Radeon HD 3870",
+        "Data_lancamento": "November 2007",
+        "GFLOPS": "497"
+    },
+    {
+        "GPU": "Radeon HD 4670",
+        "Data_lancamento": "September 2008",
+        "GFLOPS": "480"
+    },
+    {
+        "GPU": "Radeon HD 2900 XT",
+        "Data_lancamento": "May 2007",
+        "GFLOPS": "476"
+    },
+    {
+        "GPU": "GeForce GTS 250",
+        "Data_lancamento": "March 2009",
+        "GFLOPS": "470"
+    },
+    {
+        "GPU": "GeForce 9800 GTX+",
+        "Data_lancamento": "July 2008",
+        "GFLOPS": "470"
+    },
+    {
+        "GPU": "GeForce 9800 GTX",
+        "Data_lancamento": "April 2008",
+        "GFLOPS": "432"
+    },
+    {
+        "GPU": "Radeon HD 3850 (512MB)",
+        "Data_lancamento": "November 2007",
+        "GFLOPS": "428"
+    },
+    {
+        "GPU": "Radeon HD 3850 (256MB)",
+        "Data_lancamento": "November 2007",
+        "GFLOPS": "428"
+    },
+    {
+        "GPU": "Radeon HD 3830",
+        "Data_lancamento": "April 2008",
+        "GFLOPS": "428"
+    },
+    {
+        "GPU": "Radeon HD 4650 (DDR3)",
+        "Data_lancamento": "September 2008",
+        "GFLOPS": "416"
+    },
+    {
+        "GPU": "GeForce 8800 GTS (512MB)",
+        "Data_lancamento": "December 2007",
+        "GFLOPS": "416"
+    },
+    {
+        "GPU": "GeForce GT 545 (DDR3)",
+        "Data_lancamento": "May 2011",
+        "GFLOPS": "415"
+    },
+    {
+        "GPU": "Radeon HD 4650 (DDR2)",
+        "Data_lancamento": "September 2008",
+        "GFLOPS": "384"
+    },
+    {
+        "GPU": "Radeon HD 2900 Pro",
+        "Data_lancamento": "September 2007",
+        "GFLOPS": "384"
+    },
+    {
+        "GPU": "GeForce 8800 Ultra",
+        "Data_lancamento": "May 2007",
+        "GFLOPS": "384"
+    },
+    {
+        "GPU": "Radeon HD 5550 (GDDR5)",
+        "Data_lancamento": "February 2010",
+        "GFLOPS": "352"
+    },
+    {
+        "GPU": "Radeon HD 5550 (DDR3)",
+        "Data_lancamento": "February 2010",
+        "GFLOPS": "352"
+    },
+    {
+        "GPU": "Radeon HD 5550 (DDR2)",
+        "Data_lancamento": "February 2010",
+        "GFLOPS": "352"
+    },
+    {
+        "GPU": "GeForce 8800 GTX",
+        "Data_lancamento": "November 2006",
+        "GFLOPS": "346"
+    },
+    {
+        "GPU": "GeForce GT 630 (DDR3)",
+        "Data_lancamento": "April 2012",
+        "GFLOPS": "336"
+    },
+    {
+        "GPU": "GeForce 9800 GT",
+        "Data_lancamento": "July 2008",
+        "GFLOPS": "336"
+    },
+    {
+        "GPU": "GeForce 8800 GT (512MB)",
+        "Data_lancamento": "October 2007",
+        "GFLOPS": "336"
+    },
+    {
+        "GPU": "GeForce 8800 GT (256MB)",
+        "Data_lancamento": "December 2007",
+        "GFLOPS": "336"
+    },
+    {
+        "GPU": "GeForce GTX 285",
+        "Data_lancamento": "January 2009",
+        "GFLOPS": "311"
+    },
+    {
+        "GPU": "GeForce GT 630 (GDDR5)",
+        "Data_lancamento": "May 2012",
+        "GFLOPS": "311"
+    },
+    {
+        "GPU": "GeForce GT 440 (GDDR5)",
+        "Data_lancamento": "February 2011",
+        "GFLOPS": "311"
+    },
+    {
+        "GPU": "GeForce GT 440 (GDDR3)",
+        "Data_lancamento": "February 2011",
+        "GFLOPS": "311"
+    },
+    {
+        "GPU": "GeForce GTX 275",
+        "Data_lancamento": "April 2009",
+        "GFLOPS": "304"
+    },
+    {
+        "GPU": "GeForce GTX 280",
+        "Data_lancamento": "June 2008",
+        "GFLOPS": "289"
+    },
+    {
+        "GPU": "Radeon HD 2900 GT",
+        "Data_lancamento": "November 2007",
+        "GFLOPS": "288"
+    },
+    {
+        "GPU": "GeForce GT 730 (128-bit, DDR3)",
+        "Data_lancamento": "June 2014",
+        "GFLOPS": "269"
+    },
+    {
+        "GPU": "GeForce GT 530",
+        "Data_lancamento": "May 2011",
+        "GFLOPS": "269"
+    },
+    {
+        "GPU": "GeForce GT 430",
+        "Data_lancamento": "October 2010",
+        "GFLOPS": "269"
+    },
+    {
+        "GPU": "GeForce 9600 GSO",
+        "Data_lancamento": "May 2008",
+        "GFLOPS": "264"
+    },
+    {
+        "GPU": "GeForce 8800 GS",
+        "Data_lancamento": "January 2008",
+        "GFLOPS": "264"
+    },
+    {
+        "GPU": "GeForce GT 240 (GDDR5)",
+        "Data_lancamento": "November 2009",
+        "GFLOPS": "257"
+    },
+    {
+        "GPU": "GeForce GT 240 (DDR3)",
+        "Data_lancamento": "November 2009",
+        "GFLOPS": "257"
+    },
+    {
+        "GPU": "GeForce GTX 260",
+        "Data_lancamento": "September 2008",
+        "GFLOPS": "249"
+    },
+    {
+        "GPU": "Radeon HD 6450",
+        "Data_lancamento": "April 2011",
+        "GFLOPS": "240"
+    },
+    {
+        "GPU": "GeForce 8800 GTS (640MB)",
+        "Data_lancamento": "November 2006",
+        "GFLOPS": "228"
+    },
+    {
+        "GPU": "GeForce 8800 GTS (320MB)",
+        "Data_lancamento": "February 2007",
+        "GFLOPS": "228"
+    },
+    {
+        "GPU": "GeForce GTX 260",
+        "Data_lancamento": "June 2008",
+        "GFLOPS": "221"
+    },
+    {
+        "GPU": "GeForce 9600 GT",
+        "Data_lancamento": "February 2008",
+        "GFLOPS": "208"
+    },
+    {
+        "GPU": "Radeon R5 230",
+        "Data_lancamento": "April 2014",
+        "GFLOPS": "200"
+    },
+    {
+        "GPU": "Radeon HD 2600 XT",
+        "Data_lancamento": "June 2007",
+        "GFLOPS": "192"
+    },
+    {
+        "GPU": "Radeon HD 3650 (DDR3)",
+        "Data_lancamento": "January 2008",
+        "GFLOPS": "174"
+    },
+    {
+        "GPU": "Radeon HD 3650 (DDR2)",
+        "Data_lancamento": "January 2008",
+        "GFLOPS": "174"
+    },
+    {
+        "GPU": "GeForce GT 520",
+        "Data_lancamento": "April 2011",
+        "GFLOPS": "156"
+    },
+    {
+        "GPU": "Radeon HD 2600 Pro",
+        "Data_lancamento": "June 2007",
+        "GFLOPS": "144"
+    },
+    {
+        "GPU": "GeForce GT 220 (DDR3)",
+        "Data_lancamento": "October 2009",
+        "GFLOPS": "131"
+    },
+    {
+        "GPU": "GeForce GT 220 (DDR2)",
+        "Data_lancamento": "October 2009",
+        "GFLOPS": "128"
+    },
+    {
+        "GPU": "Radeon HD 5450",
+        "Data_lancamento": "February 2010",
+        "GFLOPS": "104"
+    },
+    {
+        "GPU": "Radeon HD 4550",
+        "Data_lancamento": "September 2008",
+        "GFLOPS": "96"
+    },
+    {
+        "GPU": "Radeon HD 4350",
+        "Data_lancamento": "September 2008",
+        "GFLOPS": "96"
+    },
+    {
+        "GPU": "GeForce 8600 GTS",
+        "Data_lancamento": "April 2007",
+        "GFLOPS": "93"
+    },
+    {
+        "GPU": "GeForce 9500 GT (GDDR3)",
+        "Data_lancamento": "July 2008",
+        "GFLOPS": "90"
+    },
+    {
+        "GPU": "GeForce 9500 GT (DDR2)",
+        "Data_lancamento": "July 2008",
+        "GFLOPS": "90"
+    },
+    {
+        "GPU": "GeForce 8600 GT (GDDR3)",
+        "Data_lancamento": "April 2007",
+        "GFLOPS": "76"
+    },
+    {
+        "GPU": "GeForce 8600 GT (DDR2)",
+        "Data_lancamento": "April 2007",
+        "GFLOPS": "76"
+    },
+    {
+        "GPU": "GeForce GT 420",
+        "Data_lancamento": "September 2010",
+        "GFLOPS": "67"
+    },
+    {
+        "GPU": "Radeon HD 2400 XT",
+        "Data_lancamento": "June 2007",
+        "GFLOPS": "52"
+    },
+    {
+        "GPU": "GeForce 9400 GT",
+        "Data_lancamento": "August 2008",
+        "GFLOPS": "45"
+    },
+    {
+        "GPU": "Radeon HD 2400 Pro",
+        "Data_lancamento": "June 2007",
+        "GFLOPS": "42"
+    },
+    {
+        "GPU": "Radeon HD 2300",
+        "Data_lancamento": "June 2007",
+        "GFLOPS": "42"
+    },
+    {
+        "GPU": "GeForce 8600 GS",
+        "Data_lancamento": "April 2007",
+        "GFLOPS": "38"
+    },
+    {
+        "GPU": "Radeon X1950 XTX",
+        "Data_lancamento": "October 2006",
+        "GFLOPS": "31.2"
+    },
+    {
+        "GPU": "Radeon X1900 XTX",
+        "Data_lancamento": "January 2006",
+        "GFLOPS": "31.2"
+    },
+    {
+        "GPU": "Radeon X1950 XT",
+        "Data_lancamento": "October 2006",
+        "GFLOPS": "30.0"
+    },
+    {
+        "GPU": "Radeon X1900 XT",
+        "Data_lancamento": "January 2006",
+        "GFLOPS": "30.0"
+    },
+    {
+        "GPU": "GeForce 8500 GT",
+        "Data_lancamento": "April 2007",
+        "GFLOPS": "29"
+    },
+    {
+        "GPU": "GeForce 8400 GS",
+        "Data_lancamento": "June 2007",
+        "GFLOPS": "29"
+    },
+    {
+        "GPU": "GeForce 7950 GX2",
+        "Data_lancamento": "June 2006",
+        "GFLOPS": "24.0"
+    },
+    {
+        "GPU": "GeForce 9300 GS",
+        "Data_lancamento": "June 2008",
+        "GFLOPS": "22"
+    },
+    {
+        "GPU": "GeForce 9300 GE",
+        "Data_lancamento": "June 2008",
+        "GFLOPS": "21"
+    },
+    {
+        "GPU": "Radeon X1950 Pro",
+        "Data_lancamento": "October 2006",
+        "GFLOPS": "20.7"
+    },
+    {
+        "GPU": "Radeon X1900 GT",
+        "Data_lancamento": "May 2006",
+        "GFLOPS": "20.7"
+    },
+    {
+        "GPU": "Radeon X1950 GT",
+        "Data_lancamento": "January 2007",
+        "GFLOPS": "18.0"
+    },
+    {
+        "GPU": "GeForce 7900 GTX",
+        "Data_lancamento": "March 2006",
+        "GFLOPS": "15.6"
+    },
+    {
+        "GPU": "GeForce 7900 GTO",
+        "Data_lancamento": "October 2006",
+        "GFLOPS": "15.6"
+    },
+    {
+        "GPU": "GeForce 8300 GS",
+        "Data_lancamento": "July 2007",
+        "GFLOPS": "14"
+    },
+    {
+        "GPU": "GeForce 7950 GT",
+        "Data_lancamento": "September 2006",
+        "GFLOPS": "13.2"
+    },
+    {
+        "GPU": "GeForce 7800 GTX (512MB)",
+        "Data_lancamento": "November 2005",
+        "GFLOPS": "13.2"
+    },
+    {
+        "GPU": "Radeon X1650 XT",
+        "Data_lancamento": "October 2006",
+        "GFLOPS": "12.6"
+    },
+    {
+        "GPU": "GeForce 7900 GT",
+        "Data_lancamento": "March 2006",
+        "GFLOPS": "10.8"
+    },
+    {
+        "GPU": "GeForce 7800 GTX (256MB)",
+        "Data_lancamento": "June 2005",
+        "GFLOPS": "10.3"
+    },
+    {
+        "GPU": "Radeon X1800 XT",
+        "Data_lancamento": "October 2005",
+        "GFLOPS": "10.0"
+    },
+    {
+        "GPU": "Radeon X1650 GT",
+        "Data_lancamento": "May 2007",
+        "GFLOPS": "9.6"
+    },
+    {
+        "GPU": "GeForce 7900 GS",
+        "Data_lancamento": "May 2006",
+        "GFLOPS": "9.0"
+    },
+    {
+        "GPU": "Radeon X850 XT Platinum",
+        "Data_lancamento": "December 2004",
+        "GFLOPS": "8.6"
+    },
+    {
+        "GPU": "Radeon X850 XT",
+        "Data_lancamento": "December 2004",
+        "GFLOPS": "8.3"
+    },
+    {
+        "GPU": "Radeon X800 XT Platinum",
+        "Data_lancamento": "May 2004",
+        "GFLOPS": "8.3"
+    },
+    {
+        "GPU": "Radeon X800 XT",
+        "Data_lancamento": "December 2004",
+        "GFLOPS": "8.0"
+    },
+    {
+        "GPU": "Radeon X1800 XL",
+        "Data_lancamento": "October 2005",
+        "GFLOPS": "8.0"
+    },
+    {
+        "GPU": "GeForce 7800 GT",
+        "Data_lancamento": "August 2005",
+        "GFLOPS": "8.0"
+    },
+    {
+        "GPU": "Radeon X1650 Pro",
+        "Data_lancamento": "August 2006",
+        "GFLOPS": "7.2"
+    },
+    {
+        "GPU": "Radeon X1600 XT",
+        "Data_lancamento": "October 2005",
+        "GFLOPS": "7.1"
+    },
+    {
+        "GPU": "GeForce 7600 GT",
+        "Data_lancamento": "March 2006",
+        "GFLOPS": "6.7"
+    },
+    {
+        "GPU": "Radeon X800 XL",
+        "Data_lancamento": "December 2004",
+        "GFLOPS": "6.4"
+    },
+    {
+        "GPU": "GeForce 6800 Ultra",
+        "Data_lancamento": "June 2004",
+        "GFLOPS": "6.4"
+    },
+    {
+        "GPU": "Radeon X850 Pro",
+        "Data_lancamento": "December 2004",
+        "GFLOPS": "6.1"
+    },
+    {
+        "GPU": "Radeon X1800 GTO",
+        "Data_lancamento": "March 2006",
+        "GFLOPS": "6.0"
+    },
+    {
+        "GPU": "Radeon X1600 Pro",
+        "Data_lancamento": "October 2005",
+        "GFLOPS": "6.0"
+    },
+    {
+        "GPU": "Radeon X1300 XT",
+        "Data_lancamento": "August 2006",
+        "GFLOPS": "6.0"
+    },
+    {
+        "GPU": "GeForce 7800 GS",
+        "Data_lancamento": "February 2006",
+        "GFLOPS": "6.0"
+    },
+    {
+        "GPU": "Radeon X800 Pro",
+        "Data_lancamento": "May 2004",
+        "GFLOPS": "5.7"
+    },
+    {
+        "GPU": "GeForce 6800 GT",
+        "Data_lancamento": "June 2004",
+        "GFLOPS": "5.6"
+    },
+    {
+        "GPU": "GeForce 6800 GS (PCIe)",
+        "Data_lancamento": "November 2005",
+        "GFLOPS": "5.1"
+    },
+    {
+        "GPU": "Radeon X800 GTO (256MB)",
+        "Data_lancamento": "September 2005",
+        "GFLOPS": "4.8"
+    },
+    {
+        "GPU": "Radeon X800 GTO (128MB)",
+        "Data_lancamento": "September 2005",
+        "GFLOPS": "4.8"
+    },
+    {
+        "GPU": "GeForce 7600 GS",
+        "Data_lancamento": "March 2006",
+        "GFLOPS": "4.8"
+    },
+    {
+        "GPU": "Radeon X800",
+        "Data_lancamento": "December 2004",
+        "GFLOPS": "4.7"
+    },
+    {
+        "GPU": "GeForce 6800 GS (AGP)",
+        "Data_lancamento": "December 2005",
+        "GFLOPS": "4.2"
+    },
+    {
+        "GPU": "GeForce 6600 GT",
+        "Data_lancamento": "November 2004",
+        "GFLOPS": "4.0"
+    },
+    {
+        "GPU": "GeForce 6800",
+        "Data_lancamento": "November 2004",
+        "GFLOPS": "3.9"
+    },
+    {
+        "GPU": "Radeon X800 GT",
+        "Data_lancamento": "December 2005",
+        "GFLOPS": "3.8"
+    },
+    {
+        "GPU": "Radeon X800 SE",
+        "Data_lancamento": "October 2004",
+        "GFLOPS": "3.4"
+    },
+    {
+        "GPU": "Radeon X700 Pro",
+        "Data_lancamento": "December 2004",
+        "GFLOPS": "3.4"
+    },
+    {
+        "GPU": "Radeon 9800 XT",
+        "Data_lancamento": "September 2003",
+        "GFLOPS": "3.3"
+    },
+    {
+        "GPU": "Radeon X700",
+        "Data_lancamento": "September 2005",
+        "GFLOPS": "3.2"
+    },
+    {
+        "GPU": "Radeon 9800 Pro",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "3.0"
+    },
+    {
+        "GPU": "GeForce 7300 GT (GDDR3)",
+        "Data_lancamento": "May 2006",
+        "GFLOPS": "2.8"
+    },
+    {
+        "GPU": "GeForce 7300 GT (DDR2)",
+        "Data_lancamento": "May 2006",
+        "GFLOPS": "2.8"
+    },
+    {
+        "GPU": "Radeon 9800 SE (128-bit)",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "2.6"
+    },
+    {
+        "GPU": "Radeon 9800",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "2.6"
+    },
+    {
+        "GPU": "Radeon 9700 Pro",
+        "Data_lancamento": "July 2002",
+        "GFLOPS": "2.6"
+    },
+    {
+        "GPU": "GeForce 6800 XT",
+        "Data_lancamento": "September 2005",
+        "GFLOPS": "2.6"
+    },
+    {
+        "GPU": "GeForce 6800 LE",
+        "Data_lancamento": "January 2005",
+        "GFLOPS": "2.6"
+    },
+    {
+        "GPU": "Radeon X1300 Pro",
+        "Data_lancamento": "October 2005",
+        "GFLOPS": "2.4"
+    },
+    {
+        "GPU": "GeForce 6600 (128-bit)",
+        "Data_lancamento": "August 2004",
+        "GFLOPS": "2.4"
+    },
+    {
+        "GPU": "Radeon 9700",
+        "Data_lancamento": "October 2002",
+        "GFLOPS": "2.2"
+    },
+    {
+        "GPU": "Radeon 9500 Pro",
+        "Data_lancamento": "October 2002",
+        "GFLOPS": "2.2"
+    },
+    {
+        "GPU": "GeForce 7300 GS",
+        "Data_lancamento": "January 2006",
+        "GFLOPS": "2.2"
+    },
+    {
+        "GPU": "Radeon X600 XT",
+        "Data_lancamento": "September 2004",
+        "GFLOPS": "2.0"
+    },
+    {
+        "GPU": "Radeon X1550",
+        "Data_lancamento": "January 2007",
+        "GFLOPS": "2.0"
+    },
+    {
+        "GPU": "Radeon 9600 XT",
+        "Data_lancamento": "September 2003",
+        "GFLOPS": "2.0"
+    },
+    {
+        "GPU": "GeForce FX 5800 Ultra",
+        "Data_lancamento": "January 2003",
+        "GFLOPS": "2.0"
+    },
+    {
+        "GPU": "GeForce FX 5950 Ultra",
+        "Data_lancamento": "October 2003",
+        "GFLOPS": "1.9"
+    },
+    {
+        "GPU": "GeForce FX 5700 Ultra",
+        "Data_lancamento": "October 2003",
+        "GFLOPS": "1.9"
+    },
+    {
+        "GPU": "GeForce FX 5900 Ultra",
+        "Data_lancamento": "May 2003",
+        "GFLOPS": "1.8"
+    },
+    {
+        "GPU": "GeForce FX 5700",
+        "Data_lancamento": "October 2003",
+        "GFLOPS": "1.7"
+    },
+    {
+        "GPU": "Radeon X600 Pro",
+        "Data_lancamento": "September 2004",
+        "GFLOPS": "1.6"
+    },
+    {
+        "GPU": "Radeon X600 Pro",
+        "Data_lancamento": "September 2004",
+        "GFLOPS": "1.6"
+    },
+    {
+        "GPU": "Radeon X600",
+        "Data_lancamento": "September 2004",
+        "GFLOPS": "1.6"
+    },
+    {
+        "GPU": "Radeon 9600 Pro",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "1.6"
+    },
+    {
+        "GPU": "GeForce FX 5900 XT",
+        "Data_lancamento": "December 2003",
+        "GFLOPS": "1.6"
+    },
+    {
+        "GPU": "GeForce FX 5900",
+        "Data_lancamento": "May 2003",
+        "GFLOPS": "1.6"
+    },
+    {
+        "GPU": "GeForce FX 5800",
+        "Data_lancamento": "January 2003",
+        "GFLOPS": "1.6"
+    },
+    {
+        "GPU": "GeForce FX 5600 Ultra",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "1.6"
+    },
+    {
+        "GPU": "Radeon 9800 SE (256-bit)",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "1.5"
+    },
+    {
+        "GPU": "GeForce 7300 LE",
+        "Data_lancamento": "March 2006",
+        "GFLOPS": "1.4"
+    },
+    {
+        "GPU": "GeForce 6200 TurboCache",
+        "Data_lancamento": "December 2004",
+        "GFLOPS": "1.4"
+    },
+    {
+        "GPU": "Radeon 9600 SE",
+        "Data_lancamento": "September 2003",
+        "GFLOPS": "1.3"
+    },
+    {
+        "GPU": "Radeon 9600",
+        "Data_lancamento": "September 2003",
+        "GFLOPS": "1.3"
+    },
+    {
+        "GPU": "GeForce FX 5600",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "1.3"
+    },
+    {
+        "GPU": "GeForce FX 5200 Ultra",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "1.3"
+    },
+    {
+        "GPU": "GeForce 6600 LE",
+        "Data_lancamento": "June 1905",
+        "GFLOPS": "1.3"
+    },
+    {
+        "GPU": "Radeon X300 SE",
+        "Data_lancamento": "September 2004",
+        "GFLOPS": "1.2"
+    },
+    {
+        "GPU": "GeForce 6200",
+        "Data_lancamento": "October 2004",
+        "GFLOPS": "1.2"
+    },
+    {
+        "GPU": "GeForce 4 Ti4800",
+        "Data_lancamento": "January 2003",
+        "GFLOPS": "1.2"
+    },
+    {
+        "GPU": "GeForce 4 Ti4600",
+        "Data_lancamento": "February 2002",
+        "GFLOPS": "1.2"
+    },
+    {
+        "GPU": "Radeon 9500",
+        "Data_lancamento": "October 2002",
+        "GFLOPS": "1.1"
+    },
+    {
+        "GPU": "Radeon 8500",
+        "Data_lancamento": "August 2001",
+        "GFLOPS": "1.1"
+    },
+    {
+        "GPU": "GeForce FX 5500",
+        "Data_lancamento": "March 2004",
+        "GFLOPS": "1.1"
+    },
+    {
+        "GPU": "GeForce 4 Ti4800 SE",
+        "Data_lancamento": "January 2003",
+        "GFLOPS": "1.1"
+    },
+    {
+        "GPU": "GeForce 4 Ti4400",
+        "Data_lancamento": "February 2002",
+        "GFLOPS": "1.1"
+    },
+    {
+        "GPU": "Radeon X1050 (128-bit)",
+        "Data_lancamento": "December 2006",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "Radeon 9550",
+        "Data_lancamento": "January 2004",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "Radeon 9250",
+        "Data_lancamento": "March 2004",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "Radeon 9200",
+        "Data_lancamento": "April 2003",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "Radeon 9100",
+        "Data_lancamento": "April 2003",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "Radeon 9000",
+        "Data_lancamento": "August 2002",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "GeForce FX 5700 LE",
+        "Data_lancamento": "March 2004",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "GeForce FX 5200 (64-bit)",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "GeForce FX 5200 (128-bit)",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "GeForce 4 Ti4200",
+        "Data_lancamento": "April 2002",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "GeForce 3 Ti500",
+        "Data_lancamento": "October 2001",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "GeForce 2 Ultra",
+        "Data_lancamento": "August 2000",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "GeForce 2 Ti",
+        "Data_lancamento": "October 2001",
+        "GFLOPS": "1.0"
+    },
+    {
+        "GPU": "GeForce 7200 GS",
+        "Data_lancamento": "January 2006",
+        "GFLOPS": "0.9"
+    },
+    {
+        "GPU": "Radeon X300",
+        "Data_lancamento": "September 2004",
+        "GFLOPS": "0.8"
+    },
+    {
+        "GPU": "Radeon 9200 SE",
+        "Data_lancamento": "March 2003",
+        "GFLOPS": "0.8"
+    },
+    {
+        "GPU": "GeForce 3",
+        "Data_lancamento": "February 2001",
+        "GFLOPS": "0.8"
+    },
+    {
+        "GPU": "GeForce 2 GTS",
+        "Data_lancamento": "April 2000",
+        "GFLOPS": "0.8"
+    },
+    {
+        "GPU": "GeForce 3 Ti200",
+        "Data_lancamento": "October 2001",
+        "GFLOPS": "0.7"
+    },
+    {
+        "GPU": "Radeon 7500",
+        "Data_lancamento": "August 2001",
+        "GFLOPS": "0.6"
+    },
+    {
+        "GPU": "GeForce 4 MX460",
+        "Data_lancamento": "February 2002",
+        "GFLOPS": "0.6"
+    },
+    {
+        "GPU": "GeForce 4 MX440",
+        "Data_lancamento": "February 2002",
+        "GFLOPS": "0.6"
+    },
+    {
+        "GPU": "Rage Fury MAXX",
+        "Data_lancamento": "October 1999",
+        "GFLOPS": "0.5"
+    },
+    {
+        "GPU": "GeForce 4 MX420",
+        "Data_lancamento": "February 2002",
+        "GFLOPS": "0.5"
+    },
+    {
+        "GPU": "GeForce 256 SDR",
+        "Data_lancamento": "October 1999",
+        "GFLOPS": "0.5"
+    },
+    {
+        "GPU": "GeForce 256 DDR",
+        "Data_lancamento": "December 1999",
+        "GFLOPS": "0.5"
+    },
+    {
+        "GPU": "GeForce 2 MX400",
+        "Data_lancamento": "March 2001",
+        "GFLOPS": "0.4"
+    },
+    {
+        "GPU": "GeForce 2 MX200",
+        "Data_lancamento": "March 2001",
+        "GFLOPS": "0.4"
+    },
+    {
+        "GPU": "Rage 128 Ultra",
+        "Data_lancamento": "August 1999",
+        "GFLOPS": "0.3"
+    },
+    {
+        "GPU": "Rage 128 Pro",
+        "Data_lancamento": "August 1999",
+        "GFLOPS": "0.3"
+    },
+    {
+        "GPU": "Radeon SDR",
+        "Data_lancamento": "June 2000",
+        "GFLOPS": "0.3"
+    },
+    {
+        "GPU": "Radeon LE",
+        "Data_lancamento": "May 2001",
+        "GFLOPS": "0.3"
+    },
+    {
+        "GPU": "Radeon DDR",
+        "Data_lancamento": "April 2000",
+        "GFLOPS": "0.3"
+    },
+    {
+        "GPU": "Radeon 7200 SDR",
+        "Data_lancamento": "June 2000",
+        "GFLOPS": "0.3"
+    },
+    {
+        "GPU": "Radeon 7200 DDR",
+        "Data_lancamento": "April 2000",
+        "GFLOPS": "0.3"
+    },
+    {
+        "GPU": "Nvidia Riva TNT2 Ultra",
+        "Data_lancamento": "March 1999",
+        "GFLOPS": "0.3"
+    },
+    {
+        "GPU": "Nvidia Riva TNT2 Pro",
+        "Data_lancamento": "October 1999",
+        "GFLOPS": "0.3"
+    },
+    {
+        "GPU": "Nvidia Riva TNT2",
+        "Data_lancamento": "March 1999",
+        "GFLOPS": "0.3"
+    },
+    {
+        "GPU": "Rage 128 GL",
+        "Data_lancamento": "August 1998",
+        "GFLOPS": "0.2"
+    },
+    {
+        "GPU": "Radeon 7000",
+        "Data_lancamento": "February 2001",
+        "GFLOPS": "0.2"
+    },
+    {
+        "GPU": "Nvidia Riva TNT",
+        "Data_lancamento": "June 1998",
+        "GFLOPS": "0.2"
+    },
+    {
+        "GPU": "Nvidia Riva 128",
+        "Data_lancamento": "August 1997",
+        "GFLOPS": "0.1"
+    }
+]

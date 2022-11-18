@@ -4,9 +4,9 @@ import {parse} from 'himalaya'
 export const apiSteam = axios.create({
   baseUrl: "https://api.scaleserp.com/search"
 })
+const regex = /[^0-9a-zA-Z() " : , { } @ . / -]/gi
 
 const extraiRequisitos = (requisito)=>{
-  const regex = /[^0-9a-zA-Z() " : , { } @ . / -]/gi
   const reqHtml = requisito
   const reqJson = parse(reqHtml)
   let dadosReq, cpu, ram, armazenamento, gpu
@@ -42,20 +42,35 @@ const extraiRequisitos = (requisito)=>{
     }
     if (obj?.children?.[1]?.content) {
       peca = obj?.children[1]?.content
-      switch (categoria) {
-        case 'Processor:' || 'Processador':
-          cpu = peca.replace(regex, '');
-          break;
-        case 'Memory:' || 'Memória':
-          ram = peca.replace(regex, '');
-          break;
-        case 'Graphics:' || 'Placa de vídeo:'||  'Video Card:':
-          gpu = peca.replace(regex, '');
-          break;
-        case 'Storage:' || 'Armazenamento' || 'Hard Disk Space':
-          armazenamento = peca.replace(regex, '');
-          break;
+
+      if (categoria.includes('Proces')) {
+        cpu = peca.replace(regex, '');
       }
+      else if (categoria.includes('Mem')){
+        ram = peca.replace(regex, '');
+      }
+      else if (categoria.includes('raphic') || categoria.includes('ídeo') || categoria.includes('Video')|| categoria.includes('ficos')){
+        gpu = peca.replace(regex, '');
+      }
+      else if (categoria.includes('torag') || categoria.includes('rmazenament') || categoria.includes('pace')|| categoria.includes('ento')){
+        armazenamento = peca.replace(regex, '');
+
+      }
+
+      // switch (categoria) {
+      //   case 'Processor:' || 'Processador':
+      //     cpu = peca.replace(regex, '');
+      //     break;
+      //   case 'Memory:' || 'Memória':
+      //     ram = peca.replace(regex, '');
+      //     break;
+      //   case 'Graphics:' || 'Placa de vídeo:'||  'Video Card:':
+      //     gpu = peca.replace(regex, '');
+      //     break;
+      //   case 'Storage:' || 'Armazenamento:' || 'Hard Disk Space:':
+      //     armazenamento = peca.replace(regex, '');
+      //     break;
+      // }
     }
   }
   // console.log(resultado);
@@ -65,7 +80,7 @@ const extraiRequisitos = (requisito)=>{
 
 }
 
-export async function pesquisa(j) {
+export async function pesquisa2(j) {
   console.log("chamou")
   const listaProcurados = []
   const listaNomeID = await axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
@@ -170,7 +185,7 @@ export async function pesquisa(j) {
           // const recomendado = {'Cpu':cpuRec, 'Ram':ramRec, 'Gpu':gpuRec, 'Armazenamento': armazenamentoMin}
           const jogo = {
             id_jogo_steam: detalheJogo?.steam_appid,
-            nome: detalheJogo?.name,
+            nome: detalheJogo?.name.replace(regex, ''),
             imagem: detalheJogo?.header_image,
             preco: detalheJogo?.price_overview?.final_formatted,
             estado: 'circle'
@@ -189,4 +204,39 @@ export async function pesquisa(j) {
     }
   }
   return listaProcurados
+}
+
+export async function calculaRam(jogosSelecionados, tipoRequisito){
+  const ramDosJogos = []
+  const regex = /[^0-9]/gm
+  for await (const jogo of jogosSelecionados) {
+    let ramDoJogo
+    if (jogo['requisitos'+tipoRequisito]) {
+      let requisitosJson = JSON.parse(jogo['requisitos'+tipoRequisito])
+      if (requisitosJson.Ram.toLowerCase().includes('gb')) {
+        ramDoJogo = parseInt(requisitosJson.Ram.replace(regex, ''))
+      }
+      else {
+        ramDoJogo = 4
+      }
+
+      ramDosJogos.push(ramDoJogo)
+    }
+    else{
+      ramDosJogos.push(4)
+    }
+  }
+  let ramIndicada = Math.max(...ramDosJogos)
+  return (ramIndicada + " GB");
+}
+
+export function extraiRequisitosDeUmaLista(listaDeJogos, tipoRequisito){
+  let listaDeRequisitos = []
+  for (let jogo of listaDeJogos) {
+    if (jogo['requisitos'+tipoRequisito]) {
+      let requisitosJson = JSON.parse(jogo['requisitos'+tipoRequisito])
+      listaDeRequisitos.push(requisitosJson)
+    }
+  }
+  return listaDeRequisitos
 }

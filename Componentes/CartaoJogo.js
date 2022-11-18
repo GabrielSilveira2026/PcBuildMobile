@@ -11,7 +11,7 @@ const CartaoJogo = ({jogo}) => {
 
     const mudaEstado = () => {
         if (jogo.estado === "circle"){
-            if (cart.cart.length < 3) {
+            if (cart.cart.length < 10) {
                 jogo.estado = "check-circle"
                 cart.addToCart(jogo)
             }
