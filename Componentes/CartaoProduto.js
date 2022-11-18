@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         marginTop: 'auto',
         marginBottom: 'auto',
         height: '100%', 
-        width: '33%', 
+        width: '34%', 
         marginRight:5,
         borderRadius: 8,
         borderWidth:2,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     titulo:{
         marginRight:5,
         fontSize:15,
-        width:'35%',
+        width:'34%',
         fontWeight: 'bold',
     },
     items:{

@@ -11,12 +11,12 @@ const CartaoJogo = ({jogo}) => {
 
     const mudaEstado = () => {
         if (jogo.estado === "circle"){
-            if (cart.cart.length < 10) {
+            if (cart.cart.length < 5) {
                 jogo.estado = "check-circle"
                 cart.addToCart(jogo)
             }
             else{
-                Alert.alert("Você já selecionou 3 jogos","Por favor, remova algum deles para adicionar um outro")
+                Alert.alert("Você já selecionou 5 jogos","Por favor, remova algum deles para adicionar um outro")
             }
         }
         else{

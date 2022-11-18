@@ -11,6 +11,7 @@ const PecasTela = ({route, navigation}) => {
     <View style={stylesGlobal.conteudoTela}>
       <Text style={styles.titulo}>Essas são as peças para uma configuração {parametro?.tipo}</Text>
       <FlatList
+        style={{width: '100%'}}
         data={parametro?.pecas}
         keyExtractor={item => item?.title}
         renderItem={p => (
@@ -18,7 +19,7 @@ const PecasTela = ({route, navigation}) => {
           )}
         />
       </View>
-      <Rodape telas={{txtProxima: 'Adicionar',anterior: 'Recomendados', proxima:'Login', parametroProxima: parametro}} />
+      <Rodape telas={{txtProxima: 'Salvar',anterior: 'Recomendados', proxima:'Login', parametroProxima: parametro}} />
 
     </ImageBackground>
   );
@@ -29,7 +30,7 @@ export default PecasTela
 const styles = StyleSheet.create({
   titulo: {
     textAlign: 'center', 
-    fontSize: 20,
+    fontSize: 25,
     color: 'white', 
     marginBottom: 15
   },

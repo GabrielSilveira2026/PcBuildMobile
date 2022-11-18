@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
-import {TextInput,StyleSheet, Text, View, ImageBackground} from 'react-native';
+import {TextInput,StyleSheet, Text, View, ImageBackground, TouchableOpacity} from 'react-native';
 import Rodape from '../Componentes/Rodape'
 
 const FiltrosTela = ({navigation}) => {
@@ -31,8 +31,9 @@ export default FiltrosTela
 
 const styles = StyleSheet.create({
   titulo: {
+    marginTop:'5%',
     textAlign: 'center', 
-    fontSize: 20,
+    fontSize: 22,
     color: 'white', 
     marginBottom: 15
   },
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     width:'90%', 
     marginTop:'40%',
     color: 'white',
-    fontSize: 25,
+    fontSize: 22,
     borderBottomWidth: 1,
     borderColor: 'white'
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles, {Cores} from '../Constantes/Styles'
 import { useNavigation } from '@react-navigation/native';
-import {TouchableOpacity, Text, View, StyleSheet} from 'react-native';
+import {TouchableOpacity, Text, View, StyleSheet,Dimensions} from 'react-native';
 
 const Rodape = ({telas}) => {
     const navigation = useNavigation()
@@ -41,7 +41,7 @@ const style = StyleSheet.create({
         flexDirection: 'row', 
         justifyContent: 'space-evenly',
         padding: 12,
-        height: 65,
+        height: Dimensions.get('window').height*9/100,
         backgroundColor: Cores.primary,
         borderTopWidth: 2,
     }, 

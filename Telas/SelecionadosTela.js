@@ -35,7 +35,7 @@ export default SelecionadosTela
 const styles = StyleSheet.create({
   titulo: {
     textAlign: 'center', 
-    fontSize: 20,
+    fontSize: 25,
     color: 'white', 
     marginBottom: 15
   },

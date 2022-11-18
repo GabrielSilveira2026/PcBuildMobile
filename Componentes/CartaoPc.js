@@ -44,18 +44,18 @@ export default CartaoPc
 
 const styles = StyleSheet.create({
     cartao:{
-        width:'90%',
-        alignItems: "center",
         backgroundColor: Cores.tertiary,
         flexDirection: 'row',
         borderRadius: 8,
         borderWidth:2,
         marginBottom: 5,
-        height:150,
-        padding: 9
+        padding: 9,
+        margin: 10,
     },
     imagem:{
-        height:'90%',
+        marginTop: 'auto',
+        marginBottom: 'auto',
+        height: 170,
         width:'40%'
     },
     items:{
@@ -67,13 +67,13 @@ const styles = StyleSheet.create({
     },
     tipoConfig:{
         fontWeight: 'bold', 
-        fontSize:15
+        fontSize: 20
     },
     icone:{
         paddingTop:3
     },
     descricao:{
-        fontSize:15,
+        fontSize:13,
         width:'100%'
     }
 })
