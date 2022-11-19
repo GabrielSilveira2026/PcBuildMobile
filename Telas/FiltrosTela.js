@@ -8,6 +8,7 @@ const FiltrosTela = ({navigation}) => {
   const capturarPreco = (precoDigitado) => {
     setPreco(precoDigitado)
   }
+  
   return (
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
       <View style={stylesGlobal.conteudoTela}>

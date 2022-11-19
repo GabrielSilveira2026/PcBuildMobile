@@ -12,6 +12,7 @@ import ProgramasTela from './Telas/ProgramasTela';
 import SelecionadosTela from './Telas/SelecionadosTela';
 import FiltrosTela from './Telas/FiltrosTela';
 import RecomendadosTela from './Telas/RecomendadosTela';
+import FavoritosTela from './Telas/FavoritosTela';
 import PecasTela from './Telas/PecasTela';
 import {CartProvider} from './Constantes/CartContext';
 import Cabecalho from './Componentes/Cabecalho'
@@ -72,6 +73,10 @@ function MyStack({navigation}){
           <Stack.Screen
             name="Login"
             component={LoginTela}
+          />
+          <Stack.Screen
+            name="Favoritos"
+            component={FavoritosTela}
           />
       </Stack.Navigator>
     </CartProvider>

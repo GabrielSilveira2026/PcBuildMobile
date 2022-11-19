@@ -6,8 +6,10 @@ import CartaoJogo from '../Componentes/CartaoJogo'
 import Rodape from '../Componentes/Rodape'
 import axios from 'axios';
 import lista from '../Dados/jogos.json';
+import {useCart} from '../Constantes/CartContext'
 
 const JogosTela = ({navigation}) => {
+  const selecionados = useCart()
 
   const [jogo, setJogo] = useState('')
   const capturarJogo = (jogoDigitada) => {setJogo(jogoDigitada)}
@@ -45,27 +47,30 @@ const JogosTela = ({navigation}) => {
     <ImageBackground source={imagemFundo} resizeMode="stretch"  backgroundColor={Cores.secondary} style={stylesGlobal.backgroundImage}>
       <View style={stylesGlobal.conteudoTela}>
 
-        <Text style={styles.titulo}>Selecione até 5 jogos que você deseja jogar!</Text>
-
-        <View style={styles.pesquisa}>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite o jogo"
-            placeholderTextColor="#cccccc"
-            value={jogo}
-            onChangeText={capturarJogo}
-          />
-          <TouchableOpacity
-            onPress={pesquisa}
-          >
-            <FontAwesome5 style={styles.botaoPesquisa} name="search" size={30} color="white"/>
-          </TouchableOpacity>
-
-        </View>
-
         {
           listaJogos.length === 0 ?
             <FlatList
+              ListHeaderComponent={
+              <>
+                <Text style={styles.titulo}>Selecione até {5 - selecionados.cart.length} jogos que você deseja jogar!</Text>
+
+                <View style={styles.pesquisa}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Digite o jogo"
+                    placeholderTextColor="#cccccc"
+                    value={jogo}
+                    onChangeText={capturarJogo}
+                  />
+                  <TouchableOpacity
+                    onPress={pesquisa}
+                  >
+                    <FontAwesome5 style={styles.botaoPesquisa} name="search" size={30} color="white"/>
+                  </TouchableOpacity>
+
+                </View>
+              </>
+              }
               data={lista}
               numColumns={2}
               keyExtractor={item => item.id_jogo_steam}
@@ -75,6 +80,27 @@ const JogosTela = ({navigation}) => {
             />
             :
             <FlatList
+            ListHeaderComponent={
+              <>
+                <Text style={styles.titulo}>Selecione até 5 jogos que você deseja jogar!</Text>
+
+                <View style={styles.pesquisa}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Digite o jogo"
+                    placeholderTextColor="#cccccc"
+                    value={jogo}
+                    onChangeText={capturarJogo}
+                  />
+                  <TouchableOpacity
+                    onPress={pesquisa}
+                  >
+                    <FontAwesome5 style={styles.botaoPesquisa} name="search" size={30} color="white"/>
+                  </TouchableOpacity>
+
+                </View>
+              </>
+              }
               data={listaJogos}
               numColumns={2}
               keyExtractor={item => item.id_jogo_steam}

@@ -26,7 +26,6 @@ export default StyleSheet.create({
         paddingTop:5,
         alignItems: 'center'
     },
-    
     botaoPadrao:{
         backgroundColor: 'black',
         color: 'white',

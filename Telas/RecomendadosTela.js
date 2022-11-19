@@ -43,12 +43,14 @@ const RecomendadosTela = ({route, navigation}) => {
       "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTdPZkMfH1nwiyaaFZcXEPWETDX3Oy6ChbsugPWsLYimCI5EkQ4zCWPHzLov86Wr6tSjP-nimlk9hgxNi5-qdOzWZlLEWjeo72TGVQH7NSfyc9KcM8Th6Y4hQ&usqp=CAE",
     },
     {
-      "title": "Placa De Vídeo Msi Geforce RTX 1060 6gb Ventus Gp Oc GDDR6 - 912-V375-808",
-      "id": "17368229848816949007",
-      "link": "https://www.google.com/shopping/product/17368229848816949007",
-      "price_raw": "R$ 1.659,98",
-      "merchant": "Pichau",
-      "image": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTdPZkMfH1nwiyaaFZcXEPWETDX3Oy6ChbsugPWsLYimCI5EkQ4zCWPHzLov86Wr6tSjP-nimlk9hgxNi5-qdOzWZlLEWjeo72TGVQH7NSfyc9KcM8Th6Y4hQ&usqp=CAE",
+      "title": "Memória Kingston 8gb Ddr4 3200mhz Fury Beast Rgb KF432C16BBA/8",
+      "id": "9586862228788569367",
+      "link": "https://www.google.com/shopping/product/9586862228788569367",
+      "price_raw": "R$ 243,00",
+      "merchant": "KaBuM!",
+      "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSaxY0kC6qgpcUGhn2Xdgz_y3ru9aDRundtlux7l_nJwWdlG_0pavvbQMsybotg9pkburOyf9AbgYZEjvOdg-zWb0_ogK3GlZ_CHGrsJeZNQbgj5tDkcyh5Hg&usqp=CAE",
+      "position": 1,
+      "has_product_page": true
     },
   ]
   return (

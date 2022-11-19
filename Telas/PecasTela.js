@@ -1,11 +1,36 @@
 import * as React from 'react';
-import {View , Text, StyleSheet, ImageBackground, FlatList } from 'react-native';
+import {View , Text, StyleSheet, ImageBackground, FlatList,TouchableOpacity,Dimensions} from 'react-native';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
 import CartaoProduto from '../Componentes/CartaoProduto'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useCart} from '../Constantes/CartContext'
 
 const PecasTela = ({route, navigation}) => {
   const parametro = route?.params
+  const selecionados = useCart()
+
+  const salvaConfiguracao = async() => {
+    if (selecionados.cart.length > 0) {
+      try {
+        await AsyncStorage.setItem('@configuracaoSalva', JSON.stringify(parametro))
+        console.log('salvou');
+      } 
+      catch (e) {
+        console.log('Erro ao salvar');
+      }
+      try {
+        await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', JSON.stringify(selecionados.cart))
+        console.log('salvou');
+
+      } 
+      catch (e) {
+        console.log('Erro ao salvar');
+      }
+      navigation.navigate('Favoritos')
+    }
+  }
+
   return (
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
     <View style={stylesGlobal.conteudoTela}>
@@ -19,8 +44,21 @@ const PecasTela = ({route, navigation}) => {
           )}
         />
       </View>
-      <Rodape telas={{txtProxima: 'Salvar',anterior: 'Recomendados', proxima:'Login', parametroProxima: parametro}} />
 
+      <View style={styles.rodape}>
+        <TouchableOpacity
+            style={styles.botaoVoltar}
+            onPress={() => navigation.navigate('Recomendados')}
+        >    
+            <Text style={{ color: 'black' }}>Voltar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+            style={styles.botaoProximo}
+            onPress={salvaConfiguracao}
+        >    
+            <Text style={{ color: 'white' }}>Salvar</Text>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 }
@@ -34,5 +72,29 @@ const styles = StyleSheet.create({
     color: 'white', 
     marginBottom: 15
   },
+  rodape: {
+    flexDirection: 'row', 
+    justifyContent: 'space-evenly',
+    padding: 12,
+    height: Dimensions.get('window').height*9/100,
+    backgroundColor: Cores.primary,
+    borderTopWidth: 2,
+}, 
+botaoVoltar:{
+    flexGrow: 1,
+    marginRight: 5,
+    backgroundColor: 'white',
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 7,
+    borderWidth: 1,
+},
+botaoProximo:{
+    flexGrow: 1,
+    backgroundColor: 'black',
+    justifyContent: "center",
+    alignItems: 'center',
+    borderRadius: 7,
+},
 })
 

@@ -30,10 +30,10 @@ const CartaoPc = ({pc}) => {
                     <FontAwesome5 style={styles.icone} name={icone} size={30} color="black" onPress={() => navigation.navigate('Jogos')}/>
                 </View>
                 <Text style={styles.descricao}>
-                    {cpu?.title?.substr(0,20)}...{'\n'}
-                    {gpu?.title?.substr(0,20)}...{'\n'}
-                    {ram?.title?.substr(0,20)}...{'\n'}
-                    {rom?.title?.substr(0,20)}...{'\n'}
+                    {cpu? cpu?.title?.substr(0,20)+'...': null} {'\n'}
+                    {gpu? gpu?.title?.substr(0,20)+'...': null} {'\n'}
+                    {ram? ram?.title?.substr(0,20)+'...': null} {'\n'}
+                    {rom? rom?.title?.substr(0,20)+'...': null} {'\n'}
                 </Text>
             </View>
         </TouchableOpacity>
