@@ -26,7 +26,7 @@ const FavoritosTela = ({navigation}) => {
       }
     }
     pegaConfigSalva()
-  },[configJson])
+  },[])
 
   const removeConfiguracao = async() => {
     let confirmaRemocao
@@ -48,7 +48,7 @@ const FavoritosTela = ({navigation}) => {
       // if (confirmaRemocao === 'Sim') {
         try {
           await AsyncStorage.setItem('@configuracaoSalva', '')
-          console.log('excluiu');
+          setConfigJson()
         } 
         catch (e) {
           console.log('Erro ao excluir');
@@ -56,11 +56,13 @@ const FavoritosTela = ({navigation}) => {
   
         try {
           await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', '')
-          console.log('excluiu');
         } 
         catch (e) {
           console.log('Erro ao excluir');
         }
+      }
+      else{
+        navigation.navigate('Jogos')
       }
     // }
   }
@@ -75,7 +77,7 @@ const FavoritosTela = ({navigation}) => {
             ListHeaderComponent={ 
             <>
               <Text style={styles.titulo}>
-                Configuração {configJson.tipo} para jogar :
+                Configuração {configJson.tipo} para os jogos :
               </Text>
 
               {jogosSalvos.map(jogo => (<Text style={{ fontSize: 15, color: 'white', alignItems: 'flex-start' }} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
@@ -104,7 +106,7 @@ const FavoritosTela = ({navigation}) => {
             style={styles.botaoProximo}
             onPress={removeConfiguracao}
         >    
-            <Text style={{ color: 'white' }}>Excluir</Text>
+            <Text style={{ color: 'white' }}>{configJson?'Excluir':'Adicionar'}</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -115,7 +117,6 @@ export default FavoritosTela
 
 const styles = StyleSheet.create({
   titulo: {
-    textAlign: 'center', 
     fontSize: 25,
     color: 'white', 
     marginBottom: 15

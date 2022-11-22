@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {View , Text, StyleSheet, ImageBackground, FlatList,TouchableOpacity,Dimensions} from 'react-native';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
-import Rodape from '../Componentes/Rodape'
 import CartaoProduto from '../Componentes/CartaoProduto'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useCart} from '../Constantes/CartContext'
@@ -11,17 +10,16 @@ const PecasTela = ({route, navigation}) => {
   const selecionados = useCart()
 
   const salvaConfiguracao = async() => {
-    if (selecionados.cart.length > 0) {
+    // Confere se esta logado, se nn estiver redirecionar para tela de login
+    if (selecionados.cart.length > 0 && parametro.pecas.length > 0) {
       try {
         await AsyncStorage.setItem('@configuracaoSalva', JSON.stringify(parametro))
-        console.log('salvou');
       } 
       catch (e) {
         console.log('Erro ao salvar');
       }
       try {
         await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', JSON.stringify(selecionados.cart))
-        console.log('salvou');
 
       } 
       catch (e) {
@@ -29,12 +27,15 @@ const PecasTela = ({route, navigation}) => {
       }
       navigation.navigate('Favoritos')
     }
+
+    navigation.navigate('Login')
+
   }
 
   return (
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
     <View style={stylesGlobal.conteudoTela}>
-      <Text style={styles.titulo}>Essas são as peças para uma configuração {parametro?.tipo}</Text>
+      <Text style={styles.titulo}>Essas são as peças para jogar em uma configuração {parametro?.tipo}</Text>
       <FlatList
         style={{width: '100%'}}
         data={parametro?.pecas}

@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import {FontAwesome5} from 'react-native-vector-icons';
 import {useCart} from '../Constantes/CartContext'
 
-
 const CartaoPc = ({pc}) => {
     const navigation = useNavigation()
     const {pecas, tipo} = pc
@@ -74,6 +73,7 @@ const styles = StyleSheet.create({
     },
     descricao:{
         fontSize:13,
+        fontWeight: 'bold', 
         width:'100%'
     }
 })

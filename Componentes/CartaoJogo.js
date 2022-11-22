@@ -4,12 +4,11 @@ import {FontAwesome5} from 'react-native-vector-icons';
 import {useCart} from '../Constantes/CartContext'
 import {Cores} from '../Constantes/Styles'
 
-
 const CartaoJogo = ({jogo}) => {
     const cart = useCart()
     const {id_jogo_steam, nome, imagem, preco} = jogo
 
-    const mudaEstado = () => {
+    const mudaEstado = async() => {
         if (jogo.estado === "circle"){
             if (cart.cart.length < 5) {
                 jogo.estado = "check-circle"

@@ -1,9 +1,6 @@
 import axios from "axios";
 import {parse} from 'himalaya'
 
-export const apiSteam = axios.create({
-  baseUrl: "https://api.scaleserp.com/search"
-})
 const regex = /[^0-9a-zA-Z() " : , { } @ . / -]/gi
 
 const extraiRequisitos = (requisito)=>{
@@ -87,102 +84,16 @@ export async function pesquisa2(j) {
   for await (const item of listaNomeID.data.applist.apps) {
     if (item.name.toLowerCase().includes(j.toLowerCase())) {
       const idJogo = item.appid
-      const objetoJogo = await axios.get('https://store.steampowered.com/api/appdetails?appids=' + idJogo)
+      let objetoJogo
+      try {
+        objetoJogo = await axios.get('https://store.steampowered.com/api/appdetails?appids=' + idJogo)
+      } catch (error) {
+        console.log(error);
+      } 
       if (objetoJogo?.data[idJogo]?.success === true){
         const detalheJogo = objetoJogo?.data[idJogo]?.data
         if (detalheJogo?.type === "game") {
           console.log(detalheJogo?.steam_appid);
-          //pega requisitos Minimos
-          // if (detalheJogo?.pc_requirements?.minimum) {
-          //   let dadosReqMin 
-          //   const reqMinHtml = detalheJogo?.pc_requirements?.minimum
-          //   const reqMinJson = parse(reqMinHtml)
-
-          //   if (reqMinJson?.[0]?.children && reqMinJson?.[0]?.children?.lenght > 1) {
-          //     console.log('caso 1')
-          //     dadosReqMin = reqMinJson?.[0]?.children 
-          //   }
-          //   else if (reqMinJson?.[1]?.children && reqMinJson[1].children.lenght > 1) {
-          //     console.log('caso 2')
-          //     dadosReqMin = reqMinJson?.[1]?.children
-          //   }
-          //   else if (reqMinJson?.[2]?.children && reqMinJson[2].children.length > 1) {
-          //     dadosReqMin = reqMinJson?.[2]?.children
-          //   }
-          //   else if (reqMinJson?.[3]?.children && reqMinJson[3].children.lenght > 1) {
-          //     console.log('caso 4')
-          //     dadosReqMin = reqMinJson?.[3]?.children
-          //   }
-          //   else {
-          //     console.log('caso 5')
-          //     dadosReqMin = reqMinJson?.[4]?.children
-          //   }
-          //   // console.log(reqMinJson);
-          //   for (const obj of dadosReqMin) {
-          //     let categoria
-          //     let peca
-          //     if(obj?.children?.[0]?.children?.[0]){
-          //       categoria = obj.children[0].children[0].content
-          //     }
-          //     else if(obj?.children?.[0]){
-          //       categoria = obj.children[0].content
-          //     }
-          //     else{
-          //       categoria = ''
-          //     }
-          //     if (obj?.children?.[1]?.content) {
-          //       peca = obj?.children[1]?.content
-          //       switch (categoria) {
-          //         case 'Processor:' || 'Processador':
-          //           cpuMin = peca;
-          //         case 'Memory:' || 'Memória':
-          //           ramMin = peca;
-          //         case 'Graphics:' || 'Placa de vídeo' || 'Video Card:':
-          //           gpuMin = peca;
-          //         case 'Storage:' || 'Armazenamento' || "Hard Disk Space: :":
-          //           armazenamentoMin = peca;
-          //         default:
-          //           ''
-          //       }
-          //       peca = ''
-          //     }
-          //   }
-          // }
-
-          // pega requisitos Recomendados
-          // if (detalheJogo?.pc_requirements?.recommended) {
-          //   const reqRecHtml = detalheJogo?.pc_requirements?.recommended
-          //   const reqRecJson = parse(reqRecHtml)
-          //   const dadosReqRec = reqRecJson[2]?.children
-          //   for (const obj of dadosReqRec) {
-          //     let categoria
-          //     let peca
-          //     if(obj?.children?.[0].children?.[0]){
-          //       categoria = obj.children[0].children[0].content
-          //     }
-          //     else{
-          //       categoria = obj.children[0].content
-          //     }
-          //     if (obj?.children[1]?.content) {
-          //       peca = obj?.children[1]?.content
-          //       switch (categoria) {
-          //         case 'Processor:' || 'Processador':
-          //           cpuRec = peca;
-          //         case 'Memory:' || 'Memória':
-          //           ramRec = peca;
-          //         case 'Graphics:' || 'Placa de vídeo' || 'Video Card:':
-          //           gpuRec = peca;
-          //         case 'Storage:' || 'Armazenamento' || "Hard Disk Space: :":
-          //           armazenamentoRec = peca;
-          //         default:
-          //           '';
-          //       }
-          //     }
-          // }
-          // }
-          
-          // const minimo = {'Cpu':cpuMin, 'Ram':ramMin, 'Gpu':gpuMin, 'Armazenamento': armazenamentoMin};
-          // const recomendado = {'Cpu':cpuRec, 'Ram':ramRec, 'Gpu':gpuRec, 'Armazenamento': armazenamentoMin}
           const jogo = {
             id_jogo_steam: detalheJogo?.steam_appid,
             nome: detalheJogo?.name.replace(regex, ''),
@@ -190,7 +101,6 @@ export async function pesquisa2(j) {
             preco: detalheJogo?.price_overview?.final_formatted,
             estado: 'circle'
           }
-
           if (detalheJogo?.pc_requirements?.minimum) {
             jogo.requisitosminimos = `${extraiRequisitos(detalheJogo?.pc_requirements?.minimum)}`
           }
@@ -198,6 +108,7 @@ export async function pesquisa2(j) {
           if (detalheJogo?.pc_requirements?.recommended) {
             jogo.requisitosrecomendados = extraiRequisitos(detalheJogo?.pc_requirements?.recommended)
           }
+          console.log(jogo);
           listaProcurados.push(jogo)
         }
       }
@@ -207,27 +118,31 @@ export async function pesquisa2(j) {
 }
 
 export async function calculaRam(jogosSelecionados, tipoRequisito){
-  const ramDosJogos = []
-  const regex = /[^0-9]/gm
-  for await (const jogo of jogosSelecionados) {
-    let ramDoJogo
-    if (jogo['requisitos'+tipoRequisito]) {
-      let requisitosJson = JSON.parse(jogo['requisitos'+tipoRequisito])
-      if (requisitosJson.Ram.toLowerCase().includes('gb')) {
-        ramDoJogo = parseInt(requisitosJson.Ram.replace(regex, ''))
+  if (jogosSelecionados.length>0) {
+    const ramDosJogos = []
+    const regex = /[^\dG]/gm
+    // const regex = new RegExp('')
+    for await (const jogo of jogosSelecionados) {
+      let ramDoJogo
+      if (jogo['requisitos'+tipoRequisito]) {
+        let requisitosJson = JSON.parse(jogo['requisitos'+tipoRequisito])
+        if (requisitosJson.Ram.toLowerCase().includes('gb')) {
+          ramDoJogo = parseInt(requisitosJson.Ram.replace(regex, ''))
+        }
+        else {
+          ramDoJogo = 4
+        }
+  
+        ramDosJogos.push(ramDoJogo)
       }
-      else {
-        ramDoJogo = 4
+      else{
+        ramDosJogos.push(4)
       }
-
-      ramDosJogos.push(ramDoJogo)
     }
-    else{
-      ramDosJogos.push(4)
-    }
+    let ramIndicada = Math.max(...ramDosJogos)
+    return {"title": ramIndicada + " GB"};
   }
-  let ramIndicada = Math.max(...ramDosJogos)
-  return (ramIndicada + " GB");
+  return null
 }
 
 export function extraiRequisitosDeUmaLista(listaDeJogos, tipoRequisito){
@@ -239,4 +154,58 @@ export function extraiRequisitosDeUmaLista(listaDeJogos, tipoRequisito){
     }
   }
   return listaDeRequisitos
+}
+
+export async function calculaPlacaBackEnd(selecionados, tipoRequisito){
+  const gpusRequisitos = []
+  const regex = /[^0-9a-zA-Z]/gm
+  if (selecionados.length > 0) {
+    for await (const jogo of selecionados) {
+      if (jogo['requisitos'+tipoRequisito]) {
+        let req = JSON.parse(jogo['requisitos'+tipoRequisito])
+        let gpuJogo = req.Gpu;
+        const listaGpusBanco = await axios.get("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/ranking_gpu/?limit=999")
+        for (const GpuBanco of listaGpusBanco?.data?.items.reverse()) {
+          if (gpuJogo.replace(regex, "").replace("GTX", "geforcegtx").toLowerCase().includes(GpuBanco?.gpu.replace(regex, "").toLowerCase().replace("geforce", ""))) {
+              gpusRequisitos.push({ "Placa": GpuBanco?.gpu, Pontos: GpuBanco?.gflops })
+          }
+        }
+      }
+    }
+    if (gpusRequisitos.length>0) {
+      let placaIndicada = gpusRequisitos.reduce((placaAnterior, placaAtual) => (placaAnterior.Pontos > placaAtual.Pontos) ? placaAnterior : placaAtual)
+      return {"title":placaIndicada.Placa}
+    }
+    else{
+      // console.log('Não foi possivel calcular uma placa.');
+      return 
+    }
+  }
+}
+
+const check = (req, gpu) => {
+  const requisito = req.toLowerCase().split(' ')
+  const placa = gpu.toLowerCase().split(' ')
+
+  let comum = ''
+  for(let palavra of requisito){
+    
+    if(placa.indexOf(palavra) >= 0){
+      comum = comum + " " + palavra
+    }
+  }
+  if (comum.split(' ').length > 2) {
+    return comum
+  }
+  return "Não foi possivel"
+}
+
+export function validaEmail(email) {
+  const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{3,4}$/g
+  return(regex.test(email))
+}
+
+export function validaSenha(senha){
+  const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/
+  return(regex.test(senha))
 }

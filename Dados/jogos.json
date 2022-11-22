@@ -9,9 +9,13 @@
       "requisitosrecomendados": "{\"Armazenamento\": \" 100 GB available space\",\"Cpu\": \" Intel Core i7-4770K@3.5GHz or Ryzen 5 1500X@3.5GHz\",\"Gpu\": \" Nvidia GeForce GTX 1060 (6 GB) or AMD Radeon RX 580 (8GB)\",\"Ram\": \" 16 GB RAM\"}"
     },
     { 
-      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/414340/header.jpg?t=1661444431",
-      "id_jogo_steam": 23,
+      "id": 4255,
+      "id_jogo_steam": 414340,
       "nome": "Hellblade: Senua's Sacrifice",
+      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/414340/header.jpg?t=1661444431",
+      "requisitosminimos": "{\"Armazenamento\": \" 30 GB available space\",\"Cpu\": \" Intel i5 3570K / AMD FX-8350\",\"Gpu\": \" GTX 770 with 2GB VRAM / Radeon R9 280X 3GB\",\"Ram\": \" 8 GB RAM\"}",
+      "requisitosrecomendados": null,
+      "preco": "R$ 55,99",
       "estado": "circle"
     },
     { 
@@ -38,10 +42,13 @@
       "estado": "circle"
     },
     { 
-      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1913730/header.jpg?t=1662538829",
-      "id_jogo_steam": 78,
+      "id": 4473,
+      "id_jogo_steam": 1913730,
       "nome": "Chimeraland",
-      "preco": "R$150",
+      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1913730/header.jpg?t=1668658347",
+      "requisitosminimos": "{\"Armazenamento\": \" 12 GB available space\",\"Cpu\": \" Intel Core i3-10300\",\"Gpu\": \" GTX 760\",\"Ram\": \" 8 GB RAM\"}",
+      "requisitosrecomendados": "{\"Armazenamento\": \" 12 GB available space\",\"Cpu\": \" Intel Core i5-10400\",\"Gpu\": \" RTX2060\",\"Ram\": \" 16 GB RAM\"}",
+      "preco": null,
       "estado": "circle"
     },
     { 

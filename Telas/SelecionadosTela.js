@@ -15,17 +15,17 @@ const SelecionadosTela = ({navigation}) => {
         <Text style={styles.titulo}>Deseja trocar algum jogo?</Text>
         
         <FlatList
+        style={{width: '100%'}}
         data={selecionados.cart}
         numColumns={2}
-        keyExtractor={(item) => item.id_jogo_steam}
-        extraData={selecionados.cart}
+        keyExtractor={item => item.id_jogo_steam}
         renderItem={j => (
           <CartaoJogo jogo={j.item} />
           )}
         />
 
       </View>
-      <Rodape telas={{ anterior: 'Jogos', proxima: 'Filtros' }}></Rodape>
+      <Rodape telas={{ anterior: 'Jogos',proxima: 'Filtros' }}></Rodape>
     </ImageBackground>
 );
 }

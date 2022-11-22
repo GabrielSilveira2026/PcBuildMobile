@@ -9,11 +9,18 @@ const Cabecalho = () => {
     const navigation = useNavigation()
     return (
         <SafeAreaView style={style.cabecalho}> 
-            <FontAwesome5 name="bars" size={30} color="white" onPress={() => navigation.navigate('Jogos')}/>
+            <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
+                <FontAwesome5 name="user" size={30} color="white" />
+            </TouchableOpacity>
 
-            <Text style={style.logo}>Pc Build Up</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Jogos')}>
+                <Text style={style.logo}>Pc Build Up</Text>
+            </TouchableOpacity>
 
-            <FontAwesome5 name="star" size={30} color="white" onPress={() => navigation.navigate('Favoritos')}/>
+            <TouchableOpacity onPress={() => navigation.navigate('Favoritos')}>
+                <FontAwesome5 name="star" size={30} color="white" />
+            </TouchableOpacity>
+
 
         </SafeAreaView >
     )
@@ -25,8 +32,8 @@ export default Cabecalho
 const style = StyleSheet.create({
     cabecalho:{
         backgroundColor: Cores.primary, 
-        height:50, 
-        paddingTop: 7,  
+        height:50,
+        alignItems: "center", 
         paddingRight: 15, 
         paddingLeft: 15,
         flexDirection: 'row',
@@ -34,8 +41,8 @@ const style = StyleSheet.create({
         justifyContent: 'space-between'
     },
     logo:{
-        // marginLeft: 100,
-        fontSize: 20,
+        fontWeight: 'bold',
+        fontSize: 24,
         color: 'white',
     }
 });

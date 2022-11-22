@@ -1,10 +1,14 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {TextInput, StyleSheet, TouchableOpacity, Text, View, ImageBackground } from 'react-native';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
 
 
 const LoginTela = ({route, navigation }) => {
+    const [email, setEmail] = useState('')
+
+    const [senha, setSenha] = useState('')
+    
     return (
         <ImageBackground source={imagemFundo} resizeMode="stretch" backgroundColor={Cores.secondary} style={stylesGlobal.backgroundImage}>
             <View style={styles.conteudo}>
@@ -13,6 +17,7 @@ const LoginTela = ({route, navigation }) => {
 
                 <Text style={styles.txtCampo}>Email</Text>
                 <TextInput
+                    onChangeText={(text) => {setEmail(text)}}
                     style={styles.input}
                     placeholder="exemplo@email.com.br"
                 />
@@ -23,16 +28,14 @@ const LoginTela = ({route, navigation }) => {
                     placeholder="************"
                 />
 
-                <TouchableOpacity
-                    style={styles.botaoEntrar}
-                >
+                <TouchableOpacity style={styles.botaoEntrar}>
                     <Text style={styles.txtBotaoEntrar}>Entrar</Text>
                 </TouchableOpacity>
                 
                 <Text style={styles.txtEsqueciSenha} onPress={() => navigation.navigate('Jogos')}>
                     Esqueci a senha!
                 </Text>
-                <Text style={styles.txtSemCadastro} onPress={() => navigation.navigate('Jogos')}>
+                <Text style={styles.txtSemCadastro} onPress={() => navigation.navigate('Cadastro')}>
                     Não tenho cadastro ainda.
                 </Text>
             </View>
@@ -71,7 +74,8 @@ const styles = StyleSheet.create({
     },
     botaoEntrar:{ 
         padding: 7, 
-        marginTop: '8%',
+        marginTop:35,
+        marginBottom: 20,
         backgroundColor: 'black',
         color: 'white',
         justifyContent: "center",
@@ -81,22 +85,21 @@ const styles = StyleSheet.create({
     },
     txtBotaoEntrar: { 
         color: 'white', 
-        fontSize: 18 
+        fontSize: 20
     },
-    txtEsqueciSenha:{ 
+    txtEsqueciSenha:{
+        color:'white',
         fontWeight: 'bold', 
         textDecorationLine: 'underline', 
         fontWeight: 'bold', 
-        fontSize: 15 
+        fontSize: 18 
     },
     txtSemCadastro: {
         color: 'white', 
-        textAlign: 'center', 
+        // textAlign: 'center', 
         textDecorationLine: 'underline', 
         fontWeight: 'bold', 
         fontSize: 15,
-        position: 'absolute',
-        bottom:15,
-        left:10
+        marginTop:"50%",
     }
 })

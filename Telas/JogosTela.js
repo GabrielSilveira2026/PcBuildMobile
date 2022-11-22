@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
-import {TextInput, FlatList, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert } from 'react-native';
+import {TextInput, FlatList, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert,ActivityIndicator } from 'react-native';
 import {FontAwesome5} from 'react-native-vector-icons';
 import CartaoJogo from '../Componentes/CartaoJogo'
 import Rodape from '../Componentes/Rodape'
@@ -8,37 +8,56 @@ import axios from 'axios';
 import lista from '../Dados/jogos.json';
 import {useCart} from '../Constantes/CartContext'
 
+
 const JogosTela = ({navigation}) => {
   const selecionados = useCart()
-
   const [jogo, setJogo] = useState('')
-  const capturarJogo = (jogoDigitada) => {setJogo(jogoDigitada)}
-  const listaProcurados = []
-  const [listaJogos, setListaJogos] = useState([])
+  const capturarJogo = (jogoDigitado) => {setJogo(jogoDigitado)}
+  const [listaJogos, setListaJogos] = useState(lista)
+  const listaAuxiliar = []
+
+  // const fazConsulta = async() => {
+  //   if (jogo !== "") {
+  //     const resposta = await pesquisa2(jogo)
+  //     if (resposta.length > 0) {
+  //       setListaJogos(resposta)
+  //       // for (const jogo of resposta) {
+  //       //   try {
+  //       //     console.log(jogo?.requisitos?.minimos);
+  //       //     await axios.post("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/", jogo);
+  //       //     console.log("inseriu")
+  //       //   }
+  //       //   catch (e) {
+  //       //     console.log(e.response);
+  //       //   }
+  //       // }
+  //     }
+  //     else {
+  //       Alert.alert("Nenhum jogo encontrado, por favor tente novamente")
+  //     }
+  //   }
+  //   else{
+  //     Alert.alert("Por favor, digite o nome de um jogo")
+  //   }
+  // }
+
 
   const pesquisa = async() => {
     if (jogo !== "") {
+      setListaJogos()
       const response = await axios.get("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/?limit=9999")
       for(var i = 0; i < response.data.items.length; i++){
         if(response.data.items[i].nome.toLowerCase().includes(jogo.toLowerCase())){
           let dadosJogo = response.data.items[i]
-          let {id_jogo_steam, nome, imagem, requisitosminimos, requisitosrecomendados, preco} = dadosJogo
-          const copiaJogo = {
-            id_jogo_steam, 
-            nome, 
-            imagem, 
-            requisitosminimos, 
-            requisitosrecomendados, 
-            preco,
-            estado: 'circle'
-          }
-          listaProcurados.push(copiaJogo)
+          let jogoEstaSelecionado = selecionados.cart.find(jogo => jogo.id_jogo_steam === dadosJogo.id_jogo_steam)
+          dadosJogo.estado = jogoEstaSelecionado?'check-circle': 'circle'
+          listaAuxiliar.push(dadosJogo)
         }
       }
-      setListaJogos(listaProcurados)
-      if (listaProcurados.length === 0) {
+      setListaJogos(listaAuxiliar)
+      if (listaAuxiliar.length === 0) {
+        setListaJogos(lista)
         Alert.alert("Nenhum jogo encontrado", "Por favor, tente pesquisar de outra maneira")
-        setListaJogos('')
       }
     }
   }
@@ -46,72 +65,42 @@ const JogosTela = ({navigation}) => {
   return (
     <ImageBackground source={imagemFundo} resizeMode="stretch"  backgroundColor={Cores.secondary} style={stylesGlobal.backgroundImage}>
       <View style={stylesGlobal.conteudoTela}>
+        
+        <FlatList
+          style={{width: '100%'}}
+          ListHeaderComponent={
+          <>
+            <Text style={styles.titulo}>Selecione até { 5 - selecionados.cart.length} jogos que você deseja jogar!</Text>
 
-        {
-          listaJogos.length === 0 ?
-            <FlatList
-              ListHeaderComponent={
-              <>
-                <Text style={styles.titulo}>Selecione até {5 - selecionados.cart.length} jogos que você deseja jogar!</Text>
+            <View style={styles.pesquisa}>
+              <TextInput
+                style={styles.input}
+                placeholder="Digite o jogo"
+                placeholderTextColor="#cccccc"
+                value={jogo}
+                onChangeText={capturarJogo}
+                onSubmitEditing={pesquisa}
+              />
+              <TouchableOpacity
+                onPress={pesquisa}
+              >
+                <FontAwesome5 style={styles.botaoPesquisa} name="search" size={30} color="white"/>
+              </TouchableOpacity>
 
-                <View style={styles.pesquisa}>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Digite o jogo"
-                    placeholderTextColor="#cccccc"
-                    value={jogo}
-                    onChangeText={capturarJogo}
-                  />
-                  <TouchableOpacity
-                    onPress={pesquisa}
-                  >
-                    <FontAwesome5 style={styles.botaoPesquisa} name="search" size={30} color="white"/>
-                  </TouchableOpacity>
-
-                </View>
-              </>
-              }
-              data={lista}
-              numColumns={2}
-              keyExtractor={item => item.id_jogo_steam}
-              renderItem={j => (
-                <CartaoJogo jogo={j.item} />
-              )}
-            />
-            :
-            <FlatList
-            ListHeaderComponent={
-              <>
-                <Text style={styles.titulo}>Selecione até 5 jogos que você deseja jogar!</Text>
-
-                <View style={styles.pesquisa}>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Digite o jogo"
-                    placeholderTextColor="#cccccc"
-                    value={jogo}
-                    onChangeText={capturarJogo}
-                  />
-                  <TouchableOpacity
-                    onPress={pesquisa}
-                  >
-                    <FontAwesome5 style={styles.botaoPesquisa} name="search" size={30} color="white"/>
-                  </TouchableOpacity>
-
-                </View>
-              </>
-              }
-              data={listaJogos}
-              numColumns={2}
-              keyExtractor={item => item.id_jogo_steam}
-              renderItem={j => (
-                <CartaoJogo jogo={j.item} />
-              )}
-            />
-        }
+            </View>
+          </> 
+          }
+          data={listaJogos}
+          ListEmptyComponent={<ActivityIndicator style={{marginTop:80,marginBottom:'auto'}} size={60} color={Cores.primary}/>}
+          numColumns={2}
+          keyExtractor={item => item.id_jogo_steam}
+          renderItem={j => (
+            <CartaoJogo jogo={j.item} />
+          )}
+        />
 
       </View>
-      <Rodape telas={{proxima: 'Selecionados' }} />
+      <Rodape telas={{proxima: 'Selecionados', txtProxima: selecionados.cart.length>0 ? 'Confirmar '+'('+selecionados.cart.length+')':'Confirmar'}}/>
     </ImageBackground>
   );
 }
@@ -145,8 +134,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     alignItems: 'center',
     borderRadius: 7,
-    padding: 7, 
-    marginLeft: 8,
+    padding: 10, 
+    marginLeft: 5,
     marginBottom: 10
   }
 

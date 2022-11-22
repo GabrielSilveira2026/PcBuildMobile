@@ -1,11 +1,9 @@
 
-import {View,ImageBackground, StatusBar} from 'react-native';
+import {StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {FontAwesome5} from 'react-native-vector-icons';
 import 'react-native-gesture-handler';
 
-import styles from './Constantes/Styles'
 import LoginTela from './Telas/LoginTela';
 import JogosTela from './Telas/JogosTela';
 import ProgramasTela from './Telas/ProgramasTela';
@@ -13,25 +11,13 @@ import SelecionadosTela from './Telas/SelecionadosTela';
 import FiltrosTela from './Telas/FiltrosTela';
 import RecomendadosTela from './Telas/RecomendadosTela';
 import FavoritosTela from './Telas/FavoritosTela';
+import CadastroTela from './Telas/CadastroTela';
 import PecasTela from './Telas/PecasTela';
 import {CartProvider} from './Constantes/CartContext';
 import Cabecalho from './Componentes/Cabecalho'
-const image = require('./Imagens/Fundo.png');
 
 const Stack = createNativeStackNavigator();
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
-
-const Drawer = createDrawerNavigator();
-
-function MyDrawer() {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Feed" component={JogosTela} />
-      <Drawer.Screen name="Article" component={SelecionadosTela} />
-    </Drawer.Navigator>
-  );
-}
 function MyStack({navigation}){
   return(
     <CartProvider>
@@ -69,6 +55,10 @@ function MyStack({navigation}){
           <Stack.Screen
             name="Pecas"
             component={PecasTela}
+          />
+          <Stack.Screen
+            name="Cadastro"
+            component={CadastroTela}
           />
           <Stack.Screen
             name="Login"

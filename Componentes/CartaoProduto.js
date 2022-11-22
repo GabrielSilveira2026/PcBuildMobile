@@ -31,7 +31,7 @@ const CartaoProduto = ({produto}) => {
         default: 
     }
     return (
-        <TouchableOpacity style={styles.cartao} onPress={() => {Linking.openURL(link);}}>
+        <TouchableOpacity style={styles.cartao} onPress={() => {link?Linking.openURL(link):null}}>
             <Image style={styles.imagem} source={{uri: imagem}}/>
             <Text style={styles.titulo}>{titulo?.substr(0,60)}...</Text>
             <View style={styles.items}>
@@ -41,8 +41,8 @@ const CartaoProduto = ({produto}) => {
                     :
                     <Text style={styles.loja}>{loja ? loja.replace(regex, "") : ""}</Text>
                 }
-                <Text style={styles.preco}>{preco ? preco.substr(0,12) : "Indiponível"}</Text>
-                <TouchableOpacity style={styles.botaoComprar} onPress={() => {Linking.openURL(link);}}>
+                <Text style={styles.preco}>{preco ? preco.substr(0,12) : "Indisponível"}</Text>
+                <TouchableOpacity style={styles.botaoComprar} onPress={() => {link?Linking.openURL(link):null}}>
                     <Text style={styles.textoComprar}>Comprar</Text>
                 </TouchableOpacity>
             </View>
