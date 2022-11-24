@@ -146,18 +146,25 @@ export async function calculaRam(jogosSelecionados, tipoRequisito){
 }
 
 export function extraiRequisitosDeUmaLista(listaDeJogos, tipoRequisito){
-  let listaRequisitos = []
+  let listaRequisitosMinimos = []
+  let listaRequisitosRecomendados = []
   let listaJogosSemRequisitos = []
   for (let jogo of listaDeJogos) {
-    if (jogo['requisitos'+tipoRequisito]) {
-      let requisitosJson = JSON.parse(jogo['requisitos'+tipoRequisito])
-      listaRequisitos.push(requisitosJson)
+    if (jogo.requisitosminimos) {
+      let requisitosJson = JSON.parse(jogo.requisitosminimos)
+      listaRequisitosMinimos.push(requisitosJson)
     }
     else{
       listaJogosSemRequisitos.push(jogo.nome)
     }
   }
-  return {listaRequisitos, listaJogosSemRequisitos}
+  for (let jogo of listaDeJogos) {
+    if (jogo.requisitosrecomendados) {
+      let requisitosJson = JSON.parse(jogo.requisitosrecomendados)
+      listaRequisitosRecomendados.push(requisitosJson)
+    }
+  }
+  return {listaRequisitosMinimos, listaRequisitosRecomendados, listaJogosSemRequisitos}
 }
 
 export async function calculaPlacaBackEnd(selecionados, tipoRequisito){
