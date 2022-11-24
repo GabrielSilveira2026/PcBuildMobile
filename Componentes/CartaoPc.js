@@ -47,9 +47,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: 8,
         borderWidth:2,
-        marginBottom: 5,
+        marginTop: 10,
         padding: 9,
-        margin: 10,
     },
     imagem:{
         marginTop: 'auto',

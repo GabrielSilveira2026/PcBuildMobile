@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import {StyleSheet, Text, View, ImageBackground, ActivityIndicator } from 'react-native';
+import {StyleSheet, Text, View, ImageBackground, ActivityIndicator, ScrollView } from 'react-native';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
 import CartaoPc from '../Componentes/CartaoPc'
@@ -13,26 +13,39 @@ const RecomendadosTela = ({route, navigation}) => {
   const [carrega, setCarrega] = useState(true)
   const [pcMinimo, setPcMinimo] = useState([])
   const [pcRecomendado, setPcRecomendado] = useState([])
+  const reqs = extraiRequisitosDeUmaLista(selecionados.cart, 'minimos') // usar .listaRequisitos
 
+  /*
+    configuracoes[
+      {tipo:minimo, pecas[gpu:{}]},
+      {tipo:recomendado, pecas[gpu:{}]},
+    ]
+  */
   useEffect(()=>{
     async function montaPC(){
       // console.log(await calculaPlacaBackEnd(selecionados.cart, 'recomendados'));
+      console.log(reqs);
       let gpu = await calculaPlacaBackEnd(selecionados.cart, 'minimos')
-      let ram = await calculaRam(selecionados.cart, 'minimos')
-      ram&&gpu?setPcMinimo([gpu,ram]):setCarrega(false)
+      gpu?
+          setPcMinimo([gpu])
+      :
+        setCarrega(false)
+
 
       gpu = await calculaPlacaBackEnd(selecionados.cart, 'recomendados')
-      ram = await calculaRam(selecionados.cart, 'recomendados')
-      ram&&gpu?setPcRecomendado([gpu,ram]):setCarrega(false)
+
+      gpu?
+        setPcRecomendado([gpu])
+      :
+        setCarrega(false)
       
     }
     montaPC()
-    // console.log(selecionados.cart);
-    // return()=>{
-    //   setCarrega() 
-    //   setPcRecomendado() 
-    //   setPcMinimo()
-    // }
+    return()=>{
+      setCarrega() 
+      setPcRecomendado() 
+      setPcMinimo()
+    }
   },[])
 
   // const pcRecomendado=[
@@ -84,19 +97,30 @@ const RecomendadosTela = ({route, navigation}) => {
   return (
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
       <View style={stylesGlobal.conteudoTela}>
-        <Text style={styles.titulo}>Recomendamos esses Pcs, agora basta escolher!</Text>
-        {
-          pcMinimo?.length>0?
-          <>
-            {pcMinimo? <CartaoPc pc={{pecas: pcMinimo,tipo: 'Mínima'}}/>: null}
-            {pcRecomendado?.length>0? <CartaoPc pc={{pecas: pcRecomendado, tipo: 'Recomendada'}}/> :
-            <ActivityIndicator animating={carrega} style={{marginTop:'auto',marginBottom:'auto'}} size={20} color={Cores.primary}/>
-            }
-          </>
-          :
-          <ActivityIndicator animating={carrega}style={{marginTop:'auto',marginBottom:'auto'}} size={60} color={Cores.primary}/>
-        }
-
+        <ScrollView style={{width: '100%',paddingLeft:5, paddingRight:5}}>
+          <Text style={styles.titulo}>Recomendamos esses Pcs, agora basta escolher!</Text>
+          {
+            pcMinimo?.length>0?
+            <>
+              {
+                reqs.listaJogosSemRequisitos.length>0?
+                  <Text style={styles.txtCalculo}>Os seguintes Jogos não foi considerados no cálculo pois não tem requisitos listados: {'\n'+ reqs.listaJogosSemRequisitos.map( item => {return '\n'+item})}</Text>
+                :
+                null
+              }
+              {pcMinimo? <CartaoPc pc={{pecas: pcMinimo,tipo: 'Mínima'}}/>: null}
+              {pcRecomendado?.length>0? <CartaoPc pc={{pecas: pcRecomendado, tipo: 'Recomendada'}}/> :
+              <ActivityIndicator animating={carrega} style={{marginTop:'auto',marginBottom:'auto'}} size={20} color={Cores.primary}/>
+              }
+              
+            </>
+            :
+            carrega?
+              <ActivityIndicator style={{marginTop:'auto',marginBottom:'auto'}} size={60} color={Cores.primary}/>
+            :
+              <Text style={styles.txtCalculo}>Não foi possível realizar o cálculo pois os jogos a seguir não possuem requisitos listados: {'\n'+ reqs.listaJogosSemRequisitos.map( item => {return '\n'+item})}</Text>
+          }
+        </ScrollView>
       </View>
       <Rodape telas={{ anterior: 'Filtros'}} />
     </ImageBackground>
@@ -110,7 +134,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontSize: 22,
-    marginTop: "5%",
     marginBottom: 10
+  },
+  carregando: {
+    marginTop:'50%', 
+    textAlign: 'center',
+    color: 'white',
+  },
+  txtCarregando: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 18,
+    margin:40
+  },
+  txtCalculo:{
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 15,
+    borderWidth: 1,
+    borderRadius:6,
+    padding:5,
+    borderColor: 'red',
   }
 })

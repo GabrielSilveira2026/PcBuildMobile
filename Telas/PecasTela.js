@@ -69,7 +69,7 @@ export default PecasTela
 const styles = StyleSheet.create({
   titulo: {
     textAlign: 'center', 
-    fontSize: 25,
+    fontSize: 23,
     color: 'white', 
     marginBottom: 15
   },
