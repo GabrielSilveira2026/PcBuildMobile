@@ -1,7 +1,7 @@
 import React from 'react';
 import {Cores} from '../Constantes/Styles'
 import { useNavigation } from '@react-navigation/native';
-import {TouchableOpacity, Text, View, StyleSheet,Dimensions} from 'react-native';
+import {TouchableOpacity, Text, View, StyleSheet,Dimensions, Alert} from 'react-native';
 import {useCart} from '../Constantes/CartContext'
 
 const Rodape = ({telas}) => {
@@ -25,8 +25,8 @@ const Rodape = ({telas}) => {
                 proxima?
                     <TouchableOpacity
                         style={style.botaoProximo}
-                        disabled={selecionados.cart.length === 0}
-                        onPress={() => navigation.navigate(proxima, parametroProxima)}
+                        // disabled={selecionados.cart.length === 0}
+                        onPress={() => {selecionados.cart.length > 0? navigation.navigate(proxima, parametroProxima):Alert.alert("Nenhum jogo selecionado","Por favor, selecione um jogo")}}
                     >    
                         <Text style={{ color: 'white' }}>{txtProxima?txtProxima:'Próximo'}</Text>
                     </TouchableOpacity>
