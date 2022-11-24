@@ -43,11 +43,12 @@ const JogosTela = ({navigation}) => {
 
 
   const pesquisa = async() => {
+    let regex = /[^0-9a-zA-Z]/gm
     if (jogo !== "") {
       setListaJogos()
       const response = await axios.get("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/?limit=9999")
       for(var i = 0; i < response.data.items.length; i++){
-        if(response.data.items[i].nome.toLowerCase().includes(jogo.toLowerCase())){
+        if(response.data.items[i].nome.replace(regex,"").toLowerCase().includes(jogo.replace(regex,"").toLowerCase())){
           let dadosJogo = response.data.items[i]
           let jogoEstaSelecionado = selecionados.cart.find(jogo => jogo.id_jogo_steam === dadosJogo.id_jogo_steam)
           dadosJogo.estado = jogoEstaSelecionado?'check-circle': 'circle'
