@@ -26,7 +26,7 @@ const CartaoPc = ({pc}) => {
             <View style={styles.items}>
                 <View style={styles.cabecalho}>
                     <Text style={styles.tipoConfig}>Configuração {'\n'}{tipo}</Text>
-                    <FontAwesome5 style={styles.icone} name={icone} size={30} color="black" onPress={() => navigation.navigate('Jogos')}/>
+                    <FontAwesome5 style={styles.icone} name={icone} size={30} color="black"/>
                 </View>
                 <Text style={styles.descricao}>
                     {cpu? cpu?.title?.substr(0,20)+'...': null} {'\n'}
