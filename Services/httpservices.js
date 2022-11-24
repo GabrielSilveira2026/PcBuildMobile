@@ -146,14 +146,18 @@ export async function calculaRam(jogosSelecionados, tipoRequisito){
 }
 
 export function extraiRequisitosDeUmaLista(listaDeJogos, tipoRequisito){
-  let listaDeRequisitos = []
+  let listaRequisitos = []
+  let listaJogosSemRequisitos = []
   for (let jogo of listaDeJogos) {
     if (jogo['requisitos'+tipoRequisito]) {
       let requisitosJson = JSON.parse(jogo['requisitos'+tipoRequisito])
-      listaDeRequisitos.push(requisitosJson)
+      listaRequisitos.push(requisitosJson)
+    }
+    else{
+      listaJogosSemRequisitos.push(jogo.nome)
     }
   }
-  return listaDeRequisitos
+  return {listaRequisitos, listaJogosSemRequisitos}
 }
 
 export async function calculaPlacaBackEnd(selecionados, tipoRequisito){
@@ -174,7 +178,17 @@ export async function calculaPlacaBackEnd(selecionados, tipoRequisito){
     }
     if (gpusRequisitos.length>0) {
       let placaIndicada = gpusRequisitos.reduce((placaAnterior, placaAtual) => (placaAnterior.Pontos > placaAtual.Pontos) ? placaAnterior : placaAtual)
-      return {"title":placaIndicada.Placa}
+      // const params = {
+      //   api_key: "B9E7BDF7D3024533B62B918CED851541",
+      //   search_type: "shopping",
+      //   location: "Brazil",
+      //   q: placaIndicada.Placa
+      // }
+      // const googleShopping = await axios.get('https://api.scaleserp.com/search', {params})
+      // const praquinha = await googleShopping?.data?.shopping_results?.[1]
+      // console.log(praquinha);
+      // return praquinha
+      return {"title": placaIndicada.Placa}
     }
     else{
       // console.log('Não foi possivel calcular uma placa.');

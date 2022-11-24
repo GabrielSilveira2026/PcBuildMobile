@@ -9,13 +9,13 @@ export const imagemFundo = require('../Imagens/FundoMontado.png') ;
 
 export const Cores = {
     //cabecalho e rodape #5865f2
-    primary: '#5865f2',
+    primary: '#665AF4',
 
     //fundo #2f3135
     secondary: '#2f3135',
 
     //cartoes #787ceb
-    tertiary: '#787ceb'
+    tertiary: '#9882E5'
 }
 
 export default StyleSheet.create({

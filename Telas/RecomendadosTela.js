@@ -24,7 +24,6 @@ const RecomendadosTela = ({route, navigation}) => {
   useEffect(()=>{
     async function montaPC(){
       // console.log(await calculaPlacaBackEnd(selecionados.cart, 'recomendados'));
-      console.log(reqs);
       let gpu = await calculaPlacaBackEnd(selecionados.cart, 'minimos')
       gpu?
           setPcMinimo([gpu])
@@ -104,7 +103,7 @@ const RecomendadosTela = ({route, navigation}) => {
             <>
               {
                 reqs.listaJogosSemRequisitos.length>0?
-                  <Text style={styles.txtCalculo}>Os seguintes Jogos não foi considerados no cálculo pois não tem requisitos listados: {'\n'+ reqs.listaJogosSemRequisitos.map( item => {return '\n'+item})}</Text>
+                  <Text style={styles.txtCalculo}>Os seguintes Jogos não foi considerados no cálculo pois não possuem requisitos listados: {'\n'+ reqs.listaJogosSemRequisitos.map( item => {return '\n'+item})}</Text>
                 :
                 null
               }
