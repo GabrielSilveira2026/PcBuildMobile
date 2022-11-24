@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
-import {TextInput, FlatList, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert,ActivityIndicator } from 'react-native';
+import {TextInput, FlatList, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert,ActivityIndicator, Keyboard} from 'react-native';
 import {FontAwesome5} from 'react-native-vector-icons';
 import CartaoJogo from '../Componentes/CartaoJogo'
 import Rodape from '../Componentes/Rodape'
@@ -43,6 +43,7 @@ const JogosTela = ({navigation}) => {
 
 
   const pesquisa = async() => {
+    Keyboard.dismiss()
     let regex = /[^0-9a-zA-Z]/gm
     if (jogo !== "") {
       setListaJogos()
@@ -68,6 +69,7 @@ const JogosTela = ({navigation}) => {
       <View style={stylesGlobal.conteudoTela}>
         
         <FlatList
+          keyboardShouldPersistTaps='handled'
           style={{width: '100%'}}
           ListHeaderComponent={
           <>
