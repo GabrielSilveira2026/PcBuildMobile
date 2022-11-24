@@ -25,7 +25,7 @@ const EsqueciSenhaTela = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <Rodape telas={{ anterior: 'back', proxima: 'Recomendados'}} />
+      <Rodape telas={{ anterior: 'back'}} />
     </ImageBackground>
   );
 }

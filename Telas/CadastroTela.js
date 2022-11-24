@@ -6,6 +6,22 @@ import {FontAwesome5} from 'react-native-vector-icons';
 import {validaSenha, validaEmail} from '../Services/httpservices'
 import axios from 'axios'
 
+export const Estado =({estado, texto}) => {
+    return (
+        <Text style={styles.txtCampo}>{texto} {''}
+            {
+                estado === true ?
+                    <FontAwesome5 name={'check'} size={25} color={Cores.primary} />
+                    :
+                    estado === false ?
+                        <FontAwesome5 name={'times'} size={25} color={'red'} />
+                        :
+                        null
+            }
+        </Text>
+    )
+}
+
 const CadastroTela = ({navigation}) => {
     const [nome, setNome] = useState('')
 
@@ -23,7 +39,7 @@ const CadastroTela = ({navigation}) => {
     function cadastra(){
         setEstadoEmail(validaEmail(email))
         setEstadoSenha(validaSenha(senha))
-        setEstadoConfirmaSenha(confirmaSenha === senha)
+        setEstadoConfirmaSenha(confirmaSenha === senha && validaSenha(confirmaSenha))
         if(estadoEmail === true && estadoSenha === true && confirmaSenha === senha) {
             let usuario = {nome, email, senha}
             console.log(usuario);
@@ -40,92 +56,64 @@ const CadastroTela = ({navigation}) => {
         <ImageBackground source={imagemFundo} resizeMode="stretch" backgroundColor={Cores.secondary} style={stylesGlobal.backgroundImage}>
             <View style={stylesGlobal.conteudoTela}>
                 <ScrollView keyboardShouldPersistTaps='handled'>
-                <Text style={styles.titulo}>Cadastrar</Text>
+                <Text style={stylesGlobal.tituloUsuario}>Cadastrar</Text>
 
                 <Text style={styles.txtCampo}>Nome de Usuário</Text>
                 <TextInput
                     onChangeText={(text) => {setNome(text)}}
-                    style={styles.input}
+                    style={stylesGlobal.input}
                     placeholderTextColor="#cccccc"
                     placeholder="Usuário exemplo"
                 />
 
-                <Text style={styles.txtCampo}>Email {''}
-                    {
-                        estadoEmail === true?
-                            <FontAwesome5 name={'check'} size={25} color={Cores.primary} />
-                            :
-                            estadoEmail === false?
-                                <FontAwesome5 name={'times'} size={25} color={'red'} />
-                                :
-                                null
-                    }
-                </Text>
+                <Estado estado={estadoEmail} texto={'Email'}/>
                 <TextInput
                     onChangeText={(text) => {setEmail(text)}}
                     onEndEditing={()=>{setEstadoEmail(validaEmail(email))}}
-                    style={styles.input}
+                    style={stylesGlobal.input}
                     placeholder="exemplo@email.com.br"
                     placeholderTextColor="#cccccc"
                 />
-
-                <Text style={styles.txtCampo}>Senha {''}
-                    {
-                        estadoSenha === true ?
-                            <FontAwesome5 name={'check'} size={25} color={Cores.primary} />
-                            :
-                            estadoSenha === false ?
-                                <FontAwesome5 name={'times'} size={25} color={'red'} />
-                                :
-                                null
-                    }
-                </Text>
-                <View style={styles.senhas}>
+                
+                <Estado estado={estadoSenha} texto={'Senha'}/>
+                <View style={stylesGlobal.senhas}>
                     <TextInput
                         onChangeText={(text) => {setSenha(text)}}
                         onEndEditing={()=>{setEstadoSenha(validaSenha(senha))}}
-                        style={styles.input}
+                        style={stylesGlobal.input}
                         secureTextEntry={verSenha}
                         placeholderTextColor="#cccccc"
                         placeholder="************"
                     />
-                    <TouchableOpacity style={styles.vizualizarSenha} onPress={()=>{verSenha?setVerSenha(false):setVerSenha(true)}}>
+                    <TouchableOpacity style={stylesGlobal.botaoLadoInput} onPress={()=>{verSenha?setVerSenha(false):setVerSenha(true)}}>
                         <FontAwesome5 name={verSenha?'eye':'eye-slash'} size={30} color="white"/>
                     </TouchableOpacity>
                 </View>
                 <Text style={{color:'white',fontSize:15}}>(Mínimo de 6 dígitos, 1 letra maiúscula, 1 letra minúscula, 1 número)</Text>
 
-                <Text style={styles.txtCampo}>Confirme a Senha {''}
-                    {
-                        estadoConfirmaSenha === true ?
-                            <FontAwesome5 name={'check'} size={25} color={Cores.primary} />
-                            :
-                            estadoConfirmaSenha === false ?
-                                <FontAwesome5 name={'times'} size={25} color={'red'} />
-                                :
-                                null
-                    }
-                </Text>
-                <View style={styles.senhas}>
+                <Estado estado={estadoConfirmaSenha} texto={'Confirme a Senha'}/>
+                <View style={stylesGlobal.senhas}>
                     <TextInput
                         onChangeText={(text) => {setConfirmaSenha(text)}}
                         onEndEditing={()=>{setEstadoConfirmaSenha(confirmaSenha === senha && validaSenha(confirmaSenha))}}
                         secureTextEntry={verConfirmaSenha}
-                        style={styles.input}
+                        style={stylesGlobal.input}
                         placeholderTextColor="#cccccc"
                         placeholder="************"
                     />
-                    <TouchableOpacity style={styles.vizualizarSenha} onPress={()=>{verConfirmaSenha?setVerConfirmaSenha(false):setVerConfirmaSenha(true)}}>
+                    <TouchableOpacity style={stylesGlobal.botaoLadoInput} onPress={()=>{verConfirmaSenha?setVerConfirmaSenha(false):setVerConfirmaSenha(true)}}>
                         <FontAwesome5 name={verConfirmaSenha?'eye':'eye-slash'} size={30} color="white"/>
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.botaoCadastrar} onPress={cadastra}>
-                    <Text style={styles.txtBotaoEntrar}>Cadastrar</Text>
+                <TouchableOpacity style={stylesGlobal.botaoUsuario} onPress={cadastra}>
+                    <Text style={stylesGlobal.txtBotaoUsuario}>Cadastrar</Text>
                 </TouchableOpacity>
-                <Text style={styles.txtPossuiConta} onPress={() => navigation.navigate('Login')}>
+
+                <Text style={stylesGlobal.txtLinkSublinhado} onPress={() => navigation.navigate('Login')}>
                     Já possuo uma conta!
                 </Text>
+
                 </ScrollView>
             </View>
             <Rodape telas={{ anterior: 'back'}} />
@@ -137,61 +125,10 @@ const CadastroTela = ({navigation}) => {
 export default CadastroTela;
 
 const styles = StyleSheet.create({
-    titulo: {
-        fontWeight: 'bold', 
-        color: 'white', 
-        fontSize: 30, 
-        marginTop: '5%'
-    },
     txtCampo: {
         fontWeight: 'bold', 
         color: 'white', 
-        fontSize: 25, 
+        fontSize: 22, 
         marginTop: '5%'
     },
-    input: {
-        fontSize: 20, 
-        padding:5,
-        flexGrow:1,
-        color: 'white',
-        borderBottomWidth: 1,
-        borderColor: 'white',
-    },
-    vizualizarSenha:{
-        borderBottomWidth: 1,
-        borderColor: 'white',
-    },
-    senhas:{
-        flex:1, 
-        flexDirection: 'row',
-        width: '100%'
-    },
-    botaoCadastrar:{ 
-        padding: 7, 
-        marginTop: 25,
-        marginBottom: 20, 
-        backgroundColor: 'black',
-        color: 'white',
-        justifyContent: "center",
-        alignItems: 'center',
-        textAlign: 'center',
-        borderRadius: 7,
-    },
-    txtBotaoEntrar: { 
-        color: 'white', 
-        fontSize: 20 
-    },
-    txtPossuiConta:{
-        color:'white',
-        fontWeight: 'bold', 
-        textDecorationLine: 'underline', 
-        fontWeight: 'bold', 
-        fontSize: 18
-    },
-    txtSemCadastro: {
-        color: 'white', 
-        textDecorationLine: 'underline', 
-        fontWeight: 'bold', 
-        fontSize: 15,
-    }
 })
