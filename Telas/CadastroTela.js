@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {TextInput, StyleSheet, TouchableOpacity, Text, View, ImageBackground,Alert, ScrollView } from 'react-native';
+import {TextInput, StyleSheet, TouchableOpacity, Text, View, ImageBackground,Alert, ScrollView, Keyboard} from 'react-native';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
 import {FontAwesome5} from 'react-native-vector-icons';
@@ -18,7 +18,7 @@ const CadastroTela = ({navigation}) => {
 
     const [confirmaSenha, setConfirmaSenha] = useState('')
     const [verConfirmaSenha, setVerConfirmaSenha] = useState(true)
-    const [estadoConfirmaSenha, setEstadoConfirmaSenha] = useState(true)
+    const [estadoConfirmaSenha, setEstadoConfirmaSenha] = useState()
 
     function cadastra(){
         setEstadoEmail(validaEmail(email))
@@ -38,9 +38,9 @@ const CadastroTela = ({navigation}) => {
 
     return (
         <ImageBackground source={imagemFundo} resizeMode="stretch" backgroundColor={Cores.secondary} style={stylesGlobal.backgroundImage}>
-            <View style={styles.conteudo}>
-                <ScrollView>
-                <Text style={styles.titulo}>Criar conta</Text>
+            <View style={stylesGlobal.conteudoTela}>
+                <ScrollView keyboardShouldPersistTaps='handled'>
+                <Text style={styles.titulo}>Cadastrar</Text>
 
                 <Text style={styles.txtCampo}>Nome de Usuário</Text>
                 <TextInput
@@ -80,19 +80,19 @@ const CadastroTela = ({navigation}) => {
                                 null
                     }
                 </Text>
-                    <View style={{flex:1, flexDirection: 'row', width: '100%'}}>
-                        <TextInput
-                            onChangeText={(text) => {setSenha(text)}}
-                            onEndEditing={()=>{setEstadoSenha(validaSenha(senha))}}
-                            style={styles.input}
-                            secureTextEntry={verSenha}
-                            placeholderTextColor="#cccccc"
-                            placeholder="************"
-                        />
-                        <TouchableOpacity style={styles.vizualizarSenha} onPress={()=>{verSenha?setVerSenha(false):setVerSenha(true)}}>
-                            <FontAwesome5 name={verSenha?'eye':'eye-slash'} size={30} color="white"/>
-                        </TouchableOpacity>
-                    </View>
+                <View style={styles.senhas}>
+                    <TextInput
+                        onChangeText={(text) => {setSenha(text)}}
+                        onEndEditing={()=>{setEstadoSenha(validaSenha(senha))}}
+                        style={styles.input}
+                        secureTextEntry={verSenha}
+                        placeholderTextColor="#cccccc"
+                        placeholder="************"
+                    />
+                    <TouchableOpacity style={styles.vizualizarSenha} onPress={()=>{verSenha?setVerSenha(false):setVerSenha(true)}}>
+                        <FontAwesome5 name={verSenha?'eye':'eye-slash'} size={30} color="white"/>
+                    </TouchableOpacity>
+                </View>
                 <Text style={{color:'white',fontSize:15}}>(Mínimo de 6 dígitos, 1 letra maiúscula, 1 letra minúscula, 1 número)</Text>
 
                 <Text style={styles.txtCampo}>Confirme a Senha {''}
@@ -106,7 +106,7 @@ const CadastroTela = ({navigation}) => {
                                 null
                     }
                 </Text>
-                <View style={{flex:1, flexDirection: 'row', width: '100%'}}>
+                <View style={styles.senhas}>
                     <TextInput
                         onChangeText={(text) => {setConfirmaSenha(text)}}
                         onEndEditing={()=>{setEstadoConfirmaSenha(confirmaSenha === senha && validaSenha(confirmaSenha))}}
@@ -120,15 +120,15 @@ const CadastroTela = ({navigation}) => {
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.botaoEntrar} onPress={cadastra}>
-                    <Text style={styles.txtBotaoEntrar}>Criar</Text>
+                <TouchableOpacity style={styles.botaoCadastrar} onPress={cadastra}>
+                    <Text style={styles.txtBotaoEntrar}>Cadastrar</Text>
                 </TouchableOpacity>
                 <Text style={styles.txtPossuiConta} onPress={() => navigation.navigate('Login')}>
                     Já possuo uma conta!
                 </Text>
                 </ScrollView>
             </View>
-            <Rodape telas={{ anterior: 'Pecas'}} />
+            <Rodape telas={{ anterior: 'back'}} />
 
         </ImageBackground>
     );
@@ -137,11 +137,6 @@ const CadastroTela = ({navigation}) => {
 export default CadastroTela;
 
 const styles = StyleSheet.create({
-    conteudo:{
-        flex: 1,
-        paddingLeft: 13, 
-        paddingRight: 13, 
-    },
     titulo: {
         fontWeight: 'bold', 
         color: 'white', 
@@ -166,7 +161,12 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: 'white',
     },
-    botaoEntrar:{ 
+    senhas:{
+        flex:1, 
+        flexDirection: 'row',
+        width: '100%'
+    },
+    botaoCadastrar:{ 
         padding: 7, 
         marginTop: 25,
         marginBottom: 20, 

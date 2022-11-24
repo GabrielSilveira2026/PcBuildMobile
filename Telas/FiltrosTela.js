@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   inputFiltro: {
+    marginLeft:'auto',
+    marginRight: 'auto',
     width:'90%', 
     marginTop:'40%',
     color: 'white',

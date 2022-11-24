@@ -9,7 +9,7 @@ const Cabecalho = () => {
     const navigation = useNavigation()
     return (
         <SafeAreaView style={style.cabecalho}> 
-            <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                 <FontAwesome5 name="user" size={30} color="white" />
             </TouchableOpacity>
 

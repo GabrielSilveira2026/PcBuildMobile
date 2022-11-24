@@ -13,7 +13,7 @@ const RecomendadosTela = ({route, navigation}) => {
   const [carrega, setCarrega] = useState(true)
   const [pcMinimo, setPcMinimo] = useState([])
   const [pcRecomendado, setPcRecomendado] = useState([])
-  const reqs = extraiRequisitosDeUmaLista(selecionados.cart, 'minimos') // usar .listaRequisitos
+  const reqs = extraiRequisitosDeUmaLista(selecionados.cart) // usar .listaRequisitos
 
   /*
     configuracoes[
@@ -99,11 +99,11 @@ const RecomendadosTela = ({route, navigation}) => {
         <ScrollView style={{width: '100%',paddingLeft:5, paddingRight:5}}>
           <Text style={styles.titulo}>Recomendamos esses Pcs, agora basta escolher!</Text>
           {
-            pcMinimo?.length>0?
+            pcMinimo?.length?
             <>
               {
                 reqs.listaJogosSemRequisitos.length>0?
-                  <Text style={styles.txtCalculo}>Os seguintes Jogos não foi considerados no cálculo pois não possuem requisitos listados: {'\n'+ reqs.listaJogosSemRequisitos.map( item => {return '\n'+item})}</Text>
+                  <Text style={styles.txtCalculo}>Os seguintes Jogos não foram considerados no cálculo pois não possuem requisitos listados: {'\n'+ reqs.listaJogosSemRequisitos.map( item => {return '\n'+item})}</Text>
                 :
                 null
               }
@@ -117,7 +117,7 @@ const RecomendadosTela = ({route, navigation}) => {
             carrega?
               <ActivityIndicator style={{marginTop:'auto',marginBottom:'auto'}} size={60} color={Cores.primary}/>
             :
-              <Text style={styles.txtCalculo}>Não foi possível realizar o cálculo pois os jogos a seguir não possuem requisitos listados: {'\n'+ reqs.listaJogosSemRequisitos.map( item => {return '\n'+item})}</Text>
+              <Text style={styles.txtCalculo}>Não foi possível realizar o cálculo pois os jogos selecionados não possuem requisitos listados</Text>
           }
         </ScrollView>
       </View>

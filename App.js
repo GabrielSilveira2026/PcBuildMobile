@@ -15,6 +15,7 @@ import CadastroTela from './Telas/CadastroTela';
 import PecasTela from './Telas/PecasTela';
 import {CartProvider} from './Constantes/CartContext';
 import Cabecalho from './Componentes/Cabecalho'
+import EsqueciSenhaTela from './Telas/EsqueciSenhaTela';
 
 const Stack = createNativeStackNavigator();
 
@@ -63,6 +64,10 @@ function MyStack({navigation}){
           <Stack.Screen
             name="Login"
             component={LoginTela}
+          />
+          <Stack.Screen
+            name="EsqueciSenha"
+            component={EsqueciSenhaTela}
           />
           <Stack.Screen
             name="Favoritos"

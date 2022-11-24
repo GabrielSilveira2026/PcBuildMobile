@@ -145,7 +145,7 @@ export async function calculaRam(jogosSelecionados, tipoRequisito){
   return null
 }
 
-export function extraiRequisitosDeUmaLista(listaDeJogos, tipoRequisito){
+export function extraiRequisitosDeUmaLista(listaDeJogos){
   let listaRequisitosMinimos = []
   let listaRequisitosRecomendados = []
   let listaJogosSemRequisitos = []

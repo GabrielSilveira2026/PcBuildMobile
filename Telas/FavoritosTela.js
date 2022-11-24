@@ -69,7 +69,7 @@ const FavoritosTela = ({navigation}) => {
 
   return (
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
-    <View style={styles.conteudoTela}>
+    <View style={stylesGlobal.conteudoTela}>
       {
         configJson?
         <>

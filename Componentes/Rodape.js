@@ -14,7 +14,7 @@ const Rodape = ({telas}) => {
                 anterior?
                     <TouchableOpacity
                         style={style.botaoVoltar}
-                        onPress={() => navigation.navigate(anterior, parametroAnterior)}
+                        onPress={() => anterior==='back'?navigation.goBack() :navigation.navigate(anterior, parametroAnterior)}
                     >    
                         <Text style={{ color: 'black' }}>{txtAnterior?txtAnterior:'Voltar'}</Text>
                     </TouchableOpacity>
