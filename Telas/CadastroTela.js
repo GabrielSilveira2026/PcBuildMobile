@@ -13,11 +13,13 @@ const CadastroTela = ({navigation}) => {
     const [estadoEmail, setEstadoEmail] = useState('')
 
     const [senha, setSenha] = useState('')
+    const [verSenha, setVerSenha] = useState(true)
     const [estadoSenha, setEstadoSenha] = useState('')
 
     const [confirmaSenha, setConfirmaSenha] = useState('')
-    const [estadoConfirmaSenha, setEstadoConfirmaSenha] = useState('')
-    
+    const [verConfirmaSenha, setVerConfirmaSenha] = useState(true)
+    const [estadoConfirmaSenha, setEstadoConfirmaSenha] = useState(true)
+
     function cadastra(){
         setEstadoEmail(validaEmail(email))
         setEstadoSenha(validaSenha(senha))
@@ -44,6 +46,7 @@ const CadastroTela = ({navigation}) => {
                 <TextInput
                     onChangeText={(text) => {setNome(text)}}
                     style={styles.input}
+                    placeholderTextColor="#cccccc"
                     placeholder="Usuário exemplo"
                 />
 
@@ -63,6 +66,7 @@ const CadastroTela = ({navigation}) => {
                     onEndEditing={()=>{setEstadoEmail(validaEmail(email))}}
                     style={styles.input}
                     placeholder="exemplo@email.com.br"
+                    placeholderTextColor="#cccccc"
                 />
 
                 <Text style={styles.txtCampo}>Senha {''}
@@ -76,13 +80,17 @@ const CadastroTela = ({navigation}) => {
                                 null
                     }
                 </Text>
-                <TextInput
-                    onChangeText={(text) => {setSenha(text)}}
-                    onEndEditing={()=>{setEstadoSenha(validaSenha(senha))}}
-                    style={styles.input}
-                    secureTextEntry={true}
-                    placeholder="************"
-                />
+                    <View style={{flex:1, flexDirection: 'row', width: '100%'}}>
+                        <TextInput
+                            onChangeText={(text) => {setSenha(text)}}
+                            onEndEditing={()=>{setEstadoSenha(validaSenha(senha))}}
+                            style={styles.input}
+                            secureTextEntry={verSenha}
+                            placeholderTextColor="#cccccc"
+                            placeholder="************"
+                        />
+                        <FontAwesome5 style={styles.vizualizarSenha} name={verSenha?'eye':'eye-slash'} size={30} color="white" onPress={()=>{verSenha?setVerSenha(false):setVerSenha(true)}}/>
+                    </View>
                 <Text style={{color:'white',fontSize:15}}>(Mínimo de 6 dígitos, 1 letra maiúscula, 1 letra minúscula, 1 número)</Text>
 
                 <Text style={styles.txtCampo}>Confirme a Senha {''}
@@ -96,13 +104,17 @@ const CadastroTela = ({navigation}) => {
                                 null
                     }
                 </Text>
-                <TextInput
-                    onChangeText={(text) => {setConfirmaSenha(text)}}
-                    onEndEditing={()=>{setEstadoConfirmaSenha(confirmaSenha === senha && validaSenha(confirmaSenha))}}
-                    secureTextEntry={true}
-                    style={styles.input}
-                    placeholder="************"
-                />
+                <View style={{flex:1, flexDirection: 'row', width: '100%'}}>
+                    <TextInput
+                        onChangeText={(text) => {setConfirmaSenha(text)}}
+                        onEndEditing={()=>{setEstadoConfirmaSenha(confirmaSenha === senha && validaSenha(confirmaSenha))}}
+                        secureTextEntry={verConfirmaSenha}
+                        style={styles.input}
+                        placeholderTextColor="#cccccc"
+                        placeholder="************"
+                    />
+                    <FontAwesome5 style={styles.vizualizarSenha} name={verConfirmaSenha?'eye':'eye-slash'} size={30} color="white" onPress={()=>{verConfirmaSenha?setVerConfirmaSenha(false):setVerConfirmaSenha(true)}}/>
+                </View>
 
                 <TouchableOpacity style={styles.botaoEntrar} onPress={cadastra}>
                     <Text style={styles.txtBotaoEntrar}>Criar</Text>
@@ -123,9 +135,8 @@ export default CadastroTela;
 const styles = StyleSheet.create({
     conteudo:{
         flex: 1,
-        paddingLeft: 10, 
-        paddingRight: 10, 
-        paddingTop:5,
+        paddingLeft: 13, 
+        paddingRight: 13, 
     },
     titulo: {
         fontWeight: 'bold', 
@@ -140,10 +151,16 @@ const styles = StyleSheet.create({
         marginTop: '5%'
     },
     input: {
-        padding: 7, 
         fontSize: 20, 
-        backgroundColor: 'white', 
-        borderRadius: 4
+        padding:5,
+        flexGrow:1,
+        color: 'white',
+        borderBottomWidth: 1,
+        borderColor: 'white',
+    },
+    vizualizarSenha:{
+        borderBottomWidth: 1,
+        borderColor: 'white',
     },
     botaoEntrar:{ 
         padding: 7, 
@@ -169,10 +186,8 @@ const styles = StyleSheet.create({
     },
     txtSemCadastro: {
         color: 'white', 
-        // textAlign: 'center', 
         textDecorationLine: 'underline', 
         fontWeight: 'bold', 
         fontSize: 15,
-        marginTop:"60%",
     }
 })
