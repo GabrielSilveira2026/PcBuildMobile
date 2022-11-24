@@ -89,7 +89,9 @@ const CadastroTela = ({navigation}) => {
                             placeholderTextColor="#cccccc"
                             placeholder="************"
                         />
-                        <FontAwesome5 style={styles.vizualizarSenha} name={verSenha?'eye':'eye-slash'} size={30} color="white" onPress={()=>{verSenha?setVerSenha(false):setVerSenha(true)}}/>
+                        <TouchableOpacity style={styles.vizualizarSenha} onPress={()=>{verSenha?setVerSenha(false):setVerSenha(true)}}>
+                            <FontAwesome5 name={verSenha?'eye':'eye-slash'} size={30} color="white"/>
+                        </TouchableOpacity>
                     </View>
                 <Text style={{color:'white',fontSize:15}}>(Mínimo de 6 dígitos, 1 letra maiúscula, 1 letra minúscula, 1 número)</Text>
 
@@ -113,7 +115,9 @@ const CadastroTela = ({navigation}) => {
                         placeholderTextColor="#cccccc"
                         placeholder="************"
                     />
-                    <FontAwesome5 style={styles.vizualizarSenha} name={verConfirmaSenha?'eye':'eye-slash'} size={30} color="white" onPress={()=>{verConfirmaSenha?setVerConfirmaSenha(false):setVerConfirmaSenha(true)}}/>
+                    <TouchableOpacity style={styles.vizualizarSenha} onPress={()=>{verConfirmaSenha?setVerConfirmaSenha(false):setVerConfirmaSenha(true)}}>
+                        <FontAwesome5 name={verConfirmaSenha?'eye':'eye-slash'} size={30} color="white"/>
+                    </TouchableOpacity>
                 </View>
 
                 <TouchableOpacity style={styles.botaoEntrar} onPress={cadastra}>
