@@ -104,18 +104,28 @@ const RecomendadosTela = ({route, navigation}) => {
               {
                 reqs.listaJogosSemRequisitos.length>0?
                   <Text style={styles.txtCalculo}>Os seguintes Jogos não foram considerados no cálculo pois não possuem requisitos listados: {'\n'+ reqs.listaJogosSemRequisitos.map( item => {return '\n'+item})}</Text>
-                :
-                null
+                  :
+                  null
               }
-              {pcMinimo? <CartaoPc pc={{pecas: pcMinimo,tipo: 'Mínima'}}/>: null}
-              {pcRecomendado?.length>0? <CartaoPc pc={{pecas: pcRecomendado, tipo: 'Recomendada'}}/> :
-              <ActivityIndicator animating={carrega} style={{marginTop:'auto',marginBottom:'auto'}} size={20} color={Cores.primary}/>
+              {
+                pcMinimo?
+                  <CartaoPc pc={{pecas: pcMinimo,tipo: 'Mínima'}}/>
+                  : 
+                  null}
+              {
+                pcRecomendado?.length>0? 
+                  <CartaoPc pc={{pecas: pcRecomendado, tipo: 'Recomendada'}}/> 
+                  :
+                  <ActivityIndicator animating={carrega} style={{marginTop:'50%',marginBottom:'50%'}} size={30} color={Cores.primary}/>
               }
               
             </>
             :
             carrega?
-              <ActivityIndicator style={{marginTop:'auto',marginBottom:'auto'}} size={60} color={Cores.primary}/>
+              <>
+                <ActivityIndicator style={{marginTop:'auto',marginBottom:'auto'}} size={60} color={Cores.primary}/>
+                <Text style={styles.txtCarregando}>Já estamos calculando as peças para seus jogos...</Text>
+              </>
             :
               <Text style={styles.txtCalculo}>Não foi possível realizar o cálculo pois os jogos selecionados não possuem requisitos listados</Text>
           }
