@@ -39,10 +39,10 @@ const extraiRequisitos = (requisito)=>{
     }
     if (obj?.children?.[1]?.content) {
       peca = obj?.children[1]?.content
-      if (categoria.includes('Proces')) {
+      if (categoria.includes('proces')) {
         cpu = peca.replace(regex, '');
       }
-      else if (categoria.includes('Mem')){
+      else if (categoria.includes('mem')){
         ram = peca.replace(regex, '');
       }
       else if (categoria.includes('raphic') || categoria.includes('ídeo') || categoria.includes('video')|| categoria.includes('ficos')||categoria.includes('vídeo')){
