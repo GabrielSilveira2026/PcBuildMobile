@@ -15,7 +15,11 @@ const LoginTela = ({route, navigation }) => {
     const [estadoSenha, setEstadoSenha] = useState('')
     
     const logar = () => {
-
+        if (email === 'admin' && senha === 'admin') {
+            navigation.navigate('AdminJogos')
+            setEmail('')
+            setSenha('')
+        }
     }
 
     return (

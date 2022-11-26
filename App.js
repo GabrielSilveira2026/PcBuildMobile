@@ -17,6 +17,7 @@ import {CartProvider} from './Constantes/CartContext';
 import Cabecalho from './Componentes/Cabecalho'
 import EsqueciSenhaTela from './Telas/EsqueciSenhaTela';
 import PerfilTela from './Telas/PerfilTela';
+import AdminJogosTela from './Telas/AdminJogosTela';
 
 const Stack = createNativeStackNavigator();
 
@@ -77,6 +78,10 @@ function MyStack({navigation}){
           <Stack.Screen
             name="Favoritos"
             component={FavoritosTela}
+          />
+          <Stack.Screen
+            name="AdminJogos"
+            component={AdminJogosTela}
           />
       </Stack.Navigator>
     </CartProvider>
