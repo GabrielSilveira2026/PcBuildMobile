@@ -25,10 +25,8 @@ const PecasTela = ({route, navigation}) => {
       catch (e) {
         console.log('Erro ao salvar');
       }
-      navigation.navigate('Favoritos')
     }
-
-    navigation.navigate('Login')
+    navigation.navigate('Login', parametro)
 
   }
 

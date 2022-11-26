@@ -29,29 +29,27 @@ const extraiRequisitos = (requisito)=>{
     let categoria
     let peca
     if(obj?.children?.[0]?.children?.[0]){
-      categoria = obj.children[0].children[0].content
+      categoria = obj.children[0].children[0].content.toLowerCase()
     }
     else if(obj?.children?.[0]){
-      categoria = obj.children[0].content
+      categoria = obj.children[0].content.toLowerCase()
     }
     else{
       categoria = ''
     }
     if (obj?.children?.[1]?.content) {
       peca = obj?.children[1]?.content
-
       if (categoria.includes('Proces')) {
         cpu = peca.replace(regex, '');
       }
       else if (categoria.includes('Mem')){
         ram = peca.replace(regex, '');
       }
-      else if (categoria.includes('raphic') || categoria.includes('ídeo') || categoria.includes('Video')|| categoria.includes('ficos')){
+      else if (categoria.includes('raphic') || categoria.includes('ídeo') || categoria.includes('video')|| categoria.includes('ficos')||categoria.includes('vídeo')){
         gpu = peca.replace(regex, '');
       }
       else if (categoria.includes('torag') || categoria.includes('rmazenament') || categoria.includes('pace')|| categoria.includes('ento')){
         armazenamento = peca.replace(regex, '');
-
       }
 
       // switch (categoria) {
@@ -75,74 +73,6 @@ const extraiRequisitos = (requisito)=>{
   // console.log(requisitos)
   return requisitos;
 
-}
-
-export async function pesquisa2(j) {
-  console.log("chamou")
-  const listaProcurados = []
-  const listaNomeID = await axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
-  for await (const item of listaNomeID.data.applist.apps) {
-    if (item.name.toLowerCase().includes(j.toLowerCase())) {
-      const idJogo = item.appid
-      let objetoJogo
-      try {
-        objetoJogo = await axios.get('https://store.steampowered.com/api/appdetails?appids=' + idJogo)
-      } catch (error) {
-        console.log(error);
-      } 
-      if (objetoJogo?.data[idJogo]?.success === true){
-        const detalheJogo = objetoJogo?.data[idJogo]?.data
-        if (detalheJogo?.type === "game") {
-          console.log(detalheJogo?.steam_appid);
-          const jogo = {
-            id_jogo_steam: detalheJogo?.steam_appid,
-            nome: detalheJogo?.name.replace(regex, ''),
-            imagem: detalheJogo?.header_image,
-            preco: detalheJogo?.price_overview?.final_formatted,
-            estado: 'circle'
-          }
-          if (detalheJogo?.pc_requirements?.minimum) {
-            jogo.requisitosminimos = `${extraiRequisitos(detalheJogo?.pc_requirements?.minimum)}`
-          }
-
-          if (detalheJogo?.pc_requirements?.recommended) {
-            jogo.requisitosrecomendados = extraiRequisitos(detalheJogo?.pc_requirements?.recommended)
-          }
-          console.log(jogo);
-          listaProcurados.push(jogo)
-        }
-      }
-    }
-  }
-  return listaProcurados
-}
-
-export async function calculaRam(jogosSelecionados, tipoRequisito){
-  if (jogosSelecionados.length>0) {
-    const ramDosJogos = []
-    const regex = /[^\dG]/gm
-    // const regex = new RegExp('')
-    for await (const jogo of jogosSelecionados) {
-      let ramDoJogo
-      if (jogo['requisitos'+tipoRequisito]) {
-        let requisitosJson = JSON.parse(jogo['requisitos'+tipoRequisito])
-        if (requisitosJson.Ram.toLowerCase().includes('gb')) {
-          ramDoJogo = parseInt(requisitosJson.Ram.replace(regex, ''))
-        }
-        else {
-          ramDoJogo = 4
-        }
-  
-        ramDosJogos.push(ramDoJogo)
-      }
-      else{
-        ramDosJogos.push(4)
-      }
-    }
-    let ramIndicada = Math.max(...ramDosJogos)
-    return {"title": ramIndicada + " GB"};
-  }
-  return null
 }
 
 export function extraiRequisitosDeUmaLista(listaDeJogos){

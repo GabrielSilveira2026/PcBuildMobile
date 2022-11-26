@@ -62,6 +62,9 @@ const JogosTela = ({navigation}) => {
         Alert.alert("Nenhum jogo encontrado", "Por favor, tente pesquisar de outra maneira")
       }
     }
+    else{
+      setListaJogos(lista)
+    }
   }
 
   return (
