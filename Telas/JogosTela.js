@@ -8,7 +8,6 @@ import axios from 'axios';
 import lista from '../Dados/jogos.json';
 import {useCart} from '../Constantes/CartContext'
 
-
 const JogosTela = ({navigation}) => {
   const selecionados = useCart()
   const [jogo, setJogo] = useState('')
@@ -40,7 +39,6 @@ const JogosTela = ({navigation}) => {
   //     Alert.alert("Por favor, digite o nome de um jogo")
   //   }
   // }
-
 
   const pesquisa = async() => {
     Keyboard.dismiss()
