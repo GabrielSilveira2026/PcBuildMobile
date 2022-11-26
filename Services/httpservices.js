@@ -15,7 +15,6 @@ const extraiRequisitos = (requisito)=>{
     dadosReq = reqJson?.[1]?.children
   }
   else if (reqJson?.[2]?.children && reqJson[2].children?.[1]) {
-    // console.log(reqJson[2].children?.[1]);
     dadosReq = reqJson?.[2]?.children
   }
   else if (reqJson?.[3]?.children && reqJson[3].children?.[1]) {
@@ -82,16 +81,44 @@ export function extraiRequisitosDeUmaLista(listaDeJogos){
   for (let jogo of listaDeJogos) {
     if (jogo.requisitosminimos) {
       let requisitosJson = JSON.parse(jogo.requisitosminimos)
+      console.log(requisitosJson);
+      // for (const campo in requisitosJson) {
+      //   if(requisitosJson[campo] === 'undefined'){
+      //     delete requisitosJson[campo]
+      //   };
+      // }
+      if (requisitosJson?.Cpu === 'undefined' || requisitosJson?.Ram === 'undefined' || requisitosJson?.Gpu === 'undefined' || requisitosJson?.Armazenamento === 'undefined') {
+        if(!listaJogosSemRequisitos.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
+          listaJogosSemRequisitos.push(jogo.nome)
+        }
+      }
       listaRequisitosMinimos.push(requisitosJson)
     }
     else{
-      listaJogosSemRequisitos.push(jogo.nome)
+      if(!listaJogosSemRequisitos.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
+        listaJogosSemRequisitos.push(jogo.nome)
+      }
     }
-  }
-  for (let jogo of listaDeJogos) {
+
     if (jogo.requisitosrecomendados) {
       let requisitosJson = JSON.parse(jogo.requisitosrecomendados)
+      // for (const campo in requisitosJson) {
+      //   if(requisitosJson[campo] === 'undefined'){
+      //     delete requisitosJson[campo]
+      //   };
+      // }
+      if (requisitosJson?.Cpu === 'undefined' || requisitosJson?.Ram === 'undefined' || requisitosJson?.Gpu === 'undefined' || requisitosJson?.Armazenamento === 'undefined') {
+        if(!listaJogosSemRequisitos.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
+          listaJogosSemRequisitos.push(jogo.nome)
+        } 
+      }
       listaRequisitosRecomendados.push(requisitosJson)
+    }
+    else{
+      if(!listaJogosSemRequisitos.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
+        listaJogosSemRequisitos.push(jogo.nome)
+      }
+        
     }
   }
   return {listaRequisitosMinimos, listaRequisitosRecomendados, listaJogosSemRequisitos}
