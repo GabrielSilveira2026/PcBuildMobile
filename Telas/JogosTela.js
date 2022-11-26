@@ -15,31 +15,6 @@ const JogosTela = ({navigation}) => {
   const [listaJogos, setListaJogos] = useState(lista)
   const listaAuxiliar = []
 
-  // const fazConsulta = async() => {
-  //   if (jogo !== "") {
-  //     const resposta = await pesquisa2(jogo)
-  //     if (resposta.length > 0) {
-  //       setListaJogos(resposta)
-  //       // for (const jogo of resposta) {
-  //       //   try {
-  //       //     console.log(jogo?.requisitos?.minimos);
-  //       //     await axios.post("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/", jogo);
-  //       //     console.log("inseriu")
-  //       //   }
-  //       //   catch (e) {
-  //       //     console.log(e.response);
-  //       //   }
-  //       // }
-  //     }
-  //     else {
-  //       Alert.alert("Nenhum jogo encontrado, por favor tente novamente")
-  //     }
-  //   }
-  //   else{
-  //     Alert.alert("Por favor, digite o nome de um jogo")
-  //   }
-  // }
-
   const pesquisa = async() => {
     Keyboard.dismiss()
     let regex = /[^0-9a-zA-Z]/gm
