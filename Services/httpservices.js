@@ -48,24 +48,9 @@ const extraiRequisitos = (requisito)=>{
       else if (categoria.includes('raphic') || categoria.includes('ídeo') || categoria.includes('video')|| categoria.includes('ficos')||categoria.includes('vídeo')){
         gpu = peca.replace(regex, '');
       }
-      else if (categoria.includes('torag') || categoria.includes('rmazenament') || categoria.includes('pace')|| categoria.includes('ento')){
+      else if (categoria.includes('torag') || categoria.includes('rmazenament') || categoria.includes('pace')|| categoria.includes('ento') || categoria.includes('riv')){
         armazenamento = peca.replace(regex, '');
       }
-
-      // switch (categoria) {
-      //   case 'Processor:' || 'Processador':
-      //     cpu = peca.replace(regex, '');
-      //     break;
-      //   case 'Memory:' || 'Memória':
-      //     ram = peca.replace(regex, '');
-      //     break;
-      //   case 'Graphics:' || 'Placa de vídeo:'||  'Video Card:':
-      //     gpu = peca.replace(regex, '');
-      //     break;
-      //   case 'Storage:' || 'Armazenamento:' || 'Hard Disk Space:':
-      //     armazenamento = peca.replace(regex, '');
-      //     break;
-      // }
     }
   }
   // console.log(resultado);
