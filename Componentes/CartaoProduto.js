@@ -1,4 +1,4 @@
-import {StyleSheet,TouchableOpacity, Text, ImageBackground, Alert, View, Image,Linking} from 'react-native'
+import {StyleSheet,TouchableOpacity, Text, ImageBackground, Alert, View, Image,Linking, ScrollView} from 'react-native'
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import React from 'react'
 import {FontAwesome5} from 'react-native-vector-icons';
@@ -33,7 +33,7 @@ const CartaoProduto = ({produto}) => {
     return (
         <TouchableOpacity style={styles.cartao} onPress={() => {link?Linking.openURL(link):null}}>
             <Image style={styles.imagem} source={{uri: imagem}}/>
-            <Text style={styles.titulo}>{titulo?.substr(0,60)}...</Text>
+            <View style={styles.titulo}><Text>{titulo?.substr(0,60)}...</Text></View>
             <View style={styles.items}>
                 {
                     logo ?

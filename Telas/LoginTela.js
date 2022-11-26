@@ -14,6 +14,10 @@ const LoginTela = ({route, navigation }) => {
     const [verSenha, setVerSenha] = useState(true)
     const [estadoSenha, setEstadoSenha] = useState('')
     
+    const logar = () => {
+
+    }
+
     return (
         <ImageBackground source={imagemFundo} resizeMode="stretch" backgroundColor={Cores.secondary} style={stylesGlobal.backgroundImage}>
             <View style={stylesGlobal.conteudoTela}>
@@ -35,6 +39,7 @@ const LoginTela = ({route, navigation }) => {
                     onChangeText={(text) => {setEmail(text)}}
                     //onEndEditing={()=>{setEstadoEmail(validaEmail(email))}}
                     placeholderTextColor="#cccccc"
+                    autoCapitalize='none'
                     style={stylesGlobal.input}
                     placeholder="exemplo@email.com.br"
                 />
@@ -46,15 +51,17 @@ const LoginTela = ({route, navigation }) => {
                         // onEndEditing={()=>{setEstadoSenha(validaSenha(senha))}}
                         style={stylesGlobal.input}
                         secureTextEntry={verSenha}
+                        autoCapitalize='none'
                         placeholderTextColor="#cccccc"
                         placeholder="************"
+                        onSubmitEditing={logar}
                     />
                     <TouchableOpacity style={stylesGlobal.botaoLadoInput} onPress={()=>{verSenha?setVerSenha(false):setVerSenha(true)}}>
                         <FontAwesome5 name={verSenha?'eye':'eye-slash'} size={30} color="white"/>
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={stylesGlobal.botaoUsuario}>
+                <TouchableOpacity style={stylesGlobal.botaoUsuario} onPress={logar}>
                     <Text style={stylesGlobal.txtBotaoUsuario}>Entrar</Text>
                 </TouchableOpacity>
 
