@@ -29,42 +29,35 @@ const FavoritosTela = ({navigation}) => {
   },[])
 
   const removeConfiguracao = async() => {
-    let confirmaRemocao
     if (configJson) {
-      //  function alerta(){
-      //     Alert.alert('Remover Configuração', 'Deseja remover essa configuração do seu Favorito?',[  
-      //       {  
-      //           text: 'Sim',  
-      //           onPress: (()=> {return('Sim')}), 
-      //       },  
-      //       {
-      //         text: 'Não', 
-      //         onPress: (()=> {return('Nao')})
-      //       },  
-      //     ])
-      // }
-      // confirmaRemocao = await alerta()
-      // console.log(confirmaRemocao);
-      // if (confirmaRemocao === 'Sim') {
-        try {
-          await AsyncStorage.setItem('@configuracaoSalva', '')
-          setConfigJson()
-        } 
-        catch (e) {
-          console.log('Erro ao excluir');
-        }
-  
-        try {
-          await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', '')
-        } 
-        catch (e) {
-          console.log('Erro ao excluir');
-        }
-      }
-      else{
-        navigation.navigate('Jogos')
-      }
-    // }
+      let confirmaRemocao
+      Alert.alert('Remover Configuração', 'Deseja remover essa configuração do seu Favorito?',[  
+        {  
+          text: 'Sim',  
+          onPress: (async()=> {
+            try {
+              await AsyncStorage.setItem('@configuracaoSalva', '')
+              setConfigJson()
+            } 
+            catch (e) {
+              console.log('Erro ao excluir');
+            }
+      
+            try {
+              await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', '')
+            } 
+            catch (e) {
+              console.log('Erro ao excluir');
+            }
+          }), 
+        },  
+
+        {
+          text: 'Não', 
+          onPress: (()=> {confirmaRemocao = 'Nao'})
+        },  
+      ])
+    }
   }
 
   return (
