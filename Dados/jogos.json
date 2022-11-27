@@ -23,9 +23,7 @@
       "id_jogo_steam": 1593500,
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420",
       "nome": "God of War",
-      "preco": "R$ 199,90",
-      "requisitosminimos": "{\"Armazenamento\": \"undefined\",\"Cpu\": \" Intel i5 3570K / AMD FX-8350\",\"Gpu\": \" GTX 770 with 2GB VRAM / Radeon R9 280X 3GB\",\"Ram\": \" 8 GB RAM\"}"
-
+      "preco": "R$ 199,90"
     },
     { 
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1172380/header.jpg?t=1650554420",

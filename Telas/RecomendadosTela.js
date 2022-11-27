@@ -5,7 +5,6 @@ import Rodape from '../Componentes/Rodape'
 import CartaoPc from '../Componentes/CartaoPc'
 import {calculaPlacaBackEnd, calculaRam, extraiRequisitosDeUmaLista} from '../Services/httpservices'
 import {useCart} from '../Constantes/CartContext'
-import {FontAwesome5} from 'react-native-vector-icons';
 import axios from 'axios'
 const RecomendadosTela = ({route, navigation}) => {
   const precoFiltro = route.params
@@ -14,13 +13,12 @@ const RecomendadosTela = ({route, navigation}) => {
   const [pcMinimo, setPcMinimo] = useState([])
   const [pcRecomendado, setPcRecomendado] = useState([])
   const reqs = extraiRequisitosDeUmaLista(selecionados.cart) // usar .listaRequisitos
-
   useEffect(()=>{
     async function montaPC(){
       let pc
       try {
         if (reqs.listaRequisitosMinimos.length) {
-          pc = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosMinimos}); 
+          pc = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosMinimos});
           let {placa, ram, rom} = pc.data
           setPcMinimo([placa,ram,rom])
         }
@@ -28,7 +26,6 @@ const RecomendadosTela = ({route, navigation}) => {
           setCarrega(false)
         }
       } catch (error) {
-        // console.log(error);
         setCarrega(false)
       } 
 
@@ -42,7 +39,6 @@ const RecomendadosTela = ({route, navigation}) => {
           setCarrega(false)
         }
       } catch (error) {
-        // console.log(error);
         setCarrega(false)
       } 
     }
@@ -63,10 +59,10 @@ const RecomendadosTela = ({route, navigation}) => {
             pcMinimo?.length?
             <>
               {
-                reqs.listaJogosSemRequisitos.length>0?
-                  <Text style={styles.txtCalculo}>Os seguintes Jogos não foram considerados no cálculo pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitos.map( item => {return '\n'+item})}</Text>
-                  :
-                  null
+                pcMinimo && reqs.listaJogosSemRequisitosMinimos.length || pcRecomendado?.length && reqs.listaJogosSemRequisitosRecomendados?.length?
+                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosMinimos.map( item => {return '\n'+item})}</Text>
+                :
+                null
               }
               {
                 pcMinimo?
