@@ -44,7 +44,7 @@
       "id_jogo_steam": 1913730,
       "nome": "Chimeraland",
       "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1913730/header.jpg?t=1668658347",
-      "requisitosminimos": "{\"Armazenamento\": \" 12 GB available space\",\"Cpu\": \" Intel Core i3-10300\",\"Gpu\": \" GTX 760\",\"Ram\": \" 8 GB RAM\"}",
+      "requisitosminimos": "{\"Armazenamento\": \"undefined\",\"Cpu\": \" Intel Core i3-10300\",\"Gpu\": \" GTX 760\",\"Ram\": \" 8 GB RAM\"}",
       "requisitosrecomendados": "{\"Armazenamento\": \" 12 GB available space\",\"Cpu\": \" Intel Core i5-10400\",\"Gpu\": \" RTX2060\",\"Ram\": \" 16 GB RAM\"}",
       "preco": null,
       "estado": "circle"
