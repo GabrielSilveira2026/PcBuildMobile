@@ -16,6 +16,9 @@ const RecomendadosTela = ({route, navigation}) => {
   useEffect(()=>{
     async function montaPC(){
       let pc
+
+      console.log(reqs);
+
       try {
         if (reqs.listaRequisitosMinimos.length) {
           pc = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosMinimos});
@@ -59,8 +62,11 @@ const RecomendadosTela = ({route, navigation}) => {
             pcMinimo?.length?
             <>
               {
-                pcMinimo && reqs.listaJogosSemRequisitosMinimos.length || pcRecomendado?.length && reqs.listaJogosSemRequisitosRecomendados?.length?
-                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosMinimos.map( item => {return '\n'+item})}</Text>
+                pcMinimo && reqs.listaJogosSemRequisitosMinimos?.length?
+                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo de configuração Mínima pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosMinimos.map( item => {return '\n'+item})}</Text>
+                :
+                pcRecomendado?.length && reqs.listaJogosSemRequisitosRecomendados?.length?
+                <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo de configuração Recomendada pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item})}</Text>
                 :
                 null
               }

@@ -24,7 +24,7 @@ export function extraiRequisitosDeUmaLista(listaDeJogos){
       listaRequisitosMinimos.push(requisitosJson)
     }
     else{
-      if(!listaJogosSemRequisitos.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
+      if(!listaJogosSemRequisitosMinimos.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
         listaJogosSemRequisitosMinimos.push(jogo.nome)
       }
     }
