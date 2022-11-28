@@ -30,7 +30,6 @@ const FavoritosTela = ({navigation}) => {
 
   const removeConfiguracao = async() => {
     if (configJson) {
-      let confirmaRemocao
       Alert.alert('Remover Configuração', 'Deseja remover essa configuração do seu Favorito?',[  
         {  
           text: 'Sim',  
@@ -50,13 +49,14 @@ const FavoritosTela = ({navigation}) => {
               console.log('Erro ao excluir');
             }
           }), 
-        },  
-
+        },
         {
-          text: 'Não', 
-          onPress: (()=> {confirmaRemocao = 'Nao'})
+          text: 'Não'
         },  
       ])
+    }
+    else{
+      navigation.navigate('Jogos')
     }
   }
 
@@ -73,7 +73,7 @@ const FavoritosTela = ({navigation}) => {
                 Configuração {configJson.tipo} para os jogos :
               </Text>
 
-              {jogosSalvos.map(jogo => (<Text style={{ fontSize: 15, color: 'white', alignItems: 'flex-start' }} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
+              {jogosSalvos.map(jogo => (<Text style={styles.jogos} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
             </>
             }
             style={{width: '100%'}}
@@ -114,6 +114,11 @@ const styles = StyleSheet.create({
     color: 'white', 
     marginBottom: 15
   },
+  jogos:{ 
+    fontSize: 15, 
+    color: 'white', 
+    alignItems: 'flex-start' 
+  }, 
   conteudoTela:{
     flex: 1,
     paddingLeft: 10, 

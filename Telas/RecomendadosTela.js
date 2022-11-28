@@ -13,6 +13,7 @@ const RecomendadosTela = ({route, navigation}) => {
   const [pcMinimo, setPcMinimo] = useState([])
   const [pcRecomendado, setPcRecomendado] = useState([])
   const reqs = extraiRequisitosDeUmaLista(selecionados.cart) // usar .listaRequisitos
+
   useEffect(()=>{
     async function montaPC(){
       let pc
@@ -63,25 +64,26 @@ const RecomendadosTela = ({route, navigation}) => {
             <>
               { 
                 pcMinimo && reqs.listaJogosSemRequisitosMinimos?.length && pcRecomendado?.length && reqs.listaJogosSemRequisitosRecomendados?.length?
-                <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item})}</Text>
+                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item})}</Text>
                 :
                 pcMinimo && reqs.listaJogosSemRequisitosMinimos?.length?
                   <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo de configuração Mínima pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosMinimos.map( item => {return '\n'+item})}</Text>
                 :
                 pcRecomendado?.length && reqs.listaJogosSemRequisitosRecomendados?.length?
-                <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo de configuração Recomendada pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item})}</Text>
+                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo de configuração Recomendada pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item})}</Text>
                 :
                 null
               }
               {
                 pcMinimo?
                   <CartaoPc pc={{pecas: pcMinimo,tipo: 'Mínima'}}/>
-                  : 
-                  null}
+                : 
+                  null
+              }
               {
                 pcRecomendado?.length>0? 
                   <CartaoPc pc={{pecas: pcRecomendado, tipo: 'Recomendada'}}/> 
-                  :
+                :
                   <ActivityIndicator animating={carrega} style={{marginTop:'50%',marginBottom:'50%'}} size={30} color={Cores.primary}/>
               }
               
