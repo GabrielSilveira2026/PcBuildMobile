@@ -18,33 +18,36 @@ const RecomendadosTela = ({route, navigation}) => {
     async function montaPC(){
       let pc
 
-      console.log(reqs);
+      console.log(JSON.stringify(reqs,0,2));
 
-      try {
-        if (reqs.listaRequisitosMinimos.length) {
+      if (reqs.listaRequisitosMinimos.length) {
+        try {
           pc = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosMinimos});
           let {placa, ram, rom} = pc.data
           setPcMinimo([placa,ram,rom])
-        }
-        else{
+        } catch (error) {
           setCarrega(false)
-        }
-      } catch (error) {
+        } 
+      }
+      else{
         setCarrega(false)
-      } 
+      }
+      
 
-      try {
-        if (reqs.listaRequisitosRecomendados.length) {
+      if (reqs.listaRequisitosRecomendados.length) {
+        try {
           pc = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosRecomendados}); 
           let {placa, ram, rom} = pc.data
           setPcRecomendado([placa,ram,rom])
-        }
-        else{
+        } 
+        catch (error) {
+          console.log("PC----------:",pc.data);
           setCarrega(false)
-        }
-      } catch (error) {
+        } 
+      }
+      else{
         setCarrega(false)
-      } 
+      }
     }
     montaPC()
     return()=>{
@@ -64,7 +67,10 @@ const RecomendadosTela = ({route, navigation}) => {
             <>
               { 
                 pcMinimo && reqs.listaJogosSemRequisitosMinimos?.length && pcRecomendado?.length && reqs.listaJogosSemRequisitosRecomendados?.length?
-                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item})}</Text>
+                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo pois não possuem requisitos completos: {'\n\n Requisitos Mínimos incompletos:'+ reqs.listaJogosSemRequisitosMinimos.map( item => {return '\n'+item})}
+                  
+                  {'\n\n Requisitos Recomendados incompletos:'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item})}
+                  </Text>
                 :
                 pcMinimo && reqs.listaJogosSemRequisitosMinimos?.length?
                   <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo de configuração Mínima pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosMinimos.map( item => {return '\n'+item})}</Text>

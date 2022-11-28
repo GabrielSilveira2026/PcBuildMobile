@@ -11,16 +11,16 @@ export function extraiRequisitosDeUmaLista(listaDeJogos){
   for (let jogo of listaDeJogos) {
     if (jogo.requisitosminimos) {
       let requisitosJson = JSON.parse(jogo.requisitosminimos)
-      // for (const campo in requisitosJson) {
-      //   if(requisitosJson[campo] === 'undefined'){
-      //     delete requisitosJson[campo]
-      //   };
-      // }
       if (requisitosJson?.Cpu === 'undefined' || requisitosJson?.Ram === 'undefined' || requisitosJson?.Gpu === 'undefined' || requisitosJson?.Armazenamento === 'undefined') {
         if(!listaJogosSemRequisitosMinimos.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
           listaJogosSemRequisitosMinimos.push(jogo.nome)
         }
       }
+      // for (const campo in requisitosJson) {
+      //   if(requisitosJson[campo] === 'undefined'){
+      //     delete requisitosJson[campo]
+      //   };
+      // }
       listaRequisitosMinimos.push(requisitosJson)
     }
     else{
@@ -31,16 +31,16 @@ export function extraiRequisitosDeUmaLista(listaDeJogos){
 
     if (jogo.requisitosrecomendados) {
       let requisitosJson = JSON.parse(jogo.requisitosrecomendados)
-      // for (const campo in requisitosJson) {
-      //   if(requisitosJson[campo] === 'undefined'){
-      //     delete requisitosJson[campo]
-      //   };
-      // }
       if (requisitosJson?.Cpu === 'undefined' || requisitosJson?.Ram === 'undefined' || requisitosJson?.Gpu === 'undefined' || requisitosJson?.Armazenamento === 'undefined') {
         if(!listaJogosSemRequisitosRecomendados.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
           listaJogosSemRequisitosRecomendados.push(jogo.nome)
         } 
       }
+      // for (const campo in requisitosJson) {
+      //   if(requisitosJson[campo] === 'undefined'){
+      //     delete requisitosJson[campo]
+      //   };
+      // }
       listaRequisitosRecomendados.push(requisitosJson)
     }
     else{
