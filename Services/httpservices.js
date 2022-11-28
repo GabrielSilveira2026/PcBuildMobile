@@ -61,10 +61,11 @@ const extraiRequisitos = (requisito)=>{
 }
 
 export async function pesquisa2(j) {
+  let regexJogo = /[^0-9a-z]/gm
   const listaProcurados = []
   const listaNomeID = await axios.get('http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=1640848EDE04C9DDF3967D8655B2C265&format=jogos')
   for await (const item of listaNomeID.data.applist.apps) {
-    if (item.name.toLowerCase().includes(j.toLowerCase())) {
+    if (item.name.toLowerCase().replace(regexJogo,"").includes(j.toLowerCase().replace(regexJogo,""))) {
       const idJogo = item.appid
       let objetoJogo
       try {
