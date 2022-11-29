@@ -1,37 +1,77 @@
-import * as React from 'react';
-import {View , Text, StyleSheet, ImageBackground, FlatList,TouchableOpacity,Dimensions} from 'react-native';
+import React,{useEffect, useState} from 'react';
+import {View , Text, StyleSheet, ImageBackground, FlatList,TouchableOpacity,Dimensions, Alert} from 'react-native';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import CartaoProduto from '../Componentes/CartaoProduto'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useCart} from '../Constantes/CartContext'
+import {autenticaUsuario,validaToken, favoritaPc} from '../Services/httpservices'
 
 const PecasTela = ({route, navigation}) => {
-  const parametro = route?.params
-  const selecionados = useCart()
+  const config = route?.params
+  const [usuario, setUsuario] = useState()
+
 
   const salvaConfiguracao = async() => {
-    // Confere se esta logado no backend, se nn estiver redirecionar para tela de login
-    if (selecionados.cart.length > 0 && parametro.pecas.length > 0) {
-      try {
-        parametro.jogos = selecionados.cart
-        await AsyncStorage.setItem('@configuracaoSalva', JSON.stringify(parametro))
-        //passar pro backend json pecas
-      } 
-      catch (e) {
-        console.log('Erro ao salvar');
+    let usuario
+    try {
+      usuario = JSON.parse(await AsyncStorage.getItem("@usuario"))
+    } catch (error) {
+      Alert.alert("Ocorreu um erro ao recuperar sua configuração")
+    }
+
+    if(usuario) {
+      let statusToken = await validaToken(usuario.tokenjwt)
+      if (statusToken.status === 200) {
+        try {
+          await favoritaPc(usuario.tokenjwt, usuario.usuario, config)
+          navigation.navigate('Favoritos', config)
+        }
+        catch (error){
+          Alert.alert("Erro", "Ocorreu um erro ao Salvar sua configuração no banco")
+        }
+      }
+      else if(statusToken.status === 404){
+        navigation.navigate('Login', config)
+      }
+      else{
+        Alert.alert("Ocorreu um erro ao Salvar sua configuração")
       }
     }
-    navigation.navigate('Login', parametro)
+    else{
+      Alert.alert("Login não efetuado", "Por favor, faça login para salvar configurações")
+      navigation.navigate('Login', config)
+    }
+
+    // try {
+    //   tokenUsuario = await AsyncStorage.getItem("@tokenUsuario")
+    // } catch (error) {
+    //   Alert.alert("Ocorreu um erro ao recuperar sua configuração")
+    // }
+    // if (tokenUsuario) {
+    //   let statusToken = await validaToken(tokenUsuario)
+    //   if (statusToken.status === 200) {
+    //     navigation.native("Favotiros", config)
+    //   }
+    //   else if(statusToken.status === 404){
+    //     navigation.navigate('Login', config)
+    //   }
+    //   else{
+    //     Alert.alert("Ocorreu um erro ao salvar sua configuração")
+    //   }
+    // }
+    // else{
+    //   navigation.navigate('Login', config)
+    // }
 
   }
 
   return (
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
     <View style={stylesGlobal.conteudoTela}>
-      <Text style={styles.titulo}>Essas são as peças para jogar em uma configuração {parametro?.tipo}</Text>
+      <Text style={styles.titulo}>Essas são as peças para jogar em uma configuração {config?.tipo}</Text>
       <FlatList
         style={{width: '100%'}}
-        data={parametro?.pecas}
+        data={config?.pecas}
         keyExtractor={item => item?.title}
         renderItem={p => (
           <CartaoProduto produto={p.item}/>

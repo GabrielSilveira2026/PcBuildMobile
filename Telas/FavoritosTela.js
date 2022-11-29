@@ -5,19 +5,46 @@ import CartaoProduto from '../Componentes/CartaoProduto'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FavoritosTela = ({navigation}) => {
-  const [configJson, setConfigJson] = useState([])
+  const [configJson, setConfigJson] = useState()
+  const [estadoUsuario, setEstadoUsuario] = useState()
   
   useEffect(()=>{
-    async function pegaConfigSalva(){
+    console.log(configJson);
+    async function validaEstadoUsuario(){
+      let usuario
       try {
-        let configSalvaString = await AsyncStorage.getItem("@configuracaoSalva")
-        setConfigJson(JSON.parse(configSalvaString))
-      } 
-      catch (error) {
-        console.log(error);
+        usuario = JSON.parse(await AsyncStorage.getItem("@usuario"))
+      } catch (error) {
+        Alert.alert("Ocorreu um erro ao recuperar sua configuração")
+      }
+      if(usuario) {
+        let statusToken = await validaToken(usuario.tokenjwt)
+        if (statusToken.status === 200) {
+          setEstadoUsuario('Logado')
+          //get no backend pra pegar a config do usuario
+        }
+        else if(statusToken.status === 404){
+          setEstadoUsuario('Não logado')
+        }
+        else{
+            Alert.alert("Ocorreu um erro ao puxar sua configuração")
+        }
+      }
+      else{
+        setEstadoUsuario('Não logado')
       }
     }
-    pegaConfigSalva()
+
+    // async function pegaConfigSalva(){
+    //   try {
+    //     let configSalvaString = await AsyncStorage.getItem("@configuracaoSalva")
+    //     setConfigJson(JSON.parse(configSalvaString))
+    //   } 
+    //   catch (error) {
+    //     console.log(error);
+    //   }
+    // }
+    validaEstadoUsuario()
   },[])
 
   const removeConfiguracao = async() => {
@@ -56,27 +83,30 @@ const FavoritosTela = ({navigation}) => {
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
     <View style={stylesGlobal.conteudoTela}>
       {
-        configJson?
-        <>
-          <FlatList
-            ListHeaderComponent={ 
-            <>
-              <Text style={styles.titulo}>
-                Configuração {configJson.tipo} para os jogos :
-              </Text>
-              {configJson?.jogos?.map(jogo => (<Text style={styles.jogos} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
-            </>
-            }
-            style={{width: '100%'}}
-            data={configJson?.pecas}
-            keyExtractor={item => item?.title}
-            renderItem={p => (
-              <CartaoProduto produto={p.item}/>
-              )}
-            />
-        </>
+        estadoUsuario === 'Não logado'?
+          configJson?
+          <>
+            <FlatList
+              ListHeaderComponent={ 
+              <>
+                <Text style={styles.titulo}>
+                  Configuração {configJson.tipo} para os jogos :
+                </Text>
+                {configJson?.jogos?.map(jogo => (<Text style={styles.jogos} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
+              </>
+              }
+              style={{width: '100%'}}
+              data={configJson?.pecas}
+              keyExtractor={item => item?.title}
+              renderItem={p => (
+                <CartaoProduto produto={p.item}/>
+                )}
+              />
+          </>
+          :
+          <Text style={styles.titulo}>Você ainda tem nem uma configuração Favoritada :(</Text>
         :
-        <Text style={styles.titulo}>Você ainda tem nem uma configuração Favoritada :(</Text>
+        <TouchableOpacity><Text style={{...styles.titulo, textAlign: 'center'}}>Faça o login para salvar configurações</Text></TouchableOpacity>
       }
       </View>
       <View style={styles.rodape}>

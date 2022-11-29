@@ -1,21 +1,36 @@
 import React, {useState} from 'react';
-import {TextInput, StyleSheet, TouchableOpacity, Text, View, ImageBackground, ScrollView } from 'react-native';
+import {TextInput, StyleSheet, TouchableOpacity, Text, View, ImageBackground, ScrollView, Alert } from 'react-native';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
 import {FontAwesome5} from 'react-native-vector-icons';
-import {validaSenha, validaEmail} from '../Services/httpservices'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {autenticaUsuario} from '../Services/httpservices'
 
 const LoginTela = ({route, navigation }) => {
+    const configSalva = route?.params
     const [email, setEmail] = useState('')
-    const [estadoEmail, setEstadoEmail] = useState('')
 
     const [senha, setSenha] = useState('')
     const [verSenha, setVerSenha] = useState(true)
-    const [estadoSenha, setEstadoSenha] = useState('')
-    
-    const logar = () => {
 
+    const logar = async() => {
+        let usuarioAutenticado
+        try {
+            usuarioAutenticado = await autenticaUsuario({email, senha})
+        } catch (error) {
+            Alert.alert("Erro ao efetuar o autenticar usuario", error)
+        }
+
+        if (usuarioAutenticado.status === 201) {
+            await AsyncStorage.setItem("@usuario", JSON.parse({usuario: usuarioAutenticado.usuario, tokenjwt:usuarioAutenticado.tokenjwt}))
+            configSalva?
+                navigation.navigate('Favoritos', configSalva)
+            :
+                navigation.navigate('Jogos')
+        }
+        else {
+            alert("Erro ao efetuar o login")
+        }
     }
 
     return (
@@ -25,19 +40,9 @@ const LoginTela = ({route, navigation }) => {
                 <Text style={stylesGlobal.tituloUsuario}>Entrar</Text>
 
                 <Text style={styles.txtCampo}>Email {''}
-                {
-                    estadoEmail === true?
-                        <FontAwesome5 name={'check'} size={25} color={Cores.primary} />
-                        :
-                        estadoEmail === false?
-                            <FontAwesome5 name={'times'} size={25} color={'red'} />
-                            :
-                            null
-                }
                 </Text>
                 <TextInput
                     onChangeText={(text) => {setEmail(text)}}
-                    //onEndEditing={()=>{setEstadoEmail(validaEmail(email))}}
                     placeholderTextColor="#cccccc"
                     autoCapitalize='none'
                     style={stylesGlobal.input}
@@ -48,7 +53,6 @@ const LoginTela = ({route, navigation }) => {
                 <View style={stylesGlobal.senhas}>
                     <TextInput
                         onChangeText={(text) => {setSenha(text)}}
-                        // onEndEditing={()=>{setEstadoSenha(validaSenha(senha))}}
                         style={stylesGlobal.input}
                         secureTextEntry={verSenha}
                         autoCapitalize='none'
