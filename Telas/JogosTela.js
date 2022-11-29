@@ -4,9 +4,10 @@ import {TextInput, FlatList, StyleSheet, TouchableOpacity, Text, View, ImageBack
 import {FontAwesome5} from 'react-native-vector-icons';
 import CartaoJogo from '../Componentes/CartaoJogo'
 import Rodape from '../Componentes/Rodape'
-import axios from 'axios';
 import lista from '../Dados/jogos.json';
 import {useCart} from '../Constantes/CartContext'
+import {consultaBanco} from '../Services/httpservices'
+
 
 const JogosTela = ({navigation}) => {
   const selecionados = useCart()
@@ -20,7 +21,7 @@ const JogosTela = ({navigation}) => {
     let regex = /[^0-9a-zA-Z]/gm
     if (jogo !== "") {
       setListaJogos()
-      const response = await axios.get("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/?limit=9999")
+      const response = await consultaBanco()
       for(var i = 0; i < response.data.items.length; i++){
         if(response.data.items[i].nome.replace(regex,"").toLowerCase().includes(jogo.replace(regex,"").toLowerCase())){
           let dadosJogo = response.data.items[i]

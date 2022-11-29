@@ -41,7 +41,7 @@ const CartaoProduto = ({produto}) => {
                     :
                     <Text style={styles.loja}>{loja ? loja.replace(regex, "") : ""}</Text>
                 }
-                <Text style={styles.preco}>{preco ? preco.substr(0,12) : "Indisponível"}</Text>
+                <Text style={{...styles.preco, color:preco?'green':'red'}}>{preco ? preco.substr(0,12) : "Indisponível"}</Text>
                 <TouchableOpacity style={styles.botaoComprar} onPress={() => {link?Linking.openURL(link):null}}>
                     <Text style={styles.textoComprar}>Comprar</Text>
                 </TouchableOpacity>
@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 5,
         backgroundColor: 'white',
         fontWeight: 'bold',
-        color: 'green',
         height:30,
         paddingTop:3
     }, 

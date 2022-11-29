@@ -10,10 +10,10 @@ export const Estado =({estado, texto}) => {
     return (
         <Text style={styles.txtCampo}>{texto} {''}
             {
-                estado === true ?
+                estado?
                     <FontAwesome5 name={'check'} size={25} color={Cores.primary} />
                     :
-                    estado === false ?
+                    !estado?
                         <FontAwesome5 name={'times'} size={25} color={'red'} />
                         :
                         null

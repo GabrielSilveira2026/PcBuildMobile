@@ -14,14 +14,12 @@ const Cabecalho = () => {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Jogos')}>
-                <Text style={style.logo}>Pc Build Up</Text>
+                <Text style={style.logo}>Pc Build</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Favoritos')}>
                 <FontAwesome5 name="star" size={30} color="white" />
             </TouchableOpacity>
-
-
         </SafeAreaView >
     )
 }

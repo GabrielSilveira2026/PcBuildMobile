@@ -6,7 +6,7 @@
       "nome": "Horizon Zero Dawn™ Complete Edition",
       "preco": "R$ 199,90",
       "requisitosminimos": "{\"Armazenamento\": \" 100 GB available space\",\"Cpu\": \" Intel Core i5-2500K@3.3GHz or AMD FX 6300@3.5GHz\",\"Gpu\": \" Nvidia GeForce GTX 780 (3 GB) or AMD Radeon R9 290 (4GB)\",\"Ram\": \" 8 GB RAM\"}",
-      "requisitosrecomendados": "{\"Armazenamento\": \" 100 GB available space\",\"Cpu\": \" Intel Core i7-4770K@3.5GHz or Ryzen 5 1500X@3.5GHz\",\"Gpu\": \" Nvidia GeForce GTX 1060 (6 GB) or AMD Radeon RX 580 (8GB)\",\"Ram\": \" 16 GB RAM\"}"
+      "requisitosrecomendados": "{\"Armazenamento\": \" 100 GB available space\",\"Cpu\": \" Intel Core i7-4770K@3.5GHz or Ryzen 5 1500X@3.5GHz\",\"Gpu\": \" Nvidia GeForce GTX 1060 (6 GB) or AMD Radeon RX 580 (8GB)\",\"Ram\": \"8Gb ram\"}"
     },
     { 
       "id": 4255,
@@ -18,25 +18,39 @@
       "preco": "R$ 55,99",
       "estado": "circle"
     },
-    { 
-      "estado": "circle",
+    {
+      "id": 4274,
       "id_jogo_steam": 1593500,
-      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420",
       "nome": "God of War",
-      "preco": "R$ 199,90"
-    },
-    { 
-      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1172380/header.jpg?t=1650554420",
-      "id_jogo_steam": 45,
-      "nome": "STAR WARS Jedi: Fallen Order",
-      "preco": "R$150",
+      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1650554420",
+      "requisitosminimos": "{\"Armazenamento\": \" 70 GB available space\",\"Cpu\": \" Intel i5-2500k (4 core 3.3 GHz) or AMD Ryzen 3 1200 (4 core 3.1 GHz)\",\"Gpu\": \" NVIDIA GTX 960 (4 GB) or AMD R9 290X (4 GB)\",\"Ram\": \" 8 GB RAM\"}",
+      "requisitosrecomendados": "{\"Armazenamento\": \" 70 GB available space\",\"Cpu\": \" Intel i5-6600k (4 core 3.5 GHz) or AMD Ryzen 5 2400 G (4 core 3.6 GHz)\",\"Gpu\": \" NVIDIA GTX 1060 (6 GB) or AMD RX 570 (4 GB)\",\"Ram\": \" 8 GB RAM\"}",
+      "preco": "R$ 199,90",
       "estado": "circle"
     },
-    { 
-      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/812140/header.jpg?t=1666971267",
-      "id_jogo_steam": 67,
-      "nome": "Assassin's Creed® Odyssey",
-      "preco": "R$150",
+    {
+      "id": 4573,
+      "id_jogo_steam": 1172380,
+      "nome": "STAR WARS Jedi: Fallen Order",
+      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/1172380/header.jpg?t=1651767465",
+      "requisitosminimos": "{\"Armazenamento\": \" 55 GB available space\",\"Cpu\": \" AMD FX-6100/Intel i3-3220 or Equivalent\",\"Gpu\": \" AMD Radeon HD 7750, NVIDIA GeForce GTX 650 or Equivalent\",\"Ram\": \" 8 GB RAM\"}",
+      "requisitosrecomendados": "{\"Armazenamento\": \" 55 GB available space\",\"Cpu\": \" AMD Ryzen 7 1700/Intel  i7-6700K or Equivalent\",\"Gpu\": \" AMD RX Vega 56, Nvidia GTX 1070/GTX1660Ti or Equivalent\",\"Ram\": \" 16 GB RAM\"}",
+      "preco": "CDN$ 8.24",
+      "estado": "circle"
+    },
+    {
+      "id": 4436,
+      "id_jogo_steam": 812140,
+      "nome": "Assassins Creed Odyssey",
+      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/812140/header.jpg?t=1666971267",    "requisitosminimos": "{\"Armazenamento\": \" 46 GB available space\",\"Cpu\": \" AMD FX 6300 @ 3.8 GHz, Ryzen 3 - 1200, Intel Core i5 2400 @ 3.1 GHz (MORE DETAILS \",\"Gpu\": \" AMD Radeon R9 285, NVIDIA GeForce GTX 660 (2GB VRAM with Shader Model 5.0) (MORE DETAILS \",\"Ram\": \" 8 GB RAM\"}",
+      "requisitosrecomendados": "{\"Armazenamento\": \" 46 GB available space\",\"Cpu\": \" AMD FX-8350 @ 4.0 GHz, Ryzen 5 - 1400, Intel Core i7-3770 @ 3.5 GHz or better (MORE DETAILS \",\"Gpu\": \" AMD Radeon R9 290, NVIDIA GeForce GTX 970  (4GB VRAM with Shader Model 5.0) or better (MORE DETAILS \",\"Ram\": \" 8 GB RAM\"}",
+      "preco": "R$ 179,99",
+      "links": [
+        {
+          "rel": "self",
+          "href": "https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/AAAQ39AAAAAAJ41AAQ"
+        }
+      ],
       "estado": "circle"
     },
     { 
@@ -49,11 +63,19 @@
       "preco": null,
       "estado": "circle"
     },
-    { 
-      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/506970/header.jpg?t=1580310767",
-      "id_jogo_steam": 89,
-      "nome": "DARK SOULS™ III - Ashes of Ariandel™",
-      "preco": "R$150",
+    {
+      "id": 4530,
+      "id_jogo_steam": 211420,
+      "nome": "DARK SOULS: Prepare To Die Edition",
+      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/211420/header.jpg?t=1667594629",    "requisitosminimos": "{\"Armazenamento\": \" 4GB              \",\"Cpu\": \" Intel Core 2 Duo E6850 GHz or AMD Phenom II X2 545 3.0 GHz\",\"Gpu\": \"  GeForce 9800 GTX or ATI Radeon HD 4870\",\"Ram\": \" 2 GB\"}",
+      "requisitosrecomendados": null,
+      "preco": null,
+      "links": [
+        {
+          "rel": "self",
+          "href": "https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/AAAQ39AAAAAAJ5UAAA"
+        }
+      ],
       "estado": "circle"
     }
 ]

@@ -5,9 +5,8 @@ import CartaoProduto from '../Componentes/CartaoProduto'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FavoritosTela = ({navigation}) => {
-  const [jogosSalvos, setJogosSalvos] = useState([])
   const [configJson, setConfigJson] = useState([])
-
+  
   useEffect(()=>{
     async function pegaConfigSalva(){
       try {
@@ -17,54 +16,40 @@ const FavoritosTela = ({navigation}) => {
       catch (error) {
         console.log(error);
       }
-      try {
-        let jogosDaConfiguracaoString = await AsyncStorage.getItem("@jogosParaConfiguracaoSalva")
-        setJogosSalvos(JSON.parse(jogosDaConfiguracaoString))
-      } 
-      catch (error) {
-        console.log(error);
-      }
     }
     pegaConfigSalva()
   },[])
 
   const removeConfiguracao = async() => {
-    let confirmaRemocao
     if (configJson) {
-      //  function alerta(){
-      //     Alert.alert('Remover Configuração', 'Deseja remover essa configuração do seu Favorito?',[  
-      //       {  
-      //           text: 'Sim',  
-      //           onPress: (()=> {return('Sim')}), 
-      //       },  
-      //       {
-      //         text: 'Não', 
-      //         onPress: (()=> {return('Nao')})
-      //       },  
-      //     ])
-      // }
-      // confirmaRemocao = await alerta()
-      // console.log(confirmaRemocao);
-      // if (confirmaRemocao === 'Sim') {
-        try {
-          await AsyncStorage.setItem('@configuracaoSalva', '')
-          setConfigJson()
-        } 
-        catch (e) {
-          console.log('Erro ao excluir');
-        }
-  
-        try {
-          await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', '')
-        } 
-        catch (e) {
-          console.log('Erro ao excluir');
-        }
-      }
-      else{
-        navigation.navigate('Jogos')
-      }
-    // }
+      Alert.alert('Remover Configuração', 'Deseja remover essa configuração do seu Favorito?',[  
+        {  
+          text: 'Sim',  
+          onPress: (async()=> {
+            try {
+              await AsyncStorage.setItem('@configuracaoSalva', '')
+              setConfigJson()
+            } 
+            catch (e) {
+              console.log('Erro ao excluir');
+            }
+      
+            try {
+              await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', '')
+            } 
+            catch (e) {
+              console.log('Erro ao excluir');
+            }
+          }), 
+        },
+        {
+          text: 'Não'
+        },  
+      ])
+    }
+    else{
+      navigation.navigate('Jogos')
+    }
   }
 
   return (
@@ -79,12 +64,11 @@ const FavoritosTela = ({navigation}) => {
               <Text style={styles.titulo}>
                 Configuração {configJson.tipo} para os jogos :
               </Text>
-
-              {jogosSalvos.map(jogo => (<Text style={{ fontSize: 15, color: 'white', alignItems: 'flex-start' }} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
+              {configJson?.jogos?.map(jogo => (<Text style={styles.jogos} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
             </>
             }
             style={{width: '100%'}}
-            data={configJson.pecas}
+            data={configJson?.pecas}
             keyExtractor={item => item?.title}
             renderItem={p => (
               <CartaoProduto produto={p.item}/>
@@ -121,6 +105,11 @@ const styles = StyleSheet.create({
     color: 'white', 
     marginBottom: 15
   },
+  jogos:{ 
+    fontSize: 15, 
+    color: 'white', 
+    alignItems: 'flex-start' 
+  }, 
   conteudoTela:{
     flex: 1,
     paddingLeft: 10, 
