@@ -10,44 +10,47 @@ export function extraiRequisitosDeUmaLista(listaDeJogos){
   let listaJogosSemRequisitosRecomendados = []
   for (let jogo of listaDeJogos) {
     if (jogo.requisitosminimos) {
+      let anotaNome
+      let campos = []
       let requisitosJson = JSON.parse(jogo.requisitosminimos)
-      if (requisitosJson?.Cpu === 'undefined' || requisitosJson?.Ram === 'undefined' || requisitosJson?.Gpu === 'undefined' || requisitosJson?.Armazenamento === 'undefined') {
-        if(!listaJogosSemRequisitosMinimos.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
-          listaJogosSemRequisitosMinimos.push(jogo.nome)
-        }
+      for (const campo in requisitosJson) {
+          if(requisitosJson[campo] === 'undefined'){
+            anotaNome = jogo.nome
+            campos.push(campo)
+            delete requisitosJson[campo]
+          }
       }
-      // for (const campo in requisitosJson) {
-      //   if(requisitosJson[campo] === 'undefined'){
-      //     delete requisitosJson[campo]
-      //   };
-      // }
-      listaRequisitosMinimos.push(requisitosJson)
+      anotaNome?listaJogosSemRequisitosMinimos.push({nome: anotaNome, campos:campos.length<4?campos:["Sem requisitos minimos"]}):null
+      
+      JSON.stringify(requisitosJson) !=="{}"?
+        listaRequisitosMinimos.push(requisitosJson)
+      :
+        null
     }
     else{
-      if(!listaJogosSemRequisitosMinimos.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
-        listaJogosSemRequisitosMinimos.push(jogo.nome)
-      }
+      listaJogosSemRequisitosMinimos.push({nome: jogo.nome, campos:["Sem requisitos mínimos"]})
     }
 
     if (jogo.requisitosrecomendados) {
+      let anotaNome
+      let campos = []
       let requisitosJson = JSON.parse(jogo.requisitosrecomendados)
-      if (requisitosJson?.Cpu === 'undefined' || requisitosJson?.Ram === 'undefined' || requisitosJson?.Gpu === 'undefined' || requisitosJson?.Armazenamento === 'undefined') {
-        if(!listaJogosSemRequisitosRecomendados.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
-          listaJogosSemRequisitosRecomendados.push(jogo.nome)
-        } 
+      for (const campo in requisitosJson) {
+          if(requisitosJson[campo] === 'undefined'){
+            anotaNome = jogo.nome
+            campos.push(campo)
+            delete requisitosJson[campo]
+          }
       }
-      // for (const campo in requisitosJson) {
-      //   if(requisitosJson[campo] === 'undefined'){
-      //     delete requisitosJson[campo]
-      //   };
-      // }
-      listaRequisitosRecomendados.push(requisitosJson)
+      anotaNome?listaJogosSemRequisitosRecomendados.push({nome: anotaNome, campos:campos.length<4?campos:["Sem requisitos recomendados"]}):null
+      
+      JSON.stringify(requisitosJson) !=="{}"?
+        listaRequisitosRecomendados.push(requisitosJson)
+      :
+        null
     }
     else{
-      if(!listaJogosSemRequisitosRecomendados.find(jogoSemReq =>{return jogoSemReq === jogo.nome})){
-        listaJogosSemRequisitosRecomendados.push(jogo.nome)
-      }
-        
+      listaJogosSemRequisitosRecomendados.push({nome: jogo.nome, campos:["Sem requisitos Recomendados"]})
     }
   }
   return {listaRequisitosMinimos, listaRequisitosRecomendados, listaJogosSemRequisitosMinimos, listaJogosSemRequisitosRecomendados}
@@ -61,4 +64,8 @@ export function validaEmail(email) {
 export function validaSenha(senha){
   const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/
   return(regex.test(senha))
+}
+
+export function consultaBanco(){
+  return axios.get("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/?limit=9999")
 }

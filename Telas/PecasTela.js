@@ -10,10 +10,11 @@ const PecasTela = ({route, navigation}) => {
   const selecionados = useCart()
 
   const salvaConfiguracao = async() => {
-    // Confere se esta logado, se nn estiver redirecionar para tela de login
+    // Confere se esta logado no backend, se nn estiver redirecionar para tela de login
     if (selecionados.cart.length > 0 && parametro.pecas.length > 0) {
       try {
         await AsyncStorage.setItem('@configuracaoSalva', JSON.stringify(parametro))
+        //passar pro backend json pecas
       } 
       catch (e) {
         console.log('Erro ao salvar');
@@ -78,22 +79,22 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height*9/100,
     backgroundColor: Cores.primary,
     borderTopWidth: 2,
-}, 
-botaoVoltar:{
-    flexGrow: 1,
-    marginRight: 5,
-    backgroundColor: 'white',
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 7,
-    borderWidth: 1,
-},
-botaoProximo:{
-    flexGrow: 1,
-    backgroundColor: 'black',
-    justifyContent: "center",
-    alignItems: 'center',
-    borderRadius: 7,
-},
+  }, 
+  botaoVoltar:{
+      flexGrow: 1,
+      marginRight: 5,
+      backgroundColor: 'white',
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 7,
+      borderWidth: 1,
+  },
+  botaoProximo:{
+      flexGrow: 1,
+      backgroundColor: 'black',
+      justifyContent: "center",
+      alignItems: 'center',
+      borderRadius: 7,
+  },
 })
 

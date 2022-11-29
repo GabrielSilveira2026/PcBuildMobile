@@ -1,29 +1,30 @@
 import React, { useEffect, useState} from 'react';
-import {StyleSheet, Text, View, ImageBackground, ActivityIndicator, ScrollView } from 'react-native';
+import {StyleSheet, Text, View, ImageBackground, ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
 import CartaoPc from '../Componentes/CartaoPc'
-import {calculaPlacaBackEnd, calculaRam, extraiRequisitosDeUmaLista} from '../Services/httpservices'
+import {extraiRequisitosDeUmaLista} from '../Services/httpservices'
 import {useCart} from '../Constantes/CartContext'
 import axios from 'axios'
+
+
 const RecomendadosTela = ({route, navigation}) => {
+  const [verMais, setVerMais] = useState(false)
   const precoFiltro = route.params
   const selecionados = useCart()
   const [carrega, setCarrega] = useState(true)
   const [pcMinimo, setPcMinimo] = useState([])
   const [pcRecomendado, setPcRecomendado] = useState([])
-  const reqs = extraiRequisitosDeUmaLista(selecionados.cart) // usar .listaRequisitos
+  const reqs = extraiRequisitosDeUmaLista(selecionados.cart)
 
   useEffect(()=>{
     async function montaPC(){
-      let pc
-
-      console.log(JSON.stringify(reqs,0,2));
-
+      let pcMin
+      let pcRec
       if (reqs.listaRequisitosMinimos.length) {
         try {
-          pc = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosMinimos});
-          let {placa, ram, rom} = pc.data
+          pcMin = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosMinimos});
+          let {placa, ram, rom} = pcMin.data
           setPcMinimo([placa,ram,rom])
         } catch (error) {
           setCarrega(false)
@@ -36,12 +37,11 @@ const RecomendadosTela = ({route, navigation}) => {
 
       if (reqs.listaRequisitosRecomendados.length) {
         try {
-          pc = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosRecomendados}); 
-          let {placa, ram, rom} = pc.data
-          setPcRecomendado([placa,ram,rom])
+          pcRec = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosRecomendados}); 
+          let {placa, ram, rom} = pcRec.data
+          setPcRecomendado([placa, ram , pcMin.data.rom? pcMin.data.rom : rom])
         } 
         catch (error) {
-          console.log("PC----------:",pc.data);
           setCarrega(false)
         } 
       }
@@ -67,16 +67,24 @@ const RecomendadosTela = ({route, navigation}) => {
             <>
               { 
                 pcMinimo && reqs.listaJogosSemRequisitosMinimos?.length && pcRecomendado?.length && reqs.listaJogosSemRequisitosRecomendados?.length?
-                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo pois não possuem requisitos completos: {'\n\n Requisitos Mínimos incompletos:'+ reqs.listaJogosSemRequisitosMinimos.map( item => {return '\n'+item})}
+                <>
+                  <Text style={{...styles.txtCalculo, height: verMais? null:120}}>Os seguintes Jogos podem não ter sido considerados no cálculo pois não possuem requisitos completos: 
+                  {'\n\nCom requisitos Mínimos incompletos:'+ reqs.listaJogosSemRequisitosMinimos.map( item => {return '\n'+item.nome + ' ('+ item.campos+ ')'+ '\n'})}
                   
-                  {'\n\n Requisitos Recomendados incompletos:'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item})}
+                  {'\nCom requisitos Recomendados incompletos:'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item.nome + ' ('+ item.campos+ ')'})}
                   </Text>
+
+                  <TouchableOpacity onPress={()=>{setVerMais(verMais?false:true)}}>
+                    <Text style={styles.txtVerMais}>{verMais?"Ver menos": "Ver mais"}</Text>
+                  </TouchableOpacity>
+                </>
                 :
                 pcMinimo && reqs.listaJogosSemRequisitosMinimos?.length?
-                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo de configuração Mínima pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosMinimos.map( item => {return '\n'+item})}</Text>
+                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não ter sido considerados no cálculo de configuração Mínima pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosMinimos.map( item => {return '\n'+item.nome + ' ('+ item.campos+ ')'})}
+                  </Text>
                 :
                 pcRecomendado?.length && reqs.listaJogosSemRequisitosRecomendados?.length?
-                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não terem sidos considerados no cálculo de configuração Recomendada pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item})}</Text>
+                  <Text style={styles.txtCalculo}>Os seguintes Jogos podem não ter sido considerados no cálculo de configuração Recomendada pois não possuem requisitos completos: {'\n'+ reqs.listaJogosSemRequisitosRecomendados.map( item => {return '\n'+item.nome + ' ('+ item.campos+ ')'})}</Text>
                 :
                 null
               }
@@ -137,6 +145,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius:6,
     padding:5,
-    borderColor: 'red',
+    borderColor: Cores.primary,
+  },
+  txtVerMais: {
+    textAlign: 'center',
+    fontSize: 18,
+    color: Cores.primary
   }
 })
