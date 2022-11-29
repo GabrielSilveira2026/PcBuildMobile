@@ -13,15 +13,9 @@ const PecasTela = ({route, navigation}) => {
     // Confere se esta logado no backend, se nn estiver redirecionar para tela de login
     if (selecionados.cart.length > 0 && parametro.pecas.length > 0) {
       try {
+        parametro.jogos = selecionados.cart
         await AsyncStorage.setItem('@configuracaoSalva', JSON.stringify(parametro))
         //passar pro backend json pecas
-      } 
-      catch (e) {
-        console.log('Erro ao salvar');
-      }
-      try {
-        await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', JSON.stringify(selecionados.cart))
-
       } 
       catch (e) {
         console.log('Erro ao salvar');

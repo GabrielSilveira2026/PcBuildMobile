@@ -5,21 +5,13 @@ import CartaoProduto from '../Componentes/CartaoProduto'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FavoritosTela = ({navigation}) => {
-  const [jogosSalvos, setJogosSalvos] = useState([])
   const [configJson, setConfigJson] = useState([])
-
+  
   useEffect(()=>{
     async function pegaConfigSalva(){
       try {
         let configSalvaString = await AsyncStorage.getItem("@configuracaoSalva")
         setConfigJson(JSON.parse(configSalvaString))
-      } 
-      catch (error) {
-        console.log(error);
-      }
-      try {
-        let jogosDaConfiguracaoString = await AsyncStorage.getItem("@jogosParaConfiguracaoSalva")
-        setJogosSalvos(JSON.parse(jogosDaConfiguracaoString))
       } 
       catch (error) {
         console.log(error);
@@ -72,12 +64,11 @@ const FavoritosTela = ({navigation}) => {
               <Text style={styles.titulo}>
                 Configuração {configJson.tipo} para os jogos :
               </Text>
-
-              {jogosSalvos.map(jogo => (<Text style={styles.jogos} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
+              {configJson?.jogos?.map(jogo => (<Text style={styles.jogos} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
             </>
             }
             style={{width: '100%'}}
-            data={configJson.pecas}
+            data={configJson?.pecas}
             keyExtractor={item => item?.title}
             renderItem={p => (
               <CartaoProduto produto={p.item}/>
