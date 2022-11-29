@@ -14,7 +14,6 @@ const LoginTela = ({route, navigation }) => {
     const [verSenha, setVerSenha] = useState(true)
     const [estadoSenha, setEstadoSenha] = useState('')
     
-    console.log(JSON.stringify(route.params,0,2));
     const logar = () => {
 
     }
