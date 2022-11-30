@@ -40,7 +40,7 @@ const PerfilTela = ({navigation}) => {
         text: 'Sim',
         onPress: (async()=> {
           await AsyncStorage.removeItem("@usuario")
-          navigation.navigate('Jogos')
+          navigation.goBack()
         })
       }
     ])
