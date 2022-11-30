@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{ useState} from 'react';
 import {View , Text, StyleSheet, ImageBackground, FlatList,TouchableOpacity,Dimensions, Alert} from 'react-native';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import CartaoProduto from '../Componentes/CartaoProduto'
@@ -9,7 +9,6 @@ import {autenticaUsuario,validaToken, favoritaPc} from '../Services/httpservices
 const PecasTela = ({route, navigation}) => {
   const config = route?.params
   const [usuario, setUsuario] = useState()
-
 
   const salvaConfiguracao = async() => {
     let usuario
@@ -23,46 +22,28 @@ const PecasTela = ({route, navigation}) => {
       let statusToken = await validaToken(usuario.tokenjwt)
       if (statusToken.status === 200) {
         try {
-          await favoritaPc(usuario.tokenjwt, usuario.usuario, config)
+          // await favoritaPc(usuario.tokenjwt, usuario.usuario, config)
           navigation.navigate('Favoritos', config)
         }
         catch (error){
           Alert.alert("Erro", "Ocorreu um erro ao Salvar sua configuração no banco")
         }
-      }
-      else if(statusToken.status === 404){
-        navigation.navigate('Login', config)
+        //guarda localmente a configuração
+        try {
+          await AsyncStorage.setItem('@configuracaoSalva', JSON.stringify(config))
+        } 
+        catch (e) {
+          Alert.alert('Erro ao salvar');
+        }
       }
       else{
-        Alert.alert("Ocorreu um erro ao Salvar sua configuração")
+        navigation.navigate('Login', config)
       }
     }
     else{
       Alert.alert("Login não efetuado", "Por favor, faça login para salvar configurações")
       navigation.navigate('Login', config)
     }
-
-    // try {
-    //   tokenUsuario = await AsyncStorage.getItem("@tokenUsuario")
-    // } catch (error) {
-    //   Alert.alert("Ocorreu um erro ao recuperar sua configuração")
-    // }
-    // if (tokenUsuario) {
-    //   let statusToken = await validaToken(tokenUsuario)
-    //   if (statusToken.status === 200) {
-    //     navigation.native("Favotiros", config)
-    //   }
-    //   else if(statusToken.status === 404){
-    //     navigation.navigate('Login', config)
-    //   }
-    //   else{
-    //     Alert.alert("Ocorreu um erro ao salvar sua configuração")
-    //   }
-    // }
-    // else{
-    //   navigation.navigate('Login', config)
-    // }
-
   }
 
   return (

@@ -18,7 +18,6 @@ const RecomendadosTela = ({route, navigation}) => {
   const reqs = extraiRequisitosDeUmaLista(selecionados.cart)
 
   useEffect(()=>{
-    console.log(JSON.stringify(reqs,0,2));
     async function montaPC(){
       let pcMin
       let pcRec
@@ -28,7 +27,6 @@ const RecomendadosTela = ({route, navigation}) => {
           let {placa, ram, rom} = pcMin.data
           setPcMinimo([placa,ram,rom])
         } catch (error) {
-          console.log(error);
           setCarrega(false)
         } 
       }

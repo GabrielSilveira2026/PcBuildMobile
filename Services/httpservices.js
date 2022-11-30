@@ -93,5 +93,5 @@ export function favoritaPc(token, usuario, configSalva){
 }
 
 export function validaToken(tokenjwt){
-  return axios.post(`${enderecoBackend}/usuario/validaToken`, {headers:{tokenjwt :tokenjwt}})
+  return axios.post(`${enderecoBackend}/usuario/validaToken`, {}, {headers:{tokenjwt :tokenjwt}})
 }

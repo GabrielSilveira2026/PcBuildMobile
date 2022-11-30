@@ -5,6 +5,8 @@ import Rodape from '../Componentes/Rodape'
 import {FontAwesome5} from 'react-native-vector-icons';
 import {validaSenha, validaEmail, validaNome, cadastraUsuario} from '../Services/httpservices'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export const Estado =({estado, texto}) => {
     return (
@@ -27,19 +29,6 @@ export const Estado =({estado, texto}) => {
 const CadastroTela = ({route, navigation}) => {
     const configSalva = route?.params
 
-    useEffect(()=>{
-        async function pegaConfigSalva(){
-          try {
-            let configSalvaString = await AsyncStorage.getItem("@configuracaoSalva")
-            setConfigJson(JSON.parse(configSalvaString))
-          } 
-          catch (error) {
-            console.log(error);
-          }
-        }
-        pegaConfigSalva()
-      },[])
-
     const [nome, setNome] = useState('')
     const [estadoNome, setEstadoNome] = useState('')
 
@@ -61,20 +50,18 @@ const CadastroTela = ({route, navigation}) => {
         setEstadoConfirmaSenha(confirmaSenha === senha && validaSenha(confirmaSenha))
 
         if(estadoEmail && estadoSenha && confirmaSenha === senha && estadoNome) {
-            let usuario = {nome, email, senha}
-            console.log(JSON.stringify(usuario,0,2));
+            let cadastro
             try {
-                let cadastro = await cadastraUsuario(usuario)
-                if (cadastro) {
-                    navigation.navigate('Login', configSalva)
-                }
-                else{
-                    Alert.alert('Erro ao cadastrar')
-                }
-                console.log(cadastro);
+                cadastro = await cadastraUsuario({nome, email, senha})
             } 
-            catch (error) {
-                console.log(error);
+            catch (erro) {
+            }
+
+            if (cadastro) {
+                navigation.navigate('Login', configSalva)
+            }
+            else{
+                Alert.alert('Erro ao cadastrar', 'E-mail já cadastrado')
             }
         }
     }

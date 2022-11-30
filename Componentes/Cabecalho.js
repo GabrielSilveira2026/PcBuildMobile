@@ -4,21 +4,28 @@ import {useNavigation } from '@react-navigation/native';
 import {SafeAreaView, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {FontAwesome5} from 'react-native-vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {validaToken} from '../Services/httpservices'
 
 
 const Cabecalho = () => {
     const navigation = useNavigation()
-    let tokenUsuario
+    let usuario
 
-    const usuario = async() => {
+    const redirecionadUsuario = async() => {
         try {
-            tokenUsuario = JSON.parse(await AsyncStorage.getItem("@tokenUsuario"))
+            usuario = JSON.parse(await AsyncStorage.getItem("@usuario"))
         } catch (error) {
             Alert.alert("Ocorreu um erro")
         }
         
-        if (tokenUsuario) {
-            let statusToken = await validaToken(tokenUsuario)
+        if (usuario) {
+            let statusToken
+            try {
+                statusToken = await validaToken(usuario.tokenjwt)
+            }
+            catch (error) {
+                
+            }
             if (statusToken.status === 200) {
                 navigation.navigate('Perfil')
             }
@@ -37,11 +44,11 @@ const Cabecalho = () => {
 
     return (
         <SafeAreaView style={style.cabecalho}> 
-            <TouchableOpacity onPress={usuario}>
+            <TouchableOpacity onPress={redirecionadUsuario}>
                 <FontAwesome5 name="user" size={30} color="white" />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Jogos')}>
                 <Text style={style.logo}>Pc Build</Text>
             </TouchableOpacity>
 

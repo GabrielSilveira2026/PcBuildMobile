@@ -27,7 +27,6 @@ function MyStack({navigation}){
       <Stack.Navigator
         screenOptions={{
           header: (props) => {
-            // console.log(props)
             return (
               <Cabecalho props={props}/>
             )

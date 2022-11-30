@@ -41,6 +41,17 @@ const PerfilTela = ({navigation}) => {
     validaEstadoUsuario()
   },[])
   
+  const logout = () => {
+    Alert.alert('Sair?','Deseja realmente sair?',[  
+      {  
+        text: 'Sim',
+        onPress: (async()=> {
+          await AsyncStorage.setItem("@usuario", '')
+          navigation.navigate('Jogos')
+        })
+    }])
+  }
+
   const em = 'Gabriel Silveira'
   return (
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
@@ -105,7 +116,7 @@ const PerfilTela = ({navigation}) => {
               <Text style={stylesGlobal.txtBotaoUsuario}>Salvar</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={{...stylesGlobal.botaoUsuario, marginTop:0}}>
+          <TouchableOpacity style={{...stylesGlobal.botaoUsuario, marginTop:0}} onPress={logout}>
               <Text style={stylesGlobal.txtBotaoUsuario}>Sair</Text>
           </TouchableOpacity>
       </ScrollView>

@@ -8,9 +8,10 @@ import {autenticaUsuario} from '../Services/httpservices'
 
 const LoginTela = ({route, navigation }) => {
     const configSalva = route?.params
-    const [email, setEmail] = useState('')
 
-    const [senha, setSenha] = useState('')
+    const [email, setEmail] = useState()
+
+    const [senha, setSenha] = useState()
     const [verSenha, setVerSenha] = useState(true)
 
     const logar = async() => {
@@ -18,18 +19,14 @@ const LoginTela = ({route, navigation }) => {
         try {
             usuarioAutenticado = await autenticaUsuario({email, senha})
         } catch (error) {
-            Alert.alert("Erro ao efetuar o autenticar usuario", error)
+            Alert.alert("Email ou senha incorreto")
         }
-
-        if (usuarioAutenticado.status === 201) {
-            await AsyncStorage.setItem("@usuario", JSON.parse({usuario: usuarioAutenticado.usuario, tokenjwt:usuarioAutenticado.tokenjwt}))
+        if (usuarioAutenticado?.status === 200) {
+            await AsyncStorage.setItem("@usuario", JSON.stringify({usuario: usuarioAutenticado.data.usuario, tokenjwt:usuarioAutenticado.data.token}))
             configSalva?
                 navigation.navigate('Favoritos', configSalva)
             :
                 navigation.navigate('Jogos')
-        }
-        else {
-            alert("Erro ao efetuar o login")
         }
     }
 
@@ -73,7 +70,7 @@ const LoginTela = ({route, navigation }) => {
                     Esqueci a senha!
                 </Text>
 
-                <Text style={styles.txtSemCadastro} onPress={() => navigation.navigate('Cadastro')}>
+                <Text style={styles.txtSemCadastro} onPress={() => navigation.navigate('Cadastro', configSalva)}>
                     Não tenho cadastro ainda.
                 </Text>
             </ScrollView> 

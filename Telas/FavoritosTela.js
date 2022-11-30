@@ -3,11 +3,12 @@ import {View , Text, StyleSheet, ImageBackground, FlatList,TouchableOpacity, Dim
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import CartaoProduto from '../Componentes/CartaoProduto'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {validaToken} from '../Services/httpservices'
 
-const FavoritosTela = ({navigation}) => {
+const FavoritosTela = ({route, navigation}) => {
   const [configJson, setConfigJson] = useState()
   const [estadoUsuario, setEstadoUsuario] = useState()
-  
+
   useEffect(()=>{
     async function validaEstadoUsuario(){
       let usuario
@@ -20,6 +21,13 @@ const FavoritosTela = ({navigation}) => {
         let statusToken = await validaToken(usuario.tokenjwt)
         if (statusToken.status === 200) {
           setEstadoUsuario('Logado')
+          //pega localmente a configuração
+          try {
+            setConfigJson(route?.params?route?.params:JSON.parse(await AsyncStorage.getItem("@configuracaoSalva")))
+          } 
+          catch (error) {
+            Alert.alert('Erro', 'Ocorreu um problema ao recuperar sua configuração');
+          }
           //get no backend pra pegar a config do usuario
         }
         else if(statusToken.status === 404){
@@ -33,16 +41,7 @@ const FavoritosTela = ({navigation}) => {
         setEstadoUsuario('Não logado')
       }
     }
-
-    // async function pegaConfigSalva(){
-    //   try {
-    //     let configSalvaString = await AsyncStorage.getItem("@configuracaoSalva")
-    //     setConfigJson(JSON.parse(configSalvaString))
-    //   } 
-    //   catch (error) {
-    //     console.log(error);
-    //   }
-    // }
+    
     validaEstadoUsuario()
   },[])
 
@@ -57,14 +56,14 @@ const FavoritosTela = ({navigation}) => {
               setConfigJson()
             } 
             catch (e) {
-              console.log('Erro ao excluir');
+              Alert.alert('Erro ao excluir');
             }
       
             try {
               await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', '')
             } 
             catch (e) {
-              console.log('Erro ao excluir');
+              Alert.alert('Erro ao excluir');
             }
           }), 
         },
@@ -103,7 +102,7 @@ const FavoritosTela = ({navigation}) => {
               />
           </>
           :
-          <Text style={styles.titulo}>Você ainda tem nem uma configuração Favoritada :(</Text>
+          <Text style={{...styles.titulo, textAlign: 'center',marginTop:'45%'}}>Você ainda tem nem uma configuração Favoritada :(</Text>
         :
         <View style={styles.semLogin}>
           <Text style={{...styles.titulo, textAlign: 'center'}}>Faça o login para salvar configurações</Text>
