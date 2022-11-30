@@ -66,7 +66,7 @@ const LoginTela = ({route, navigation }) => {
                     <Text style={stylesGlobal.txtBotaoUsuario}>Entrar</Text>
                 </TouchableOpacity>
 
-                <Text style={stylesGlobal.txtLinkSublinhado} onPress={() => navigation.navigate('EsqueciSenha')}>
+                <Text style={stylesGlobal.txtLinkSublinhado} onPress={() => navigation.navigate('EsqueciSenha', configSalva)}>
                     Esqueci a senha!
                 </Text>
 

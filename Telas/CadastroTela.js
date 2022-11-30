@@ -129,7 +129,7 @@ const CadastroTela = ({route, navigation}) => {
                     <Text style={stylesGlobal.txtBotaoUsuario}>Cadastrar</Text>
                 </TouchableOpacity>
 
-                <Text style={stylesGlobal.txtLinkSublinhado} onPress={() => navigation.navigate('Login')}>
+                <Text style={stylesGlobal.txtLinkSublinhado} onPress={() => navigation.navigate('Login', configSalva)}>
                     Já possuo uma conta!
                 </Text>
 
