@@ -16,7 +16,9 @@ const RecomendadosTela = ({route, navigation}) => {
   const [pcMinimo, setPcMinimo] = useState([])
   const [pcRecomendado, setPcRecomendado] = useState([])
   const reqs = extraiRequisitosDeUmaLista(selecionados.cart)
+
   useEffect(()=>{
+    console.log(JSON.stringify(reqs,0,2));
     async function montaPC(){
       let pcMin
       let pcRec

@@ -9,7 +9,6 @@ const FavoritosTela = ({navigation}) => {
   const [estadoUsuario, setEstadoUsuario] = useState()
   
   useEffect(()=>{
-    console.log(configJson);
     async function validaEstadoUsuario(){
       let usuario
       try {
@@ -83,7 +82,7 @@ const FavoritosTela = ({navigation}) => {
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
     <View style={stylesGlobal.conteudoTela}>
       {
-        estadoUsuario === 'Não logado'?
+        estadoUsuario === 'Logado'?
           configJson?
           <>
             <FlatList
@@ -106,7 +105,12 @@ const FavoritosTela = ({navigation}) => {
           :
           <Text style={styles.titulo}>Você ainda tem nem uma configuração Favoritada :(</Text>
         :
-        <TouchableOpacity><Text style={{...styles.titulo, textAlign: 'center'}}>Faça o login para salvar configurações</Text></TouchableOpacity>
+        <View style={styles.semLogin}>
+          <Text style={{...styles.titulo, textAlign: 'center'}}>Faça o login para salvar configurações</Text>
+          <TouchableOpacity style={{...styles.botaoVoltar, padding:10}} onPress={() =>{navigation.navigate("Login")}}>
+                <Text>Ir para Login</Text>
+          </TouchableOpacity>
+        </View>
       }
       </View>
       <View style={styles.rodape}>
@@ -145,6 +149,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10, 
     paddingRight: 10, 
     paddingTop:5,
+  },
+  semLogin:{
+    alignItems: 'center',
+    marginTop:'auto',
+    marginBottom: 'auto'
   },
   rodape: {
     flexDirection: 'row', 

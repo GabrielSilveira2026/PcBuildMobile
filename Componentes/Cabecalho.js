@@ -12,7 +12,7 @@ const Cabecalho = () => {
 
     const usuario = async() => {
         try {
-            tokenUsuario = await AsyncStorage.getItem("@tokenUsuario")
+            tokenUsuario = JSON.parse(await AsyncStorage.getItem("@tokenUsuario"))
         } catch (error) {
             Alert.alert("Ocorreu um erro")
         }
@@ -41,7 +41,7 @@ const Cabecalho = () => {
                 <FontAwesome5 name="user" size={30} color="white" />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Jogos')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
                 <Text style={style.logo}>Pc Build</Text>
             </TouchableOpacity>
 
