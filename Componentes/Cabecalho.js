@@ -26,16 +26,13 @@ const Cabecalho = () => {
             catch (error) {
                 
             }
-            console.log(statusToken);
-            if (statusToken.status === 200) {
+
+            if (statusToken) {
                 navigation.navigate('Perfil')
             }
-            else if(statusToken.status === 404){
+            else{
                 Alert.alert("Sessão inspirada", "Por favor faça o login novamente.")
                 navigation.navigate('Login')
-            }
-            else{
-                Alert.alert("Ocorreu um erro ao Salvar sua configuração")
             }
           }
         else{

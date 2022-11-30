@@ -12,15 +12,6 @@ const PerfilTela = ({navigation}) => {
   const [nome, setNome] = useState('')
 
   const [email, setEmail] = useState('')
-  const [estadoEmail, setEstadoEmail] = useState('')
-
-  const [senha, setSenha] = useState('')
-  const [verSenha, setVerSenha] = useState(true)
-  const [estadoSenha, setEstadoSenha] = useState('')
-
-  const [confirmaSenha, setConfirmaSenha] = useState('')
-  const [verConfirmaSenha, setVerConfirmaSenha] = useState(true)
-  const [estadoConfirmaSenha, setEstadoConfirmaSenha] = useState()
 
   useEffect(()=>{
     async function validaEstadoUsuario(){
@@ -32,7 +23,6 @@ const PerfilTela = ({navigation}) => {
       if(usuario) {
         setNome(usuario?.usuario?.nome)
         setEmail(usuario?.usuario?.email)
-        setSenha(usuario?.usuario?.email)
       }
       else{
         navigation.navigate('Jogos')
@@ -59,34 +49,21 @@ const PerfilTela = ({navigation}) => {
   return (
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
       <View style={stylesGlobal.conteudoTela}>
-      <ScrollView keyboardShouldPersistTaps='handled'>
-        <FontAwesome5 style={{textAlign: 'center', margin: 15}} name="user" size={100} color="white" />
+        <ScrollView keyboardShouldPersistTaps='handled'>
+          <FontAwesome5 style={{textAlign: 'center', margin: 15}} name="user" size={100} color="white" />
 
-        <Text style={styles.titulo}>Olá, {nome?nome:'Usuário'}</Text>
+          <Text style={styles.titulo}>Olá, {nome?nome:'Usuário'}</Text>
 
-        <Text style={styles.txtCampo}>Nome de Usuário</Text>
-          <TextInput
-              onChangeText={(text) => {setNome(text)}}
-              style={stylesGlobal.input}
-              placeholderTextColor="#cccccc"
-              placeholder="Usuário exemplo"
-              value={nome}
-          />
+          <Text style={styles.txtCampo}>Nome de Usuário</Text>
+          <Text style={styles.txtValor}>{nome}</Text>
 
-          <Estado estado={estadoEmail} texto={'Email'}/>
-          <TextInput
-              onChangeText={(text) => {setEmail(text)}}
-              onEndEditing={()=>{setEstadoEmail(validaEmail(email))}}
-              style={stylesGlobal.input}
-              placeholder="exemplo@email.com.br"
-              placeholderTextColor="#cccccc"
-              value={email}
-          />
+          <Text style={styles.txtCampo}>Email</Text>
+          <Text style={styles.txtValor}>{email}</Text>
 
           <TouchableOpacity style={stylesGlobal.botaoUsuario} onPress={logout}>
               <Text style={stylesGlobal.txtBotaoUsuario}>Sair</Text>
           </TouchableOpacity>
-      </ScrollView>
+        </ScrollView>
       </View>
       <Rodape telas={{ anterior: 'back'}} />
     </ImageBackground>
@@ -106,12 +83,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     fontSize: 22,
     color: 'white',
-    // flexGrow: 1,
+  },
+  txtValor:{
+    fontSize: 20,
+    color: 'white',
+    borderBottomWidth: 2,
+    borderColor: 'white',
+    marginBottom: 10,
   },
   input: {
     fontSize: 20, 
     padding:5,
-    // flexGrow:1,
     color: 'white',
     borderBottomWidth: 1,
     borderColor: 'white',
