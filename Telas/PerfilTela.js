@@ -35,24 +35,27 @@ const PerfilTela = ({navigation}) => {
         setSenha(usuario?.usuario?.email)
       }
       else{
-        // navigation.navigate('Jogos')
+        navigation.navigate('Jogos')
       }
     }
     validaEstadoUsuario()
   },[])
   
   const logout = () => {
-    Alert.alert('Sair?','Deseja realmente sair?',[  
+    Alert.alert('Sair?','Deseja realmente sair?',[
+      {  
+        text: 'Cancelar'
+      },
       {  
         text: 'Sim',
         onPress: (async()=> {
           await AsyncStorage.setItem("@usuario", '')
           navigation.navigate('Jogos')
         })
-    }])
+      }
+    ])
   }
-
-  const em = 'Gabriel Silveira'
+  
   return (
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
       <View style={stylesGlobal.conteudoTela}>
@@ -79,49 +82,13 @@ const PerfilTela = ({navigation}) => {
               placeholderTextColor="#cccccc"
               value={email}
           />
-          
-          <Estado estado={estadoSenha} texto={'Senha'}/>
-          <View style={stylesGlobal.senhas}>
-              <TextInput
-                  onChangeText={(text) => {setSenha(text)}}
-                  onEndEditing={()=>{setEstadoSenha(validaSenha(senha))}}
-                  style={stylesGlobal.input}
-                  secureTextEntry={verSenha}
-                  placeholderTextColor="#cccccc"
-                  placeholder="************"
-                  value={senha}
-              />
-              <TouchableOpacity style={stylesGlobal.botaoLadoInput} onPress={()=>{verSenha?setVerSenha(false):setVerSenha(true)}}>
-                  <FontAwesome5 name={verSenha?'eye':'eye-slash'} size={30} color="white"/>
-              </TouchableOpacity>
-          </View>
 
-          <Estado estado={estadoConfirmaSenha} texto={'Confirme a Senha'}/>
-          <View style={stylesGlobal.senhas}>
-              <TextInput
-                  onChangeText={(text) => {setConfirmaSenha(text)}}
-                  onEndEditing={()=>{setEstadoConfirmaSenha(confirmaSenha === senha && validaSenha(confirmaSenha))}}
-                  secureTextEntry={verConfirmaSenha}
-                  style={stylesGlobal.input}
-                  placeholderTextColor="#cccccc"
-                  placeholder="************"
-                  value={confirmaSenha}
-              />
-              <TouchableOpacity style={stylesGlobal.botaoLadoInput} onPress={()=>{verConfirmaSenha?setVerConfirmaSenha(false):setVerConfirmaSenha(true)}}>
-                  <FontAwesome5 name={verConfirmaSenha?'eye':'eye-slash'} size={30} color="white"/>
-              </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity style={stylesGlobal.botaoUsuario}>
-              <Text style={stylesGlobal.txtBotaoUsuario}>Salvar</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{...stylesGlobal.botaoUsuario, marginTop:0}} onPress={logout}>
+          <TouchableOpacity style={stylesGlobal.botaoUsuario} onPress={logout}>
               <Text style={stylesGlobal.txtBotaoUsuario}>Sair</Text>
           </TouchableOpacity>
       </ScrollView>
       </View>
-      <Rodape telas={{ anterior: 'back', proxima: 'Recomendados'}} />
+      <Rodape telas={{ anterior: 'back'}} />
     </ImageBackground>
   );
 }
