@@ -3,7 +3,8 @@ import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import {TextInput,StyleSheet, Text, View, ImageBackground, TouchableOpacity} from 'react-native';
 import Rodape from '../Componentes/Rodape'
 
-const EsqueciSenhaTela = ({navigation}) => {
+const EsqueciSenhaTela = ({route, navigation}) => {
+  const config = route?.params
   const [email, setEmail] = useState('')
   
   return (
@@ -25,7 +26,7 @@ const EsqueciSenhaTela = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <Rodape telas={{ anterior: 'back'}} />
+      <Rodape telas={{ anterior: 'back', parametroAnterior: config}} />
     </ImageBackground>
   );
 }

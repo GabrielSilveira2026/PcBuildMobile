@@ -3,21 +3,46 @@ import {View , Text, StyleSheet, ImageBackground, FlatList,TouchableOpacity, Dim
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import CartaoProduto from '../Componentes/CartaoProduto'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {validaToken} from '../Services/httpservices'
 
-const FavoritosTela = ({navigation}) => {
-  const [configJson, setConfigJson] = useState([])
-  
+const FavoritosTela = ({route, navigation}) => {
+  const [configJson, setConfigJson] = useState()
+  const [estadoUsuario, setEstadoUsuario] = useState()
+
   useEffect(()=>{
-    async function pegaConfigSalva(){
+    async function validaEstadoUsuario(){
+      let usuario
       try {
-        let configSalvaString = await AsyncStorage.getItem("@configuracaoSalva")
-        setConfigJson(JSON.parse(configSalvaString))
-      } 
-      catch (error) {
-        console.log(error);
+        usuario = JSON.parse(await AsyncStorage.getItem("@usuario"))
+      } catch (error) {
+        Alert.alert("Ocorreu um erro ao recuperar sua configuração")
+      }
+      if(usuario) {
+        let statusToken = await validaToken(usuario.tokenjwt)
+        if (statusToken.status === 200) {
+          setEstadoUsuario('Logado')
+          //pega localmente a configuração
+          try {
+            setConfigJson(route?.params?route?.params:JSON.parse(await AsyncStorage.getItem("@configuracaoSalva")))
+          } 
+          catch (error) {
+            Alert.alert('Erro', 'Ocorreu um problema ao recuperar sua configuração');
+          }
+          //get no backend pra pegar a config do usuario
+        }
+        else if(statusToken.status === 404){
+          setEstadoUsuario('Não logado')
+        }
+        else{
+            Alert.alert("Ocorreu um erro ao puxar sua configuração")
+        }
+      }
+      else{
+        setEstadoUsuario('Não logado')
       }
     }
-    pegaConfigSalva()
+    
+    validaEstadoUsuario()
   },[])
 
   const removeConfiguracao = async() => {
@@ -27,18 +52,11 @@ const FavoritosTela = ({navigation}) => {
           text: 'Sim',  
           onPress: (async()=> {
             try {
-              await AsyncStorage.setItem('@configuracaoSalva', '')
+              await AsyncStorage.removeItem('@configuracaoSalva')
               setConfigJson()
             } 
             catch (e) {
-              console.log('Erro ao excluir');
-            }
-      
-            try {
-              await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', '')
-            } 
-            catch (e) {
-              console.log('Erro ao excluir');
+              Alert.alert('Erro ao excluir');
             }
           }), 
         },
@@ -56,27 +74,35 @@ const FavoritosTela = ({navigation}) => {
     <ImageBackground backgroundColor={Cores.secondary} source={imagemFundo} resizeMode="stretch" style={stylesGlobal.backgroundImage}>
     <View style={stylesGlobal.conteudoTela}>
       {
-        configJson?
-        <>
-          <FlatList
-            ListHeaderComponent={ 
-            <>
-              <Text style={styles.titulo}>
-                Configuração {configJson.tipo} para os jogos :
-              </Text>
-              {configJson?.jogos?.map(jogo => (<Text style={styles.jogos} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
-            </>
-            }
-            style={{width: '100%'}}
-            data={configJson?.pecas}
-            keyExtractor={item => item?.title}
-            renderItem={p => (
-              <CartaoProduto produto={p.item}/>
-              )}
-            />
-        </>
+        estadoUsuario === 'Logado'?
+          configJson?
+          <>
+            <FlatList
+              ListHeaderComponent={ 
+              <>
+                <Text style={styles.titulo}>
+                  Configuração {configJson.tipo} para os jogos :
+                </Text>
+                {configJson?.jogos?.map(jogo => (<Text style={styles.jogos} key={jogo.id_jogo_steam}>- {jogo.nome} {'\n'}</Text>))}
+              </>
+              }
+              style={{width: '100%'}}
+              data={configJson?.pecas}
+              keyExtractor={item => item?.title}
+              renderItem={p => (
+                <CartaoProduto produto={p.item}/>
+                )}
+              />
+          </>
+          :
+          <Text style={{...styles.titulo, textAlign: 'center',marginTop:'45%'}}>Você ainda tem nem uma configuração Favoritada :(</Text>
         :
-        <Text style={styles.titulo}>Você ainda tem nem uma configuração Favoritada :(</Text>
+        <View style={styles.semLogin}>
+          <Text style={{...styles.titulo, textAlign: 'center'}}>Faça o login para salvar configurações</Text>
+          <TouchableOpacity style={{...styles.botaoVoltar, padding:10}} onPress={() =>{navigation.navigate("Login")}}>
+                <Text>Ir para Login</Text>
+          </TouchableOpacity>
+        </View>
       }
       </View>
       <View style={styles.rodape}>
@@ -115,6 +141,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10, 
     paddingRight: 10, 
     paddingTop:5,
+  },
+  semLogin:{
+    alignItems: 'center',
+    marginTop:'auto',
+    marginBottom: 'auto'
   },
   rodape: {
     flexDirection: 'row', 

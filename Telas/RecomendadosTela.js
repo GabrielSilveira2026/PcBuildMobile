@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, ImageBackground, ActivityIndicator, ScrollView, 
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
 import CartaoPc from '../Componentes/CartaoPc'
-import {extraiRequisitosDeUmaLista} from '../Services/httpservices'
+import {extraiRequisitosDeUmaLista, montaPc} from '../Services/httpservices'
 import {useCart} from '../Constantes/CartContext'
 import axios from 'axios'
 
@@ -23,7 +23,7 @@ const RecomendadosTela = ({route, navigation}) => {
       let pcRec
       if (reqs.listaRequisitosMinimos.length) {
         try {
-          pcMin = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosMinimos});
+          pcMin = await montaPc(reqs.listaRequisitosMinimos)
           let {placa, ram, rom} = pcMin.data
           setPcMinimo([placa,ram,rom])
         } catch (error) {
@@ -39,7 +39,7 @@ const RecomendadosTela = ({route, navigation}) => {
         try {
           pcRec = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosRecomendados}); 
           let {placa, ram, rom} = pcRec.data
-          setPcRecomendado([placa, ram , pcMin.data.rom? pcMin.data.rom : rom])
+          setPcRecomendado([placa, ram, pcMin.data.rom? pcMin.data.rom : rom])
         } 
         catch (error) {
           setCarrega(false)
@@ -90,13 +90,13 @@ const RecomendadosTela = ({route, navigation}) => {
               }
               {
                 pcMinimo?
-                  <CartaoPc pc={{pecas: pcMinimo,tipo: 'Mínima'}}/>
+                  <CartaoPc pc={{pecas: pcMinimo,tipo: 'Mínima',jogos:selecionados.cart}}/>
                 : 
                   null
               }
               {
                 pcRecomendado?.length>0? 
-                  <CartaoPc pc={{pecas: pcRecomendado, tipo: 'Recomendada'}}/> 
+                  <CartaoPc pc={{pecas: pcRecomendado, tipo: 'Recomendada',jogos:selecionados.cart}}/> 
                 :
                   <ActivityIndicator animating={carrega} style={{marginTop:'50%',marginBottom:'50%'}} size={30} color={Cores.primary}/>
               }

@@ -3,8 +3,10 @@ import {TextInput, StyleSheet, TouchableOpacity, Text, View, ImageBackground,Ale
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
 import {FontAwesome5} from 'react-native-vector-icons';
-import {validaSenha, validaEmail} from '../Services/httpservices'
+import {validaSenha, validaEmail, validaNome, cadastraUsuario} from '../Services/httpservices'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export const Estado =({estado, texto}) => {
     return (
@@ -13,7 +15,7 @@ export const Estado =({estado, texto}) => {
                 estado?
                     <FontAwesome5 name={'check'} size={25} color={Cores.primary} />
                     :
-                    !estado?
+                    estado === false?
                         <FontAwesome5 name={'times'} size={25} color={'red'} />
                         :
                         null
@@ -22,8 +24,13 @@ export const Estado =({estado, texto}) => {
     )
 }
 
-const CadastroTela = ({navigation}) => {
+
+
+const CadastroTela = ({route, navigation}) => {
+    const configSalva = route?.params
+
     const [nome, setNome] = useState('')
+    const [estadoNome, setEstadoNome] = useState('')
 
     const [email, setEmail] = useState('')
     const [estadoEmail, setEstadoEmail] = useState('')
@@ -36,19 +43,26 @@ const CadastroTela = ({navigation}) => {
     const [verConfirmaSenha, setVerConfirmaSenha] = useState(true)
     const [estadoConfirmaSenha, setEstadoConfirmaSenha] = useState()
 
-    function cadastra(){
+    async function cadastra(){
+        setEstadoNome(validaNome(nome))
         setEstadoEmail(validaEmail(email))
         setEstadoSenha(validaSenha(senha))
         setEstadoConfirmaSenha(confirmaSenha === senha && validaSenha(confirmaSenha))
-        if(estadoEmail === true && estadoSenha === true && confirmaSenha === senha) {
-            let usuario = {nome, email, senha}
-            console.log(usuario);
 
-            //axios post 
-        }
-        else{
-            console.log('Invalido');
-            // alert erro
+        if(estadoEmail && estadoSenha && confirmaSenha === senha && estadoNome) {
+            let cadastro
+            try {
+                cadastro = await cadastraUsuario({nome, email, senha})
+            } 
+            catch (erro) {
+            }
+
+            if (cadastro) {
+                navigation.navigate('Login', configSalva)
+            }
+            else{
+                Alert.alert('Erro ao cadastrar', 'E-mail já cadastrado')
+            }
         }
     }
 
@@ -58,9 +72,10 @@ const CadastroTela = ({navigation}) => {
                 <ScrollView keyboardShouldPersistTaps='handled'>
                 <Text style={stylesGlobal.tituloUsuario}>Cadastrar</Text>
 
-                <Text style={styles.txtCampo}>Nome de Usuário</Text>
+                <Estado estado={estadoNome} texto={'Nome de Usuário'}/>
                 <TextInput
                     onChangeText={(text) => {setNome(text)}}
+                    onEndEditing={() =>{setEstadoNome(validaNome(nome))}}
                     style={stylesGlobal.input}
                     placeholderTextColor="#cccccc"
                     placeholder="Usuário exemplo"
@@ -70,6 +85,7 @@ const CadastroTela = ({navigation}) => {
                 <TextInput
                     onChangeText={(text) => {setEmail(text)}}
                     onEndEditing={()=>{setEstadoEmail(validaEmail(email))}}
+                    autoCapitalize='none'
                     style={stylesGlobal.input}
                     placeholder="exemplo@email.com.br"
                     placeholderTextColor="#cccccc"
@@ -81,6 +97,7 @@ const CadastroTela = ({navigation}) => {
                         onChangeText={(text) => {setSenha(text)}}
                         onEndEditing={()=>{setEstadoSenha(validaSenha(senha))}}
                         style={stylesGlobal.input}
+                        autoCapitalize='none'
                         secureTextEntry={verSenha}
                         placeholderTextColor="#cccccc"
                         placeholder="************"
@@ -97,9 +114,11 @@ const CadastroTela = ({navigation}) => {
                         onChangeText={(text) => {setConfirmaSenha(text)}}
                         onEndEditing={()=>{setEstadoConfirmaSenha(confirmaSenha === senha && validaSenha(confirmaSenha))}}
                         secureTextEntry={verConfirmaSenha}
+                        autoCapitalize='none'
                         style={stylesGlobal.input}
                         placeholderTextColor="#cccccc"
                         placeholder="************"
+                        onSubmitEditing={cadastra}
                     />
                     <TouchableOpacity style={stylesGlobal.botaoLadoInput} onPress={()=>{verConfirmaSenha?setVerConfirmaSenha(false):setVerConfirmaSenha(true)}}>
                         <FontAwesome5 name={verConfirmaSenha?'eye':'eye-slash'} size={30} color="white"/>
@@ -110,7 +129,7 @@ const CadastroTela = ({navigation}) => {
                     <Text style={stylesGlobal.txtBotaoUsuario}>Cadastrar</Text>
                 </TouchableOpacity>
 
-                <Text style={stylesGlobal.txtLinkSublinhado} onPress={() => navigation.navigate('Login')}>
+                <Text style={stylesGlobal.txtLinkSublinhado} onPress={() => navigation.navigate('Login', configSalva)}>
                     Já possuo uma conta!
                 </Text>
 

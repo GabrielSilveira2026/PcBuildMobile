@@ -7,7 +7,7 @@ import {useCart} from '../Constantes/CartContext'
 
 const CartaoPc = ({pc}) => {
     const navigation = useNavigation()
-    const {pecas, tipo} = pc
+    const {pecas, tipo, jogos} = pc
     const cpu = pecas?.[0]
     const gpu = pecas?.[1]
     const ram = pecas?.[2]
@@ -21,7 +21,7 @@ const CartaoPc = ({pc}) => {
     }
 
     return (
-        <TouchableOpacity style={styles.cartao} onPress={() => navigation.navigate('Pecas', {pecas, tipo})}>
+        <TouchableOpacity style={styles.cartao} onPress={() => navigation.navigate('Pecas', pc)}>
             <Image style={styles.imagem} source={{uri: 'https://cdn-icons-png.flaticon.com/512/558/558700.png'}}></Image>
             <View style={styles.items}>
                 <View style={styles.cabecalho}>

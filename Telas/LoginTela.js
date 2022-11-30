@@ -1,21 +1,33 @@
 import React, {useState} from 'react';
-import {TextInput, StyleSheet, TouchableOpacity, Text, View, ImageBackground, ScrollView } from 'react-native';
+import {TextInput, StyleSheet, TouchableOpacity, Text, View, ImageBackground, ScrollView, Alert } from 'react-native';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import Rodape from '../Componentes/Rodape'
 import {FontAwesome5} from 'react-native-vector-icons';
-import {validaSenha, validaEmail} from '../Services/httpservices'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {autenticaUsuario} from '../Services/httpservices'
 
 const LoginTela = ({route, navigation }) => {
-    const [email, setEmail] = useState('')
-    const [estadoEmail, setEstadoEmail] = useState('')
+    const configSalva = route?.params
 
-    const [senha, setSenha] = useState('')
+    const [email, setEmail] = useState()
+
+    const [senha, setSenha] = useState()
     const [verSenha, setVerSenha] = useState(true)
-    const [estadoSenha, setEstadoSenha] = useState('')
-    
-    const logar = () => {
 
+    const logar = async() => {
+        let usuarioAutenticado
+        try {
+            usuarioAutenticado = await autenticaUsuario({email, senha})
+        } catch (error) {
+            Alert.alert("Email ou senha incorreto")
+        }
+        if (usuarioAutenticado?.status === 200) {
+            await AsyncStorage.setItem("@usuario", JSON.stringify({usuario: usuarioAutenticado.data.usuario, tokenjwt:usuarioAutenticado.data.token}))
+            configSalva?
+                navigation.navigate('Favoritos', configSalva)
+            :
+                navigation.navigate('Jogos')
+        }
     }
 
     return (
@@ -25,19 +37,9 @@ const LoginTela = ({route, navigation }) => {
                 <Text style={stylesGlobal.tituloUsuario}>Entrar</Text>
 
                 <Text style={styles.txtCampo}>Email {''}
-                {
-                    estadoEmail === true?
-                        <FontAwesome5 name={'check'} size={25} color={Cores.primary} />
-                        :
-                        estadoEmail === false?
-                            <FontAwesome5 name={'times'} size={25} color={'red'} />
-                            :
-                            null
-                }
                 </Text>
                 <TextInput
                     onChangeText={(text) => {setEmail(text)}}
-                    //onEndEditing={()=>{setEstadoEmail(validaEmail(email))}}
                     placeholderTextColor="#cccccc"
                     autoCapitalize='none'
                     style={stylesGlobal.input}
@@ -48,7 +50,6 @@ const LoginTela = ({route, navigation }) => {
                 <View style={stylesGlobal.senhas}>
                     <TextInput
                         onChangeText={(text) => {setSenha(text)}}
-                        // onEndEditing={()=>{setEstadoSenha(validaSenha(senha))}}
                         style={stylesGlobal.input}
                         secureTextEntry={verSenha}
                         autoCapitalize='none'
@@ -65,11 +66,11 @@ const LoginTela = ({route, navigation }) => {
                     <Text style={stylesGlobal.txtBotaoUsuario}>Entrar</Text>
                 </TouchableOpacity>
 
-                <Text style={stylesGlobal.txtLinkSublinhado} onPress={() => navigation.navigate('EsqueciSenha')}>
+                <Text style={stylesGlobal.txtLinkSublinhado} onPress={() => navigation.navigate('EsqueciSenha', configSalva)}>
                     Esqueci a senha!
                 </Text>
 
-                <Text style={styles.txtSemCadastro} onPress={() => navigation.navigate('Cadastro')}>
+                <Text style={styles.txtSemCadastro} onPress={() => navigation.navigate('Cadastro', configSalva)}>
                     Não tenho cadastro ainda.
                 </Text>
             </ScrollView> 
