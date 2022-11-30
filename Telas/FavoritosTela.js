@@ -52,15 +52,8 @@ const FavoritosTela = ({route, navigation}) => {
           text: 'Sim',  
           onPress: (async()=> {
             try {
-              await AsyncStorage.setItem('@configuracaoSalva', '')
+              await AsyncStorage.removeItem('@configuracaoSalva')
               setConfigJson()
-            } 
-            catch (e) {
-              Alert.alert('Erro ao excluir');
-            }
-      
-            try {
-              await AsyncStorage.setItem('@jogosParaConfiguracaoSalva', '')
             } 
             catch (e) {
               Alert.alert('Erro ao excluir');

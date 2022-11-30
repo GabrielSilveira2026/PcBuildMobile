@@ -26,6 +26,7 @@ const Cabecalho = () => {
             catch (error) {
                 
             }
+            console.log(statusToken);
             if (statusToken.status === 200) {
                 navigation.navigate('Perfil')
             }
@@ -38,7 +39,7 @@ const Cabecalho = () => {
             }
           }
         else{
-        navigation.navigate('Login')
+            navigation.navigate('Login')
         }
     }
 
