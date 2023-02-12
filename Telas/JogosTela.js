@@ -47,15 +47,20 @@ const JogosTela = ({navigation}) => {
     let regex = /[^0-9a-zA-Z]/gm
     if (jogo !== "") {
       setListaJogos()
-      const response = await axios.get("https://g4673849dbf8477-qwkkduaklu8amhgz.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/?limit=9999")
-      for(var i = 0; i < response.data.items.length; i++){
-        if(response.data.items[i].nome.replace(regex,"").toLowerCase().includes(jogo.replace(regex,"").toLowerCase())){
-          let dadosJogo = response.data.items[i]
-          let jogoEstaSelecionado = selecionados.cart.find(jogo => jogo.id_jogo_steam === dadosJogo.id_jogo_steam)
-          dadosJogo.estado = jogoEstaSelecionado?'check-circle': 'circle'
-          listaAuxiliar.push(dadosJogo)
+      let offset = 0
+      
+      do {
+        const response = await axios.get("https://g4673849dbf8477-kh8pftimtcmp3b10.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/?limit=10000&offset=" + offset)
+        for(var i = 0; i < response.data.items.length; i++){
+          if(response.data.items[i]?.nome?.replace(regex,"").toLowerCase().includes(jogo.replace(regex,"").toLowerCase())){
+            let dadosJogo = response?.data?.items[i]
+            let jogoEstaSelecionado = selecionados.cart.find(jogo => jogo.id_jogo_steam === dadosJogo.id_jogo_steam)
+            dadosJogo.estado = jogoEstaSelecionado?'check-circle': 'circle'
+            listaAuxiliar.push(dadosJogo)
+          }
         }
-      }
+        offset = offset + 10000
+      } while (offset <= 30000 && listaAuxiliar.length === 0);
       setListaJogos(listaAuxiliar)
       if (listaAuxiliar.length === 0) {
         setListaJogos(lista)
