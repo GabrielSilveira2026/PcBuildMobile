@@ -33,7 +33,7 @@ const JogosTela = ({navigation}) => {
           }
         }
         offset = offset + 10000
-      } while (offset <= 30000 && listaAuxiliar.length === 0);
+      } while (offset <= 150000 && listaAuxiliar.length === 0);
       setListaJogos(listaAuxiliar)
       if (listaAuxiliar.length === 0) {
         setListaJogos(lista)
