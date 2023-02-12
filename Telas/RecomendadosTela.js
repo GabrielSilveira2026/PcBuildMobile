@@ -37,7 +37,7 @@ const RecomendadosTela = ({route, navigation}) => {
 
       if (reqs.listaRequisitosRecomendados.length) {
         try {
-          pcRec = await axios.post("http://144.22.197.132/montaPc", {requisitos:reqs.listaRequisitosRecomendados}); 
+          pcRec = await montaPc(reqs.listaRequisitosRecomendados); 
           let {placa, ram, rom} = pcRec.data
           setPcRecomendado([placa, ram, pcMin.data.rom? pcMin.data.rom : rom])
         } 
