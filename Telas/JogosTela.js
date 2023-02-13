@@ -21,8 +21,7 @@ const JogosTela = ({navigation}) => {
     let regex = /[^0-9a-zA-Z]/gm
     if (jogo !== "") {
       setListaJogos()
-      let offset = 0
-      do {
+      for (let offset = 0; offset < 150000; offset+=10000) {
         const response = await consultaBanco(offset)
         for(var i = 0; i < response.data.items.length; i++){
           if(response.data.items[i]?.nome?.replace(regex,"").toLowerCase().includes(jogo.replace(regex,"").toLowerCase())){
@@ -32,8 +31,7 @@ const JogosTela = ({navigation}) => {
             listaAuxiliar.push(dadosJogo)
           }
         }
-        offset = offset + 10000
-      } while (offset <= 150000 && listaAuxiliar.length === 0);
+      }
       setListaJogos(listaAuxiliar)
       if (listaAuxiliar.length === 0) {
         setListaJogos(lista)
