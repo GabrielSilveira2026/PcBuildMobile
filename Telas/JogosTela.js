@@ -22,14 +22,15 @@ const JogosTela = ({navigation}) => {
     if (jogo !== "") {
       setListaJogos()
       for (let offset = 0; offset < 150000; offset+=10000) {
-        const response = await consultaBanco(offset)
+        const response = await consultaBanco(offset, jogo)
         for(var i = 0; i < response.data.items.length; i++){
-          if(response.data.items[i]?.nome?.replace(regex,"").toLowerCase().includes(jogo.replace(regex,"").toLowerCase())){
+          // if(response.data.items[i]?.nome?.replace(regex,"").toLowerCase().includes(jogo.replace(regex,"").toLowerCase())){
+            // console.log("achei com offset:", offset);
             let dadosJogo = response?.data?.items[i]
             let jogoEstaSelecionado = selecionados.cart.find(jogo => jogo.id_jogo_steam === dadosJogo.id_jogo_steam)
             dadosJogo.estado = jogoEstaSelecionado?'check-circle': 'circle'
             listaAuxiliar.push(dadosJogo)
-          }
+          // }
         }
       }
       setListaJogos(listaAuxiliar)
@@ -73,7 +74,7 @@ const JogosTela = ({navigation}) => {
           </> 
           }
           data={listaJogos}
-          ListEmptyComponent={<ActivityIndicator style={{marginTop:80,marginBottom:'auto'}} size={60} color={Cores.primary}/>}
+          ListEmptyComponent={<><ActivityIndicator style={{marginTop:80,marginBottom:'auto'}} size={60} color={Cores.primary}/><Text style={styles.carregando}>Já estamos procurando seu jogo, só um instante</Text></>}
           numColumns={2}
           keyExtractor={item => item.id_jogo_steam}
           renderItem={j => (
@@ -119,6 +120,13 @@ const styles = StyleSheet.create({
     padding: 10, 
     marginLeft: 5,
     marginBottom: 10
+  },
+  carregando:{
+    color: 'white',
+    textAlign: 'center', 
+    fontSize:15,
+    marginTop:20,
+    marginRight: 'auto',
+    marginLeft:'auto'
   }
-
 })
