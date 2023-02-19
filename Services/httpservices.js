@@ -73,7 +73,7 @@ export function validaSenha(senha){
 }
 
 export function consultaBanco(jogo, offset){
-  return axios.get(`https://g4673849dbf8477-kh8pftimtcmp3b10.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/pesquisa/resultados/${jogo}?offset=` + offset?offset:null)
+  return axios.get(`https://g4673849dbf8477-kh8pftimtcmp3b10.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/pesquisa/resultados/${jogo}?offset=` + offset)
 }
 
 export function montaPc(requisitos){

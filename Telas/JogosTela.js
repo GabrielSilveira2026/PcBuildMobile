@@ -21,15 +21,19 @@ const JogosTela = ({navigation}) => {
     let regex = /[^0-9a-zA-Z]/gm
     if (jogo !== "") {
       setListaJogos()
-      const response = await consultaBanco(jogo)
+      let offset = 0
+      let response
       do {
+        response = await consultaBanco(jogo, offset)
         for(var i = 0; i < response.data.items.length; i++){
             let dadosJogo = response?.data?.items[i]
             let jogoEstaSelecionado = selecionados.cart.find(jogo => jogo.id_jogo_steam === dadosJogo.id_jogo_steam)
             dadosJogo.estado = jogoEstaSelecionado?'check-circle': 'circle'
             listaAuxiliar.push(dadosJogo)
         }
-      } while (response.data.hasMore === true);
+        offset = offset + 1000
+      } while (response.data.hadMore === true);
+
       setListaJogos(listaAuxiliar)
       if (listaAuxiliar.length === 0) {
         setListaJogos(lista)
