@@ -21,18 +21,15 @@ const JogosTela = ({navigation}) => {
     let regex = /[^0-9a-zA-Z]/gm
     if (jogo !== "") {
       setListaJogos()
-      // for (let offset = 0; offset < 150000; offset+=10000) {
-        const response = await consultaBanco(jogo)
+      const response = await consultaBanco(jogo)
+      do {
         for(var i = 0; i < response.data.items.length; i++){
-          // if(response.data.items[i]?.nome?.replace(regex,"").toLowerCase().includes(jogo.replace(regex,"").toLowerCase())){
-            // console.log("achei com offset:", offset);
             let dadosJogo = response?.data?.items[i]
             let jogoEstaSelecionado = selecionados.cart.find(jogo => jogo.id_jogo_steam === dadosJogo.id_jogo_steam)
             dadosJogo.estado = jogoEstaSelecionado?'check-circle': 'circle'
             listaAuxiliar.push(dadosJogo)
-          // }
         }
-      // }
+      } while (response.data.hasMore === true);
       setListaJogos(listaAuxiliar)
       if (listaAuxiliar.length === 0) {
         setListaJogos(lista)
