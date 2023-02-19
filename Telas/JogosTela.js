@@ -32,7 +32,7 @@ const JogosTela = ({navigation}) => {
             listaAuxiliar.push(dadosJogo)
         }
         offset = offset + 1000
-      } while (response.data.hadMore === true);
+      } while (response.data.hasMore === true);
 
       setListaJogos(listaAuxiliar)
       if (listaAuxiliar.length === 0) {
