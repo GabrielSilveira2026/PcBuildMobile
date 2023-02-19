@@ -21,8 +21,8 @@ const JogosTela = ({navigation}) => {
     let regex = /[^0-9a-zA-Z]/gm
     if (jogo !== "") {
       setListaJogos()
-      for (let offset = 0; offset < 150000; offset+=10000) {
-        const response = await consultaBanco(offset, jogo)
+      // for (let offset = 0; offset < 150000; offset+=10000) {
+        const response = await consultaBanco(jogo)
         for(var i = 0; i < response.data.items.length; i++){
           // if(response.data.items[i]?.nome?.replace(regex,"").toLowerCase().includes(jogo.replace(regex,"").toLowerCase())){
             // console.log("achei com offset:", offset);
@@ -32,7 +32,7 @@ const JogosTela = ({navigation}) => {
             listaAuxiliar.push(dadosJogo)
           // }
         }
-      }
+      // }
       setListaJogos(listaAuxiliar)
       if (listaAuxiliar.length === 0) {
         setListaJogos(lista)
