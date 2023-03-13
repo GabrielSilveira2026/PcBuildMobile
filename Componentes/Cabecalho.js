@@ -1,7 +1,7 @@
 import React from 'react';
 import styles, {Cores} from '../Constantes/Styles'
-import {useNavigation } from '@react-navigation/native';
-import {SafeAreaView, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {useNavigation, useRoute } from '@react-navigation/native';
+import {SafeAreaView,View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {FontAwesome5} from 'react-native-vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {validaToken} from '../Services/httpservices'
@@ -9,6 +9,22 @@ import {validaToken} from '../Services/httpservices'
 
 const Cabecalho = () => {
     const navigation = useNavigation()
+    const route = useRoute()
+    console.log(route);
+    let progresso
+    if (route.name === "Jogos") {
+        progresso = '30%'
+    }
+    else if (route.name === "Selecionados"){
+        progresso = '50%'
+    }
+    else if (route.name === "Filtros"){
+        progresso = '80%'
+    }
+    else if (route.name === "Recomendados"){
+        progresso = '95%'
+    }
+
     let usuario
 
     const redirecionadUsuario = async() => {
@@ -41,19 +57,22 @@ const Cabecalho = () => {
     }
 
     return (
-        <SafeAreaView style={style.cabecalho}> 
-            <TouchableOpacity onPress={redirecionadUsuario}>
-                <FontAwesome5 name="user" size={30} color="white" />
-            </TouchableOpacity>
+        <>
+            <SafeAreaView style={style.cabecalho}> 
+                <TouchableOpacity onPress={redirecionadUsuario}>
+                    <FontAwesome5 name="user" size={30} color="white" />
+                </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Jogos')}>
-                <Text style={style.logo}>Pc Build</Text>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Jogos')}>
+                    <Text style={style.logo}>Pc Build</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Favoritos')}>
-                <FontAwesome5 name="star" size={30} color="white" />
-            </TouchableOpacity>
-        </SafeAreaView >
+                <TouchableOpacity onPress={() => navigation.navigate('Favoritos')}>
+                    <FontAwesome5 name="star" size={30} color="white" />
+                </TouchableOpacity>
+            </SafeAreaView >
+            <View style={{backgroundColor: 'black', height: 4, width: progresso}}></View>
+        </>
     )
 }
 
