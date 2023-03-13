@@ -3,7 +3,7 @@ import {parse} from 'himalaya'
 
 const regex = /[^0-9a-zA-Z() " : , { } @ . / -]/gi
 
-const enderecoBackend = "http://144.22.197.132"
+const enderecoBackend = "http://140.238.181.190"
 
 export function extraiRequisitosDeUmaLista(listaDeJogos){
   let listaRequisitosMinimos = []
