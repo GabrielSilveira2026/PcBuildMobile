@@ -19,19 +19,21 @@ const JogosTela = ({navigation}) => {
   const pesquisa = async() => {
     Keyboard.dismiss()
     let regex = /[^0-9a-zA-Z]/gm
-    if (jogo !== "") {
+    if (jogo.replace(regex,"") !== "") {
       setListaJogos()
-      for (let offset = 0; offset < 150000; offset+=10000) {
-        const response = await consultaBanco(offset)
+      let offset = 0
+      let response
+      do {
+        response = await consultaBanco(jogo.replace(regex,""), offset)
         for(var i = 0; i < response.data.items.length; i++){
-          if(response.data.items[i]?.nome?.replace(regex,"").toLowerCase().includes(jogo.replace(regex,"").toLowerCase())){
             let dadosJogo = response?.data?.items[i]
             let jogoEstaSelecionado = selecionados.cart.find(jogo => jogo.id_jogo_steam === dadosJogo.id_jogo_steam)
             dadosJogo.estado = jogoEstaSelecionado?'check-circle': 'circle'
             listaAuxiliar.push(dadosJogo)
-          }
         }
-      }
+        offset = offset + 10000
+      } while (response.data.hasMore === true);
+
       setListaJogos(listaAuxiliar)
       if (listaAuxiliar.length === 0) {
         setListaJogos(lista)
@@ -39,6 +41,7 @@ const JogosTela = ({navigation}) => {
       }
     }
     else{
+      Alert.alert("Nenhum jogo pesquisado", "Por favor, pesquise um jogo")
       setListaJogos(lista)
     }
   }
@@ -73,7 +76,7 @@ const JogosTela = ({navigation}) => {
           </> 
           }
           data={listaJogos}
-          ListEmptyComponent={<ActivityIndicator style={{marginTop:80,marginBottom:'auto'}} size={60} color={Cores.primary}/>}
+          ListEmptyComponent={<><ActivityIndicator style={{marginTop:80,marginBottom:'auto'}} size={60} color={Cores.primary}/><Text style={styles.carregando}>Procurando jogo, só um instante</Text></>}
           numColumns={2}
           keyExtractor={item => item.id_jogo_steam}
           renderItem={j => (
@@ -119,6 +122,13 @@ const styles = StyleSheet.create({
     padding: 10, 
     marginLeft: 5,
     marginBottom: 10
+  },
+  carregando:{
+    color: 'white',
+    textAlign: 'center', 
+    fontSize:15,
+    marginTop:20,
+    marginRight: 'auto',
+    marginLeft:'auto'
   }
-
 })

@@ -72,8 +72,8 @@ export function validaSenha(senha){
   return(regex.test(senha))
 }
 
-export function consultaBanco(offset){
-  return axios.get("https://g4673849dbf8477-kh8pftimtcmp3b10.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/?limit=10000&offset=" + offset)
+export function consultaBanco(jogo, offset){
+  return axios.get(`https://g4673849dbf8477-kh8pftimtcmp3b10.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/pesquisa/resultados/${jogo}?limit=10000&offset=` + offset)
 }
 
 export function montaPc(requisitos){
