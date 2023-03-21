@@ -7,4 +7,5 @@
   <img src="assets/screenshots/TelaInicial.jpg" alt="Screenshot" width="300"/>
   <img src="assets/screenshots/TelaResultadoDaPesquisa.jpg" alt="Screenshot" width="300"/>
   <img src="assets/screenshots/TelaPCsRecomendados.jpg" alt="Screenshot" width="300"/>
+  <img src="assets/screenshots/TelaCadastroResponsiva.jpg" alt="Screenshot" width="300"/>
 </div>
