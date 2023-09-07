@@ -43,7 +43,7 @@ const Cabecalho = () => {
     return (
         <SafeAreaView style={style.cabecalho}> 
             <TouchableOpacity onPress={redirecionadUsuario}>
-                <FontAwesome5 name="user" size={30} color="white" />
+                <FontAwesome5 name="user" size={25} color="white" />
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Jogos')}>
@@ -51,7 +51,7 @@ const Cabecalho = () => {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Favoritos')}>
-                <FontAwesome5 name="star" size={30} color="white" />
+                <FontAwesome5 name="star" size={25} color="white" />
             </TouchableOpacity>
         </SafeAreaView >
     )
@@ -63,7 +63,7 @@ export default Cabecalho
 const style = StyleSheet.create({
     cabecalho:{
         backgroundColor: Cores.primary, 
-        height:50,
+        height:40,
         alignItems: "center", 
         paddingRight: 15, 
         paddingLeft: 15,

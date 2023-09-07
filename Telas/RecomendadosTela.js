@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   titulo: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 22,
+    fontSize: 20,
     marginBottom: 10
   },
   carregando: {
