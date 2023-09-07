@@ -23,14 +23,15 @@ const Stack = createNativeStackNavigator();
 function MyStack({navigation}){
   return(
     <CartProvider>
-      <StatusBar></StatusBar>
+      <StatusBar/>
       <Stack.Navigator
         screenOptions={{
           header: (props) => {
             return (
               <Cabecalho props={props}/>
             )
-          }
+          },
+          animation: 'slide_from_right'
         }}
         > 
           <Stack.Screen
@@ -44,6 +45,7 @@ function MyStack({navigation}){
           <Stack.Screen
             name="Selecionados"
             component={SelecionadosTela}
+            
           />
           <Stack.Screen
             name="Filtros"

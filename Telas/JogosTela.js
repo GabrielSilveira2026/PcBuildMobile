@@ -55,7 +55,7 @@ const JogosTela = ({navigation}) => {
           style={{width: '100%'}}
           ListHeaderComponent={
           <>
-            <Text style={styles.titulo}>Selecione até { 5 - selecionados.cart.length} jogos que você deseja jogar!</Text>
+            <Text style={styles.titulo}>Selecione os jogos que você deseja jogar!</Text>
 
             <View style={styles.pesquisa}>
               <TextInput
@@ -96,7 +96,7 @@ export default JogosTela;
 const styles = StyleSheet.create({
   titulo: {
     textAlign: 'center', 
-    fontSize: 25,
+    fontSize: 20,
     color: 'white', 
     marginBottom: 15
   },

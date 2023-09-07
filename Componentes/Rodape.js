@@ -43,8 +43,8 @@ const style = StyleSheet.create({
     rodape: {
         flexDirection: 'row', 
         justifyContent: 'space-evenly',
-        padding: 12,
-        height: Dimensions.get('window').height*9/100,
+        padding: 8,
+        height: Dimensions.get('window').height*8/100,
         backgroundColor: Cores.primary,
         borderTopWidth: 2,
     }, 
