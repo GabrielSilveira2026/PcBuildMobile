@@ -1,20 +1,28 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import {TextInput, FlatList, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert,ActivityIndicator, Keyboard} from 'react-native';
 import {FontAwesome5} from 'react-native-vector-icons';
 import CartaoJogo from '../Componentes/CartaoJogo'
 import Rodape from '../Componentes/Rodape'
-import lista from '../Dados/jogos.json';
+import lista from '../Constantes/jogos.json';
 import {useCart} from '../Constantes/CartContext'
-import {consultaBanco} from '../Services/httpservices'
-
+import {consultaBanco, jogosAleatorios} from '../Services/httpservices'
 
 const JogosTela = ({navigation}) => {
   const selecionados = useCart()
   const [jogo, setJogo] = useState('')
-  const capturarJogo = (jogoDigitado) => {setJogo(jogoDigitado)}
-  const [listaJogos, setListaJogos] = useState(lista)
+  // const capturarJogo = (jogoDigitado) => {setJogo(jogoDigitado)}
+  const [listaJogos, setListaJogos] = useState()
   const listaAuxiliar = []
+
+  useEffect(()=>{
+    async function geraListaInicial(){
+      let paginaAleatoria = Math.floor(Math.random() * 1500)
+      const listaJogosAleatorios = await jogosAleatorios(paginaAleatoria)
+      setListaJogos(listaJogosAleatorios.data.items)
+    }
+    geraListaInicial()
+  },[])
 
   const pesquisa = async() => {
     Keyboard.dismiss()
@@ -63,7 +71,7 @@ const JogosTela = ({navigation}) => {
                 placeholder="Digite o jogo"
                 placeholderTextColor="#cccccc"
                 value={jogo}
-                onChangeText={capturarJogo}
+                onChangeText={(jogoDigitado) => setJogo(jogoDigitado)}
                 onSubmitEditing={pesquisa}
               />
               <TouchableOpacity

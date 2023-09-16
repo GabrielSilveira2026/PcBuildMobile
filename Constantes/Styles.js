@@ -5,7 +5,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
-export const imagemFundo = require('../Imagens/FundoMontado.png') ;
+export const imagemFundo = require('../assets/ImagemFundo.png') ;
 
 export const Cores = {
     //cabecalho e rodape #5865f2

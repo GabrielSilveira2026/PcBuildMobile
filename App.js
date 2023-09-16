@@ -6,7 +6,6 @@ import 'react-native-gesture-handler';
 
 import LoginTela from './Telas/LoginTela';
 import JogosTela from './Telas/JogosTela';
-import ProgramasTela from './Telas/ProgramasTela';
 import SelecionadosTela from './Telas/SelecionadosTela';
 import FiltrosTela from './Telas/FiltrosTela';
 import RecomendadosTela from './Telas/RecomendadosTela';
@@ -37,10 +36,6 @@ function MyStack({navigation}){
           <Stack.Screen
             name="Jogos"
             component={JogosTela}
-          />
-          <Stack.Screen
-            name="Programas"
-            component={ProgramasTela}
           />
           <Stack.Screen
             name="Selecionados"
