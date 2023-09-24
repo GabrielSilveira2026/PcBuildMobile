@@ -1,28 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import {useState} from 'react';
 import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import {TextInput, FlatList, StyleSheet, TouchableOpacity, Text, View, ImageBackground, Alert,ActivityIndicator, Keyboard} from 'react-native';
 import {FontAwesome5} from 'react-native-vector-icons';
 import CartaoJogo from '../Componentes/CartaoJogo'
 import Rodape from '../Componentes/Rodape'
-import lista from '../Constantes/jogos.json';
 import {useCart} from '../Constantes/CartContext'
-import {consultaBanco, jogosAleatorios} from '../Services/httpservices'
+import {consultaBanco} from '../Services/httpservices'
+import listaInicial from '../Constantes/jogos.json'
 
 const JogosTela = ({navigation}) => {
   const selecionados = useCart()
   const [jogo, setJogo] = useState('')
-  // const capturarJogo = (jogoDigitado) => {setJogo(jogoDigitado)}
-  const [listaJogos, setListaJogos] = useState()
-  const listaAuxiliar = []
-
-  useEffect(()=>{
-    async function geraListaInicial(){
-      let paginaAleatoria = Math.floor(Math.random() * 1500)
-      const listaJogosAleatorios = await jogosAleatorios(paginaAleatoria)
-      setListaJogos(listaJogosAleatorios.data.items)
-    }
-    geraListaInicial()
-  },[])
+  const [listaJogos, setListaJogos] = useState(listaInicial)
 
   const pesquisa = async() => {
     Keyboard.dismiss()
@@ -31,6 +20,7 @@ const JogosTela = ({navigation}) => {
       setListaJogos()
       let offset = 0
       let response
+      let listaAuxiliar = []
       do {
         response = await consultaBanco(jogo.replace(regex,""), offset)
         for(var i = 0; i < response.data.items.length; i++){
@@ -44,13 +34,13 @@ const JogosTela = ({navigation}) => {
 
       setListaJogos(listaAuxiliar)
       if (listaAuxiliar.length === 0) {
-        setListaJogos(lista)
+        setListaJogos(listaInicial)
         Alert.alert("Nenhum jogo encontrado", "Por favor, tente pesquisar de outra maneira")
       }
     }
     else{
+      setListaJogos(listaInicial)
       Alert.alert("Nenhum jogo pesquisado", "Por favor, pesquise um jogo")
-      setListaJogos(lista)
     }
   }
 

@@ -3,7 +3,7 @@ import stylesGlobal, {Cores, imagemFundo} from '../Constantes/Styles'
 import {TextInput,StyleSheet, Text, View, ImageBackground, TouchableOpacity} from 'react-native';
 import Rodape from '../Componentes/Rodape'
 
-const FiltrosTela = ({navigation}) => {
+const Modelo = ({navigation}) => {
   const [preco, setPreco] = useState('')
   const capturarPreco = (precoDigitado) => {
     setPreco(precoDigitado)
