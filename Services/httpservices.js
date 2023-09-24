@@ -1,9 +1,8 @@
 import axios from "axios";
-import {parse} from 'himalaya'
 
 const regex = /[^0-9a-zA-Z() " : , { } @ . / -]/gi
 
-const enderecoBackend = "http://140.238.181.190"
+const enderecoBackend = "http://164.152.38.61"
 
 export function extraiRequisitosDeUmaLista(listaDeJogos){
   let listaRequisitosMinimos = []
@@ -70,6 +69,10 @@ export function validaEmail(email) {
 export function validaSenha(senha){
   const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/
   return(regex.test(senha))
+}
+
+export function jogosAleatorios(offset){
+  return axios.get(`https://g4673849dbf8477-kh8pftimtcmp3b10.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/jogo_tb/?limit=40&offset=${offset}`)
 }
 
 export function consultaBanco(jogo, offset){

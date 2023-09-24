@@ -25,7 +25,7 @@ const SelecionadosTela = ({navigation}) => {
         />
 
       </View>
-      <Rodape telas={{ anterior: 'Jogos',proxima: 'Filtros' }}></Rodape>
+      <Rodape telas={{ anterior: 'Jogos',proxima: 'Recomendados' }}></Rodape>
     </ImageBackground>
 );
 }

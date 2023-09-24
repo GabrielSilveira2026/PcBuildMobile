@@ -113,7 +113,7 @@ const RecomendadosTela = ({route, navigation}) => {
           }
         </ScrollView>
       </View>
-      <Rodape telas={{ anterior: 'Filtros'}} />
+      <Rodape telas={{ anterior: 'Selecionados'}} />
     </ImageBackground>
 );
 }

@@ -19,6 +19,7 @@ const LoginTela = ({route, navigation }) => {
         try {
             usuarioAutenticado = await autenticaUsuario({email, senha})
         } catch (error) {
+            console.log(error);
             Alert.alert("Email ou senha incorreto")
         }
         if (usuarioAutenticado?.status === 200) {
