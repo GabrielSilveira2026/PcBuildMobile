@@ -10,7 +10,7 @@ const CartaoProduto = ({produto}) => {
     const loja = produto?.merchant
     const link = produto?.link
     const imagem = produto?.image
-    const titulo = produto?.title
+    const titulo = produto
     let logo
     switch (loja) {
         case 'KaBuM!':
@@ -33,7 +33,7 @@ const CartaoProduto = ({produto}) => {
     return (
         <TouchableOpacity style={styles.cartao} onPress={() => {link?Linking.openURL(link):null}}>
             <Image style={styles.imagem} source={{uri: imagem}}/>
-            <View style={styles.titulo}><Text>{titulo?.substr(0,60)}...</Text></View>
+            <View style={styles.viewTitulo}><Text style={styles.textTitulo}>{titulo?.substr(0,60)}...</Text></View>
             <View style={styles.items}>
                 {
                     logo ?
@@ -73,10 +73,12 @@ const styles = StyleSheet.create({
         borderWidth:2,
         resizeMode: 'contain',
     },
-    titulo:{
+    viewTitulo:{
         marginRight:5,
-        fontSize:15,
         width:'34%',
+    },
+    textTitulo:{
+        fontSize:15,
         fontWeight: 'bold',
     },
     items:{
