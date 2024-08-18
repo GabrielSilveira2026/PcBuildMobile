@@ -4,7 +4,7 @@
 <p>Abaixo segue algumas das telas do projeto:</p>
 <br/>
 
-https://user-images.githubusercontent.com/85711715/232350816-07d74420-048f-4933-8613-e8fcdda2790d.mp4
+https://github.com/user-attachments/assets/7438f876-325c-4a01-98fa-5bc1ba564d15
 
 <br/>
 <div style="display: flex; justify-content: space-between;">
